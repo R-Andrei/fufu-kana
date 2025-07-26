@@ -2,7 +2,9 @@
 import './App.css'
 
 import React, { useState, useEffect, useRef } from 'react';
+import { RefreshCcw, ArrowRightCircle } from 'lucide-react';
 
+import doitforher from '/src/assets/doitforher.png';
 import type { ToastProps } from './components/toast';
 import type { Word, HistoryEntry } from './types';
 import { getRandomCorrectMessage, getRandomWrongMessage } from './utils/messages';
@@ -109,11 +111,20 @@ const App: React.FC = () => {
     }
   };
 
+  const resetHistory = () => {
+    setHistory([]);  // or whatever state update clears history
+  };
+
   const onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && userInput.trim()) {
       onCheck();
     }
   };
+
+  const correctCount = history.filter(entry => entry.isCorrect).length;
+  const wrongCount = history.length - correctCount;
+  const totalCount = history.length;
+  const accuracy = totalCount === 0 ? 0 : Math.round((correctCount / totalCount) * 100);
 
   return (
     <div className='flex w-full h-full practice-container' style={{ display: 'flex', height: '100vh', fontFamily: 'sans-serif' }}>
@@ -151,47 +162,72 @@ const App: React.FC = () => {
           justifyContent: 'center',
         }}
       >
-        {currentWord ? (
-          <>
-            <div
-              style={{
-                fontSize: '4rem',
-                fontWeight: 'bold',
-                marginBottom: '0.3rem',
-                textAlign: 'center',
-              }}
-            >
-              {currentWord.kana}
-            </div>
-            <div style={{ fontSize: '1rem', color: '#666', marginBottom: '2rem' }}>
-              {currentWord.english}
-            </div>
+        <img
+          src={doitforher}
+          alt="Do it for her"
+          className="practice-room-bg"
+        />
+        <div className="practice-room-content" style={{ position: 'relative', zIndex: 2 }}>
+          {currentWord ? (
+            <>
+              <div
+                style={{
+                  fontSize: '4rem',
+                  fontWeight: 'bold',
+                  marginBottom: '0.3rem',
+                  textAlign: 'center',
+                }}
+              >
+                {currentWord.kana}
+              </div>
+              <div style={{ fontSize: '1rem', color: '#666', marginBottom: '2rem', textAlign: 'center' }}>
+                {currentWord.english}
+              </div>
 
-            <input
-              type="text"
-              ref={inputRef}
-              value={userInput}
-              onChange={(e) => setUserInput(e.target.value)}
-              onKeyDown={onInputKeyDown}
-              placeholder="Type romaji here..."
-              style={{ fontSize: '1.5rem', padding: '0.5rem', width: '420px', textAlign: 'center' }}
-              autoFocus
-            />
-            <button
-              onClick={onCheck}
-              style={{ marginTop: '1rem', padding: '0.5rem 1rem', fontSize: '1.2rem' }}
-              disabled={!userInput.trim()}
-            >
-              Check
-            </button>
-          </>
-        ) : (
-          <div>Please select at least one kana set to start practicing.</div>
-        )}
+              <div className="input-group">
+                <input
+                  type="text"
+                  ref={inputRef}
+                  value={userInput}
+                  onChange={(e) => setUserInput(e.target.value)}
+                  onKeyDown={onInputKeyDown}
+                  placeholder="Type romaji here..."
+                  style={{ fontSize: '1.5rem', padding: '0.5rem', width: '420px', textAlign: 'center' }}
+                  autoFocus
+                />
+                <button
+                  onClick={onCheck}
+                  disabled={!userInput.trim()}
+                  title="Check answer"
+                  className={`check-button`}
+                >
+                  <ArrowRightCircle size={28} />
+                </button>
+              </div>
+            </>
+          ) : (
+            <div>Please select at least one kana set to start practicing.</div>
+          )}
+        </div>
       </section>
 
       <section className="w-1/4 p-4 practice-history" style={{ width: '330px', padding: '1rem' }}>
-        <h2>Practice History</h2>
+        <div className="history-header">
+          <h2>History</h2>
+          <button className='history-refresh' onClick={resetHistory} title="Reset history">
+            <RefreshCcw size={18} />
+          </button>
+        </div>
+
+        <div className='history-stats' style={{ marginBottom: '1rem' }}>
+          <div className='stats'>
+            <p>✅: {correctCount}</p>
+            <p>❌: {wrongCount}</p>
+            <p>#️⃣: {totalCount}</p>
+            <p>🎯: {accuracy}%</p>
+          </div>
+        </div>
+
         {history.length === 0 && <p>No history yet.</p>}
         <ul>
           {history.map((entry, idx) => (
