@@ -1,0 +1,3712 @@
+{
+  "vocabulary": [
+    {
+      "kana": "Tシャツ",
+      "english": "T-shirt"
+    },
+    {
+      "kana": "ユーターン",
+      "english": "U-turn"
+    },
+    {
+      "kana": "アイオワ",
+      "english": "Iowa"
+    },
+    {
+      "kana": "アイス",
+      "english": "ice, ice cream"
+    },
+    {
+      "kana": "アイスクリーム",
+      "english": "ice cream"
+    },
+    {
+      "kana": "アイスコーヒー",
+      "english": "iced coffee"
+    },
+    {
+      "kana": "アイスティー",
+      "english": "iced tea"
+    },
+    {
+      "kana": "アイスホッケー",
+      "english": "ice hockey"
+    },
+    {
+      "kana": "アイデア",
+      "english": "idea"
+    },
+    {
+      "kana": "アイドル",
+      "english": "(teen) idol, pop star"
+    },
+    {
+      "kana": "アイルランド",
+      "english": "Ireland"
+    },
+    {
+      "kana": "アイロン",
+      "english": "iron"
+    },
+    {
+      "kana": "アクセサリー",
+      "english": "accessory"
+    },
+    {
+      "kana": "アクセル",
+      "english": "accelerator pedal"
+    },
+    {
+      "kana": "アクセント",
+      "english": "accent"
+    },
+    {
+      "kana": "アクリル",
+      "english": "acrylic"
+    },
+    {
+      "kana": "アシスタント",
+      "english": "assistant"
+    },
+    {
+      "kana": "アジア",
+      "english": "Asia"
+    },
+    {
+      "kana": "アスピリン",
+      "english": "aspirin"
+    },
+    {
+      "kana": "アテネ",
+      "english": "Athens"
+    },
+    {
+      "kana": "アナウンサー",
+      "english": "announcer"
+    },
+    {
+      "kana": "アナウンス",
+      "english": "announcement"
+    },
+    {
+      "kana": "アニメ",
+      "english": "animation, cartoons"
+    },
+    {
+      "kana": "アパート",
+      "english": "apartment"
+    },
+    {
+      "kana": "アフターサービス",
+      "english": "customer service"
+    },
+    {
+      "kana": "アフリカ",
+      "english": "Africa"
+    },
+    {
+      "kana": "アフロヘア",
+      "english": "Afro hairstyle"
+    },
+    {
+      "kana": "アベック",
+      "english": "romantic couple"
+    },
+    {
+      "kana": "アポ",
+      "english": "appointment"
+    },
+    {
+      "kana": "アマゾン",
+      "english": "Amazon"
+    },
+    {
+      "kana": "アマチュア",
+      "english": "amateur"
+    },
+    {
+      "kana": "アメフト",
+      "english": "American football"
+    },
+    {
+      "kana": "アメリカ",
+      "english": "America"
+    },
+    {
+      "kana": "アメリカンドッグ",
+      "english": "corn dog"
+    },
+    {
+      "kana": "アラカルト",
+      "english": "a la carte"
+    },
+    {
+      "kana": "アラスカ",
+      "english": "Alaska"
+    },
+    {
+      "kana": "アルコール",
+      "english": "alcohol"
+    },
+    {
+      "kana": "アルゼンチン",
+      "english": "Argentina"
+    },
+    {
+      "kana": "バイト",
+      "english": "part-time job"
+    },
+    {
+      "kana": "アルバム",
+      "english": "album"
+    },
+    {
+      "kana": "アルファベット",
+      "english": "alphabet"
+    },
+    {
+      "kana": "アルミニウム",
+      "english": "aluminum"
+    },
+    {
+      "kana": "アルミ",
+      "english": "aluminum"
+    },
+    {
+      "kana": "アレルギー",
+      "english": "allergy"
+    },
+    {
+      "kana": "アロエ",
+      "english": "aloe"
+    },
+    {
+      "kana": "アンケート",
+      "english": "questionnaire"
+    },
+    {
+      "kana": "アンコール",
+      "english": "encore"
+    },
+    {
+      "kana": "アンサー",
+      "english": "answer"
+    },
+    {
+      "kana": "アンテナ",
+      "english": "antenna"
+    },
+    {
+      "kana": "アンニュイ",
+      "english": "ennui"
+    },
+    {
+      "kana": "アンモニア",
+      "english": "ammonia"
+    },
+    {
+      "kana": "アーチ",
+      "english": "arch"
+    },
+    {
+      "kana": "アールブイ",
+      "english": "Recreational Vehicle"
+    },
+    {
+      "kana": "イェール大学",
+      "english": "Yale University"
+    },
+    {
+      "kana": "イエス",
+      "english": "Jesus"
+    },
+    {
+      "kana": "イギリス",
+      "english": "England"
+    },
+    {
+      "kana": "イクラ",
+      "english": "salmon roe"
+    },
+    {
+      "kana": "イスラエル",
+      "english": "Israel"
+    },
+    {
+      "kana": "イタリア",
+      "english": "Italy"
+    },
+    {
+      "kana": "イニシャル",
+      "english": "initials"
+    },
+    {
+      "kana": "イヌ",
+      "english": "dog"
+    },
+    {
+      "kana": "イメージ",
+      "english": "image"
+    },
+    {
+      "kana": "イヤフォン",
+      "english": "earphone"
+    },
+    {
+      "kana": "イヤリング",
+      "english": "earring"
+    },
+    {
+      "kana": "イラク",
+      "english": "Iraq"
+    },
+    {
+      "kana": "イラスト",
+      "english": "illustration"
+    },
+    {
+      "kana": "イラストレーター",
+      "english": "illustrator"
+    },
+    {
+      "kana": "イラン",
+      "english": "Iran"
+    },
+    {
+      "kana": "インク",
+      "english": "ink"
+    },
+    {
+      "kana": "インスタント",
+      "english": "instant"
+    },
+    {
+      "kana": "インタビュー",
+      "english": "interview"
+    },
+    {
+      "kana": "インターネット",
+      "english": "Internet"
+    },
+    {
+      "kana": "インターハイ",
+      "english": "inter high school athletic competition"
+    },
+    {
+      "kana": "インターン",
+      "english": "intern"
+    },
+    {
+      "kana": "インチ",
+      "english": "inch"
+    },
+    {
+      "kana": "インテルメッツォ",
+      "english": "intermezzo"
+    },
+    {
+      "kana": "イントロ",
+      "english": "introduction"
+    },
+    {
+      "kana": "インドネシア",
+      "english": "Indonesia"
+    },
+    {
+      "kana": "インフォメーション",
+      "english": "information"
+    },
+    {
+      "kana": "インフォーマル",
+      "english": "informal"
+    },
+    {
+      "kana": "インフルエンザ",
+      "english": "influenza"
+    },
+    {
+      "kana": "インフレ",
+      "english": "inflation"
+    },
+    {
+      "kana": "イン・キー",
+      "english": "locking keys inside car"
+    },
+    {
+      "kana": "イースター",
+      "english": "Easter"
+    },
+    {
+      "kana": "イースト",
+      "english": "yeast"
+    },
+    {
+      "kana": "ウィスキー",
+      "english": "whisky"
+    },
+    {
+      "kana": "ウィナー",
+      "english": "winner"
+    },
+    {
+      "kana": "ウィンカー",
+      "english": "turn signal"
+    },
+    {
+      "kana": "ウィークエンド",
+      "english": "weekend"
+    },
+    {
+      "kana": "ウィーン",
+      "english": "Vienna"
+    },
+    {
+      "kana": "ウイルス",
+      "english": "virus"
+    },
+    {
+      "kana": "ウェイジ",
+      "english": "wage"
+    },
+    {
+      "kana": "ウェディングドレス",
+      "english": "wedding dress"
+    },
+    {
+      "kana": "ウェートレス",
+      "english": "waitress"
+    },
+    {
+      "kana": "ウエスタン",
+      "english": "western"
+    },
+    {
+      "kana": "ウエスト",
+      "english": "waist"
+    },
+    {
+      "kana": "ウエーター",
+      "english": "waiter"
+    },
+    {
+      "kana": "ウォシュレット",
+      "english": "toilet with bidet"
+    },
+    {
+      "kana": "ウォッカ",
+      "english": "vodka"
+    },
+    {
+      "kana": "ウォークマン",
+      "english": "Walkman"
+    },
+    {
+      "kana": "ウクレレ",
+      "english": "ukulele"
+    },
+    {
+      "kana": "ウヰスキー",
+      "english": "whisky"
+    },
+    {
+      "kana": "ウーマン",
+      "english": "woman"
+    },
+    {
+      "kana": "ウール",
+      "english": "wool"
+    },
+    {
+      "kana": "ウーロン茶",
+      "english": "oolong tea"
+    },
+    {
+      "kana": "エアコン",
+      "english": "air conditioner"
+    },
+    {
+      "kana": "エアメール",
+      "english": "airmail"
+    },
+    {
+      "kana": "エキス",
+      "english": "extract"
+    },
+    {
+      "kana": "エクストラ",
+      "english": "extra"
+    },
+    {
+      "kana": "エコノミークラス",
+      "english": "economy class"
+    },
+    {
+      "kana": "エゴイスト",
+      "english": "egoist"
+    },
+    {
+      "kana": "エスカレーター",
+      "english": "escalator"
+    },
+    {
+      "kana": "エスクァイア",
+      "english": "Esquire"
+    },
+    {
+      "kana": "エステ",
+      "english": "beauty salon"
+    },
+    {
+      "kana": "エチケット",
+      "english": "etiquette"
+    },
+    {
+      "kana": "エナメル",
+      "english": "enamel"
+    },
+    {
+      "kana": "エネルギッシュ",
+      "english": "energetic"
+    },
+    {
+      "kana": "エネルギー",
+      "english": "energy"
+    },
+    {
+      "kana": "エラー",
+      "english": "error"
+    },
+    {
+      "kana": "エリート",
+      "english": "elite"
+    },
+    {
+      "kana": "エルサレム",
+      "english": "Jerusalem"
+    },
+    {
+      "kana": "エレベーター",
+      "english": "elevator"
+    },
+    {
+      "kana": "エロ",
+      "english": "erotic"
+    },
+    {
+      "kana": "エンジン",
+      "english": "engine"
+    },
+    {
+      "hiragana": "エンジニア",
+      "kanji": null,
+      "romaji": "enjinia",
+      "english": "engineer",
+      "category": "nouns",
+      "subcategory": "occupations"
+    },
+    {
+      "kana": "エンスト",
+      "english": "stall"
+    },
+    {
+      "kana": "エール",
+      "english": "cheer"
+    },
+    {
+      "kana": "オアシス",
+      "english": "oasis"
+    },
+    {
+      "kana": "オイル",
+      "english": "oil"
+    },
+    {
+      "kana": "オカルト",
+      "english": "occult"
+    },
+    {
+      "kana": "オクラ",
+      "english": "okra"
+    },
+    {
+      "kana": "オフ",
+      "english": "sale"
+    },
+    {
+      "kana": "オペ",
+      "english": "operation"
+    },
+    {
+      "kana": "オペラ",
+      "english": "opera"
+    },
+    {
+      "kana": "オムレツ",
+      "english": "omelette"
+    },
+    {
+      "kana": "オランダ",
+      "english": "Holland"
+    },
+    {
+      "kana": "オリンピック",
+      "english": "Olympics"
+    },
+    {
+      "kana": "オルゴール",
+      "english": "music box"
+    },
+    {
+      "kana": "オレンジ",
+      "english": "orange"
+    },
+    {
+      "kana": "オンザロック",
+      "english": "on the rocks"
+    },
+    {
+      "kana": "オンス",
+      "english": "ounce"
+    },
+    {
+      "kana": "オンリーワン",
+      "english": "one of a kind"
+    },
+    {
+      "kana": "オーケストラ",
+      "english": "orchestra"
+    },
+    {
+      "kana": "オーストラリア",
+      "english": "Australia"
+    },
+    {
+      "kana": "オーディオ",
+      "english": "audio"
+    },
+    {
+      "kana": "オートバイ",
+      "english": "motorcycle"
+    },
+    {
+      "kana": "オートレース",
+      "english": "motorcycle racing"
+    },
+    {
+      "kana": "オートロック",
+      "english": "automatic locking door"
+    },
+    {
+      "kana": "オードブル",
+      "english": "hors-d'oeuvre"
+    },
+    {
+      "kana": "オーナー",
+      "english": "owner"
+    },
+    {
+      "kana": "オーバー",
+      "english": "overreaction"
+    },
+    {
+      "kana": "オーブン",
+      "english": "oven"
+    },
+    {
+      "kana": "オープンカー",
+      "english": "convertible"
+    },
+    {
+      "kana": "オーライ",
+      "english": "all right"
+    },
+    {
+      "kana": "オールナイト",
+      "english": "all-night"
+    },
+    {
+      "kana": "オーロラ",
+      "english": "aurora"
+    },
+    {
+      "kana": "カウンセラー",
+      "english": "counselor"
+    },
+    {
+      "kana": "カウンター",
+      "english": "counter"
+    },
+    {
+      "kana": "カクテル",
+      "english": "cocktail"
+    },
+    {
+      "kana": "カシミア",
+      "english": "cashmere"
+    },
+    {
+      "kana": "カシューナッツ",
+      "english": "cashew nut"
+    },
+    {
+      "kana": "カタログ",
+      "english": "catalog"
+    },
+    {
+      "kana": "カッパ",
+      "english": "raincoat"
+    },
+    {
+      "kana": "カップ",
+      "english": "cup"
+    },
+    {
+      "kana": "カップヌードル",
+      "english": "Cup Noodle"
+    },
+    {
+      "kana": "カナダ",
+      "english": "Canada"
+    },
+    {
+      "kana": "カヌー",
+      "english": "canoe"
+    },
+    {
+      "kana": "カフェ",
+      "english": "café"
+    },
+    {
+      "kana": "カフェイン",
+      "english": "caffeine"
+    },
+    {
+      "kana": "カメオ",
+      "english": "cameo"
+    },
+    {
+      "kana": "カメラ",
+      "english": "camera"
+    },
+    {
+      "kana": "カメラマン",
+      "english": "photographer"
+    },
+    {
+      "kana": "カメレオン",
+      "english": "chameleon"
+    },
+    {
+      "kana": "カモン",
+      "english": "come on"
+    },
+    {
+      "kana": "カラー",
+      "english": "color"
+    },
+    {
+      "kana": "カリフォルニア",
+      "english": "California"
+    },
+    {
+      "kana": "カリフラワー",
+      "english": "cauliflower"
+    },
+    {
+      "kana": "カルシウム",
+      "english": "calcium"
+    },
+    {
+      "kana": "カルタ",
+      "english": "karuta"
+    },
+    {
+      "kana": "カルテ",
+      "english": "medical record"
+    },
+    {
+      "kana": "カルピス",
+      "english": "Calpis"
+    },
+    {
+      "kana": "カレンダー",
+      "english": "calendar"
+    },
+    {
+      "kana": "カレーライス",
+      "english": "curry rice"
+    },
+    {
+      "kana": "カロリー",
+      "english": "calorie"
+    },
+    {
+      "kana": "カヲル",
+      "english": "Kaworu"
+    },
+    {
+      "kana": "カンニング",
+      "english": "cheating"
+    },
+    {
+      "kana": "カーテン",
+      "english": "curtain"
+    },
+    {
+      "kana": "カード",
+      "english": "card"
+    },
+    {
+      "kana": "カーブ",
+      "english": "curve"
+    },
+    {
+      "kana": "カーラー",
+      "english": "curler"
+    },
+    {
+      "kana": "ガソリンスタンド",
+      "english": "gas station"
+    },
+    {
+      "kana": "ガッツポーズ",
+      "english": "fist pump"
+    },
+    {
+      "kana": "ガム",
+      "english": "gum"
+    },
+    {
+      "kana": "ガラス",
+      "english": "glass"
+    },
+    {
+      "kana": "ガレージ",
+      "english": "garage"
+    },
+    {
+      "kana": "ガーゼ",
+      "english": "gauze"
+    },
+    {
+      "kana": "ガード",
+      "english": "guard"
+    },
+    {
+      "kana": "ガードマン",
+      "english": "security guard"
+    },
+    {
+      "kana": "キウイ",
+      "english": "kiwi"
+    },
+    {
+      "kana": "キス",
+      "english": "kiss"
+    },
+    {
+      "kana": "キッチンペーパー",
+      "english": "paper towel"
+    },
+    {
+      "kana": "キャッシュカード",
+      "english": "cash card"
+    },
+    {
+      "kana": "キャッチホン",
+      "english": "call waiting"
+    },
+    {
+      "kana": "キャットウォーク",
+      "english": "catwalk"
+    },
+    {
+      "kana": "キャップ",
+      "english": "cap"
+    },
+    {
+      "kana": "キャディー",
+      "english": "caddie"
+    },
+    {
+      "kana": "キャビンアテンダント",
+      "english": "flight attendant"
+    },
+    {
+      "kana": "キャベツ",
+      "english": "cabbage"
+    },
+    {
+      "kana": "キャンセル",
+      "english": "cancel"
+    },
+    {
+      "kana": "キャンピングカー",
+      "english": "recreational vehicle"
+    },
+    {
+      "kana": "キャンプ",
+      "english": "camp"
+    },
+    {
+      "kana": "キャンペーン",
+      "english": "campaign"
+    },
+    {
+      "kana": "キリスト教",
+      "english": "Christianity"
+    },
+    {
+      "kana": "キログラム",
+      "english": "kilogram"
+    },
+    {
+      "kana": "キロメートル",
+      "english": "kilometer"
+    },
+    {
+      "kana": "キーホルダー",
+      "english": "key ring"
+    },
+    {
+      "kana": "キーボード",
+      "english": "keyboard"
+    },
+    {
+      "kana": "ギター",
+      "english": "guitar"
+    },
+    {
+      "kana": "ギフト",
+      "english": "gift"
+    },
+    {
+      "kana": "ギブ(アップ)",
+      "english": "give up"
+    },
+    {
+      "kana": "ギプス",
+      "english": "cast"
+    },
+    {
+      "kana": "ギャラリー",
+      "english": "gallery"
+    },
+    {
+      "kana": "ギャンブル",
+      "english": "gambling"
+    },
+    {
+      "kana": "クァルテット",
+      "english": "quartet"
+    },
+    {
+      "kana": "クィディッチ",
+      "english": "Quidditch"
+    },
+    {
+      "kana": "クイズ",
+      "english": "quiz"
+    },
+    {
+      "kana": "クインテット",
+      "english": "quintet"
+    },
+    {
+      "kana": "クェスチョンマーク",
+      "english": "question mark"
+    },
+    {
+      "kana": "クォーク",
+      "english": "quark"
+    },
+    {
+      "kana": "クォーツ",
+      "english": "quartz"
+    },
+    {
+      "kana": "クッキー",
+      "english": "cookie"
+    },
+    {
+      "kana": "クッション",
+      "english": "cushion"
+    },
+    {
+      "kana": "クライマックス",
+      "english": "climax"
+    },
+    {
+      "kana": "クラクション",
+      "english": "horn"
+    },
+    {
+      "kana": "クラシック",
+      "english": "classical music"
+    },
+    {
+      "kana": "クラス",
+      "english": "class"
+    },
+    {
+      "kana": "クラッカー",
+      "english": "cracker"
+    },
+    {
+      "kana": "クラブ",
+      "english": "club"
+    },
+    {
+      "kana": "クランケ",
+      "english": "patient"
+    },
+    {
+      "kana": "クリスタル",
+      "english": "crystal"
+    },
+    {
+      "kana": "クリスマス",
+      "english": "Christmas"
+    },
+    {
+      "kana": "クリーニング",
+      "english": "cleaning"
+    },
+    {
+      "kana": "クリーム",
+      "english": "cream"
+    },
+    {
+      "kana": "クレソン",
+      "english": "watercress"
+    },
+    {
+      "kana": "クレヨン",
+      "english": "crayon"
+    },
+    {
+      "kana": "クレンザー",
+      "english": "cleanser"
+    },
+    {
+      "kana": "クレーム",
+      "english": "claim"
+    },
+    {
+      "kana": "クレーン",
+      "english": "crane"
+    },
+    {
+      "kana": "クロワッサン",
+      "english": "croissant"
+    },
+    {
+      "kana": "クロール",
+      "english": "crawl"
+    },
+    {
+      "kana": "クーラー",
+      "english": "air conditioner"
+    },
+    {
+      "kana": "グァンタナモ",
+      "english": "Guantánamo"
+    },
+    {
+      "kana": "グラス",
+      "english": "glass"
+    },
+    {
+      "kana": "グラフ",
+      "english": "graph"
+    },
+    {
+      "kana": "グラム",
+      "english": "gram"
+    },
+    {
+      "kana": "グリーン",
+      "english": "green"
+    },
+    {
+      "kana": "グルメ",
+      "english": "gourmet"
+    },
+    {
+      "kana": "グループ",
+      "english": "group"
+    },
+    {
+      "kana": "グロテスク",
+      "english": "grotesque"
+    },
+    {
+      "kana": "ケチャップ",
+      "english": "ketchup"
+    },
+    {
+      "kana": "ケーキ",
+      "english": "cake"
+    },
+    {
+      "kana": "ケース",
+      "english": "case"
+    },
+    {
+      "kana": "ゲスト",
+      "english": "guest"
+    },
+    {
+      "kana": "ゲリラ",
+      "english": "guerilla"
+    },
+    {
+      "kana": "ゲレンデ",
+      "english": "ski slope"
+    },
+    {
+      "kana": "ゲート",
+      "english": "gate"
+    },
+    {
+      "kana": "ゲーム",
+      "english": "game"
+    },
+    {
+      "kana": "ゲーセン",
+      "english": "video arcade"
+    },
+    {
+      "kana": "コインランドリー",
+      "english": "laundromat"
+    },
+    {
+      "kana": "コインロッカー",
+      "english": "coin locker"
+    },
+    {
+      "kana": "コカコーラ",
+      "english": "Coca Cola"
+    },
+    {
+      "kana": "ココア",
+      "english": "cocoa"
+    },
+    {
+      "kana": "コスプレ",
+      "english": "cosplay"
+    },
+    {
+      "kana": "コック",
+      "english": "cook"
+    },
+    {
+      "kana": "コップ",
+      "english": "glass"
+    },
+    {
+      "kana": "コピー",
+      "english": "copy"
+    },
+    {
+      "kana": "コミュニケーション",
+      "english": "communication"
+    },
+    {
+      "kana": "コミュニティー",
+      "english": "community"
+    },
+    {
+      "kana": "コメント",
+      "english": "comment"
+    },
+    {
+      "kana": "コラボ",
+      "english": "collaboration"
+    },
+    {
+      "kana": "コルク",
+      "english": "cork"
+    },
+    {
+      "kana": "コレステロール",
+      "english": "cholesterol"
+    },
+    {
+      "kana": "コロッケ",
+      "english": "croquette"
+    },
+    {
+      "kana": "コンクリート",
+      "english": "concrete"
+    },
+    {
+      "kana": "コンクール",
+      "english": "contest"
+    },
+    {
+      "kana": "コンサート",
+      "english": "concert"
+    },
+    {
+      "kana": "コンセント",
+      "english": "power outlet"
+    },
+    {
+      "kana": "コンソメ",
+      "english": "consomme"
+    },
+    {
+      "kana": "コンタクト・レンズ",
+      "english": "contact lens"
+    },
+    {
+      "kana": "コンテスト",
+      "english": "contest"
+    },
+    {
+      "kana": "コントロール",
+      "english": "control"
+    },
+    {
+      "kana": "コンビナート",
+      "english": "enterprise"
+    },
+    {
+      "kana": "コンビニ",
+      "english": "convenience store"
+    },
+    {
+      "kana": "コンピュータ",
+      "english": "computer"
+    },
+    {
+      "kana": "コース",
+      "english": "course"
+    },
+    {
+      "kana": "コーチ",
+      "english": "coach"
+    },
+    {
+      "kana": "コーナー",
+      "english": "counter"
+    },
+    {
+      "kana": "コーヒー",
+      "english": "coffee"
+    },
+    {
+      "kana": "コーラス",
+      "english": "chorus"
+    },
+    {
+      "kana": "コーンフレーク",
+      "english": "cornflakes"
+    },
+    {
+      "kana": "ゴム",
+      "english": "rubber"
+    },
+    {
+      "kana": "ゴリラ",
+      "english": "gorilla"
+    },
+    {
+      "kana": "ゴルフ",
+      "english": "golf"
+    },
+    {
+      "kana": "ゴロゴロ",
+      "english": "rumbling sound"
+    },
+    {
+      "kana": "ゴール",
+      "english": "goal"
+    },
+    {
+      "kana": "ゴールデンウィーク",
+      "english": "Golden Week"
+    },
+    {
+      "kana": "サイズ",
+      "english": "size"
+    },
+    {
+      "kana": "サイダー",
+      "english": "soft drink"
+    },
+    {
+      "kana": "サイト",
+      "english": "website"
+    },
+    {
+      "kana": "サイドブレーキ",
+      "english": "hand brake"
+    },
+    {
+      "kana": "サイレン",
+      "english": "siren"
+    },
+    {
+      "kana": "サイン",
+      "english": "signature"
+    },
+    {
+      "kana": "サウナ",
+      "english": "sauna"
+    },
+    {
+      "kana": "サッカー",
+      "english": "soccer"
+    },
+    {
+      "kana": "サテン",
+      "english": "satin"
+    },
+    {
+      "kana": "サボる",
+      "english": "slack off"
+    },
+    {
+      "kana": "サマー・スクール",
+      "english": "summer school"
+    },
+    {
+      "kana": "サラダ",
+      "english": "salad"
+    },
+    {
+      "kana": "サラリーマン",
+      "english": "salaryman"
+    },
+    {
+      "kana": "サロン",
+      "english": "salon"
+    },
+    {
+      "kana": "サンタクロース",
+      "english": "Santa Claus"
+    },
+    {
+      "kana": "サンドイッチ",
+      "english": "sandwich"
+    },
+    {
+      "kana": "サンフランシスコ",
+      "english": "San Francisco"
+    },
+    {
+      "kana": "サークル",
+      "english": "circle"
+    },
+    {
+      "kana": "サーチライト",
+      "english": "searchlight"
+    },
+    {
+      "kana": "サービス",
+      "english": "service"
+    },
+    {
+      "kana": "サーフィン",
+      "english": "surfing"
+    },
+    {
+      "kana": "サーロイン・ステーキ",
+      "english": "sirloin steak"
+    },
+    {
+      "kana": "シアトル",
+      "english": "Seattle"
+    },
+    {
+      "kana": "シェイクスピア",
+      "english": "Shakespeare"
+    },
+    {
+      "kana": "シェリー",
+      "english": "sherry"
+    },
+    {
+      "kana": "シェルター",
+      "english": "shelter"
+    },
+    {
+      "kana": "システム",
+      "english": "system"
+    },
+    {
+      "kana": "シチュー",
+      "english": "stew"
+    },
+    {
+      "kana": "シヅエ",
+      "english": "Shizue"
+    },
+    {
+      "kana": "シナモン",
+      "english": "cinnamon"
+    },
+    {
+      "kana": "シナリオ",
+      "english": "scenario"
+    },
+    {
+      "kana": "シネマ",
+      "english": "cinema"
+    },
+    {
+      "kana": "シャボン玉",
+      "english": "soap bubble"
+    },
+    {
+      "kana": "シャワー",
+      "english": "shower"
+    },
+    {
+      "kana": "シャープペンシル",
+      "english": "mechanical pencil"
+    },
+    {
+      "kana": "シュークリーム",
+      "english": "cream puff"
+    },
+    {
+      "kana": "シューマイ",
+      "english": "shu mai"
+    },
+    {
+      "kana": "ショック",
+      "english": "shock"
+    },
+    {
+      "kana": "ショールーム",
+      "english": "showroom"
+    },
+    {
+      "kana": "シリアル",
+      "english": "cereal"
+    },
+    {
+      "kana": "シルク",
+      "english": "silk"
+    },
+    {
+      "kana": "シンフォニー",
+      "english": "symphony"
+    },
+    {
+      "kana": "シンポジウム",
+      "english": "symposium"
+    },
+    {
+      "kana": "シーエム",
+      "english": "commercial"
+    },
+    {
+      "kana": "シーツ",
+      "english": "sheet"
+    },
+    {
+      "kana": "シートベルト",
+      "english": "seat belt"
+    },
+    {
+      "kana": "シール",
+      "english": "sticker"
+    },
+    {
+      "kana": "シーン",
+      "english": "scene"
+    },
+    {
+      "kana": "ジェットコースター",
+      "english": "roller coaster"
+    },
+    {
+      "kana": "ジェット機",
+      "english": "jet airplane"
+    },
+    {
+      "kana": "ジェンダーフリー",
+      "english": "gender equality"
+    },
+    {
+      "kana": "ジグザグ",
+      "english": "zigzag"
+    },
+    {
+      "kana": "ジャズ",
+      "english": "jazz"
+    },
+    {
+      "kana": "ジャム",
+      "english": "jam"
+    },
+    {
+      "kana": "ジャンパー",
+      "english": "jacket"
+    },
+    {
+      "kana": "ジュース",
+      "english": "juice"
+    },
+    {
+      "kana": "ジョギング",
+      "english": "jogging"
+    },
+    {
+      "kana": "ジョッキ",
+      "english": "beer mug"
+    },
+    {
+      "kana": "ジンギスカン",
+      "english": "Genghis Khan"
+    },
+    {
+      "kana": "ジーパン",
+      "english": "jeans"
+    },
+    {
+      "kana": "ジーンズ",
+      "english": "jeans"
+    },
+    {
+      "kana": "スイス",
+      "english": "Switzerland"
+    },
+    {
+      "kana": "スイッチ",
+      "english": "switch"
+    },
+    {
+      "kana": "スイートルーム",
+      "english": "suite"
+    },
+    {
+      "kana": "スカート",
+      "english": "skirt"
+    },
+    {
+      "kana": "スカーフ",
+      "english": "scarf"
+    },
+    {
+      "kana": "スキー",
+      "english": "skiing"
+    },
+    {
+      "kana": "スキーリフト",
+      "english": "ski lift"
+    },
+    {
+      "kana": "スクリーン",
+      "english": "screen"
+    },
+    {
+      "kana": "スクーター",
+      "english": "scooter"
+    },
+    {
+      "kana": "スケジュール",
+      "english": "schedule"
+    },
+    {
+      "kana": "スケート",
+      "english": "skating"
+    },
+    {
+      "kana": "スケール",
+      "english": "scale"
+    },
+    {
+      "kana": "スコア",
+      "english": "score"
+    },
+    {
+      "kana": "スコップ",
+      "english": "shovel"
+    },
+    {
+      "kana": "スタイル",
+      "english": "style"
+    },
+    {
+      "kana": "スタミナ",
+      "english": "stamina"
+    },
+    {
+      "kana": "スター",
+      "english": "star"
+    },
+    {
+      "kana": "スタート",
+      "english": "start"
+    },
+    {
+      "kana": "スタートライン",
+      "english": "starting line"
+    },
+    {
+      "kana": "ステッキ",
+      "english": "stick"
+    },
+    {
+      "kana": "ステレオ",
+      "english": "stereo"
+    },
+    {
+      "kana": "ステンレス",
+      "english": "stainless steel"
+    },
+    {
+      "kana": "ストップウォッチ",
+      "english": "stopwatch"
+    },
+    {
+      "kana": "ストライキ",
+      "english": "strike"
+    },
+    {
+      "kana": "ストレス",
+      "english": "stress"
+    },
+    {
+      "kana": "ストレートティー",
+      "english": "black tea"
+    },
+    {
+      "kana": "ストロー",
+      "english": "straw"
+    },
+    {
+      "kana": "ストーブ",
+      "english": "heater"
+    },
+    {
+      "kana": "スナック",
+      "english": "snack"
+    },
+    {
+      "kana": "スニーカー",
+      "english": "sneaker"
+    },
+    {
+      "kana": "スノー・タイヤ",
+      "english": "snow tire"
+    },
+    {
+      "kana": "スピーカー",
+      "english": "speaker"
+    },
+    {
+      "kana": "スピーチ",
+      "english": "speech"
+    },
+    {
+      "kana": "スピード",
+      "english": "speed"
+    },
+    {
+      "kana": "スプーン",
+      "english": "spoon"
+    },
+    {
+      "kana": "スペイン",
+      "english": "Spain"
+    },
+    {
+      "kana": "スペシャル",
+      "english": "special"
+    },
+    {
+      "kana": "スポイト",
+      "english": "syringe"
+    },
+    {
+      "kana": "スポーツ",
+      "english": "sports"
+    },
+    {
+      "kana": "スマホ",
+      "english": "smartphone"
+    },
+    {
+      "kana": "スマート",
+      "english": "smart"
+    },
+    {
+      "kana": "スムーズ",
+      "english": "smooth"
+    },
+    {
+      "kana": "スモッグ",
+      "english": "smog"
+    },
+    {
+      "kana": "スラム",
+      "english": "slum"
+    },
+    {
+      "kana": "スリッパ",
+      "english": "slippers"
+    },
+    {
+      "kana": "スリル",
+      "english": "thrill"
+    },
+    {
+      "kana": "スリーサイズ",
+      "english": "body measurements"
+    },
+    {
+      "kana": "スーツ",
+      "english": "suit"
+    },
+    {
+      "kana": "スーツケース",
+      "english": "suitcase"
+    },
+    {
+      "kana": "スーパー",
+      "english": "supermarket"
+    },
+    {
+      "kana": "ズボン",
+      "english": "trousers"
+    },
+    {
+      "kana": "セキュリティー",
+      "english": "security"
+    },
+    {
+      "kana": "セクハラ",
+      "english": "sexual harassment"
+    },
+    {
+      "kana": "セックス",
+      "english": "sexual intercourse"
+    },
+    {
+      "kana": "セット",
+      "english": "set"
+    },
+    {
+      "kana": "セメダイン",
+      "english": "glue"
+    },
+    {
+      "kana": "セメント",
+      "english": "cement"
+    },
+    {
+      "kana": "セルフサービス",
+      "english": "self-service"
+    },
+    {
+      "kana": "セレブ",
+      "english": "celebrity"
+    },
+    {
+      "kana": "セロテープ",
+      "english": "scotch tape"
+    },
+    {
+      "kana": "セロハン",
+      "english": "cellophane"
+    },
+    {
+      "kana": "セロリ",
+      "english": "celery"
+    },
+    {
+      "kana": "センサー",
+      "english": "sensor"
+    },
+    {
+      "kana": "センター",
+      "english": "center"
+    },
+    {
+      "kana": "センチメンタル",
+      "english": "sentimental"
+    },
+    {
+      "kana": "センチメートル",
+      "english": "centimeter"
+    },
+    {
+      "kana": "セント",
+      "english": "cent"
+    },
+    {
+      "kana": "セーター",
+      "english": "sweater"
+    },
+    {
+      "kana": "セーフ",
+      "english": "safe"
+    },
+    {
+      "kana": "セール",
+      "english": "sale"
+    },
+    {
+      "kana": "ゼミナール",
+      "english": "seminar"
+    },
+    {
+      "kana": "ゼラチン",
+      "english": "gelatin"
+    },
+    {
+      "kana": "ゼリー",
+      "english": "gelatin dessert"
+    },
+    {
+      "kana": "ゼロ",
+      "english": "zero"
+    },
+    {
+      "kana": "ソックス",
+      "english": "socks"
+    },
+    {
+      "kana": "ソニー",
+      "english": "Sony"
+    },
+    {
+      "kana": "ソファー",
+      "english": "sofa"
+    },
+    {
+      "kana": "ソフト",
+      "english": "software"
+    },
+    {
+      "kana": "ソフトクリーム",
+      "english": "soft serve"
+    },
+    {
+      "kana": "ソロ",
+      "english": "solo"
+    },
+    {
+      "kana": "ソース",
+      "english": "sauce"
+    },
+    {
+      "kana": "ゾーン",
+      "english": "zone"
+    },
+    {
+      "kana": "タイ",
+      "english": "Thailand"
+    },
+    {
+      "kana": "タイマー",
+      "english": "timer"
+    },
+    {
+      "kana": "タイム",
+      "english": "time"
+    },
+    {
+      "kana": "タイヤ",
+      "english": "tire"
+    },
+    {
+      "kana": "タイル",
+      "english": "tile"
+    },
+    {
+      "kana": "タオル",
+      "english": "towel"
+    },
+    {
+      "kana": "タオルケット",
+      "english": "blanket"
+    },
+    {
+      "kana": "タクシー",
+      "english": "taxi"
+    },
+    {
+      "kana": "タバコ",
+      "english": "tobacco"
+    },
+    {
+      "kana": "タヒチ",
+      "english": "Tahiti"
+    },
+    {
+      "kana": "タフ",
+      "english": "tough"
+    },
+    {
+      "kana": "タレント",
+      "english": "celebrity"
+    },
+    {
+      "kana": "タワー",
+      "english": "tower"
+    },
+    {
+      "kana": "タンカー",
+      "english": "tanker"
+    },
+    {
+      "kana": "タンク",
+      "english": "tank"
+    },
+    {
+      "kana": "タートルネック",
+      "english": "turtleneck"
+    },
+    {
+      "kana": "ターミナル",
+      "english": "terminal"
+    },
+    {
+      "kana": "ダイヤ",
+      "english": "diamond"
+    },
+    {
+      "kana": "ダストボックス",
+      "english": "garbage can"
+    },
+    {
+      "kana": "ダブル",
+      "english": "double"
+    },
+    {
+      "kana": "ダム",
+      "english": "dam"
+    },
+    {
+      "kana": "ダンス",
+      "english": "dance"
+    },
+    {
+      "kana": "ダンプカー",
+      "english": "dump truck"
+    },
+    {
+      "kana": "チアリーダー",
+      "english": "cheerleader"
+    },
+    {
+      "kana": "チアリーディング",
+      "english": "cheerleading"
+    },
+    {
+      "kana": "チェス",
+      "english": "chess"
+    },
+    {
+      "kana": "チェック",
+      "english": "check"
+    },
+    {
+      "kana": "チェックアウト",
+      "english": "checkout"
+    },
+    {
+      "kana": "チェロ",
+      "english": "cello"
+    },
+    {
+      "kana": "チェーン",
+      "english": "chain"
+    },
+    {
+      "kana": "チケット",
+      "english": "ticket"
+    },
+    {
+      "kana": "チジミ",
+      "english": "chijimi"
+    },
+    {
+      "kana": "チャンピオン",
+      "english": "champion"
+    },
+    {
+      "kana": "チャーシュー",
+      "english": "cha shu"
+    },
+    {
+      "kana": "チャーハン",
+      "english": "fried rice"
+    },
+    {
+      "kana": "チューハイ",
+      "english": "shochu highball"
+    },
+    {
+      "kana": "チューバ",
+      "english": "tuba"
+    },
+    {
+      "kana": "チョコレート",
+      "english": "chocolate"
+    },
+    {
+      "kana": "チョーク",
+      "english": "chalk"
+    },
+    {
+      "kana": "チンキ",
+      "english": "tincture"
+    },
+    {
+      "kana": "チーズ",
+      "english": "cheese"
+    },
+    {
+      "kana": "チームワーク",
+      "english": "teamwork"
+    },
+    {
+      "kana": "ツアー",
+      "english": "tour"
+    },
+    {
+      "kana": "ツィンメルマン",
+      "english": "Zimmerman"
+    },
+    {
+      "kana": "ツイン",
+      "english": "twin"
+    },
+    {
+      "kana": "ツナ",
+      "english": "tuna"
+    },
+    {
+      "kana": "ティッシュ",
+      "english": "tissue"
+    },
+    {
+      "kana": "ティーシャツ",
+      "english": "T-shirt"
+    },
+    {
+      "kana": "テキスト",
+      "english": "textbook"
+    },
+    {
+      "kana": "テクニック",
+      "english": "technique"
+    },
+    {
+      "kana": "テスト",
+      "english": "test"
+    },
+    {
+      "kana": "テニスコート",
+      "english": "tennis court"
+    },
+    {
+      "kana": "テラス",
+      "english": "terrace"
+    },
+    {
+      "kana": "テレカ",
+      "english": "telephone card"
+    },
+    {
+      "kana": "テレビ",
+      "english": "television"
+    },
+    {
+      "kana": "テレビゲーム",
+      "english": "video game"
+    },
+    {
+      "kana": "テロ",
+      "english": "terrorism"
+    },
+    {
+      "kana": "テンキー",
+      "english": "numeric keypad"
+    },
+    {
+      "kana": "テント",
+      "english": "tent"
+    },
+    {
+      "kana": "テーブル",
+      "english": "table"
+    },
+    {
+      "kana": "テーマ",
+      "english": "theme"
+    },
+    {
+      "kana": "ディジタル",
+      "english": "digital"
+    },
+    {
+      "kana": "ディスク",
+      "english": "disk"
+    },
+    {
+      "kana": "ディスコ",
+      "english": "disco"
+    },
+    {
+      "kana": "ディズニーランド",
+      "english": "Disneyland"
+    },
+    {
+      "kana": "デザイナー",
+      "english": "designer"
+    },
+    {
+      "kana": "デザート",
+      "english": "dessert"
+    },
+    {
+      "kana": "デッサン",
+      "english": "drawing"
+    },
+    {
+      "kana": "デパート",
+      "english": "department store"
+    },
+    {
+      "kana": "デパ地下",
+      "english": "department store basement"
+    },
+    {
+      "kana": "デビュー",
+      "english": "debut"
+    },
+    {
+      "kana": "デモ",
+      "english": "demonstration"
+    },
+    {
+      "kana": "デュエット",
+      "english": "duet"
+    },
+    {
+      "kana": "デュオ",
+      "english": "duo"
+    },
+    {
+      "kana": "データ",
+      "english": "data"
+    },
+    {
+      "kana": "デート",
+      "english": "date"
+    },
+    {
+      "kana": "トイレ",
+      "english": "toilet"
+    },
+    {
+      "kana": "トイレットペーパー",
+      "english": "toilet paper"
+    },
+    {
+      "kana": "トゥナイト",
+      "english": "tonight"
+    },
+    {
+      "kana": "トゥモロー",
+      "english": "tomorrow"
+    },
+    {
+      "kana": "トマト",
+      "english": "tomato"
+    },
+    {
+      "kana": "トヨタ",
+      "english": "Toyota"
+    },
+    {
+      "kana": "トラクター",
+      "english": "tractor"
+    },
+    {
+      "kana": "トラック",
+      "english": "truck"
+    },
+    {
+      "kana": "トランク",
+      "english": "trunk"
+    },
+    {
+      "kana": "トランクルーム",
+      "english": "storage room"
+    },
+    {
+      "kana": "トランプ",
+      "english": "playing cards"
+    },
+    {
+      "kana": "トリオ",
+      "english": "trio"
+    },
+    {
+      "kana": "トリートメント",
+      "english": "treatment"
+    },
+    {
+      "kana": "トレーナー",
+      "english": "sweatshirt"
+    },
+    {
+      "kana": "トレーニング",
+      "english": "training"
+    },
+    {
+      "kana": "トレーラー",
+      "english": "trailer"
+    },
+    {
+      "kana": "トロフィー",
+      "english": "trophy"
+    },
+    {
+      "kana": "トンカツ",
+      "english": "pork cutlet"
+    },
+    {
+      "kana": "トンネル",
+      "english": "tunnel"
+    },
+    {
+      "kana": "トースター",
+      "english": "toaster"
+    },
+    {
+      "kana": "トースト",
+      "english": "toast"
+    },
+    {
+      "kana": "トーナメント",
+      "english": "tournament"
+    },
+    {
+      "kana": "ドア",
+      "english": "door"
+    },
+    {
+      "kana": "ドイツ",
+      "english": "Germany"
+    },
+    {
+      "kana": "ドゥーイットユアセルフ",
+      "english": "do-it-yourself"
+    },
+    {
+      "kana": "ドキュメント",
+      "english": "document"
+    },
+    {
+      "kana": "ドクター ストップ",
+      "english": "medical prohibition"
+    },
+    {
+      "kana": "ドライバー",
+      "english": "driver"
+    },
+    {
+      "kana": "ドラマ",
+      "english": "drama"
+    },
+    {
+      "kana": "ドル",
+      "english": "dollar"
+    },
+    {
+      "kana": "ドレス",
+      "english": "dress"
+    },
+    {
+      "kana": "ドンマイ",
+      "english": "don't worry"
+    },
+    {
+      "kana": "ドーナツ",
+      "english": "doughnut"
+    },
+    {
+      "kana": "ナイター",
+      "english": "night game"
+    },
+    {
+      "kana": "ナイフ",
+      "english": "knife"
+    },
+    {
+      "kana": "ナイロン",
+      "english": "nylon"
+    },
+    {
+      "kana": "ナッツ",
+      "english": "nuts"
+    },
+    {
+      "kana": "ナフタリン",
+      "english": "naphthalene"
+    },
+    {
+      "kana": "ナレーター",
+      "english": "narrator"
+    },
+    {
+      "kana": "ナンセンス",
+      "english": "nonsense"
+    },
+    {
+      "kana": "ナンバー",
+      "english": "number"
+    },
+    {
+      "kana": "ナンバーディスプレイ",
+      "english": "caller ID"
+    },
+    {
+      "kana": "ナンバープレート",
+      "english": "license plate"
+    },
+    {
+      "kana": "ニコチン",
+      "english": "nicotine"
+    },
+    {
+      "kana": "ニックネーム",
+      "english": "nickname"
+    },
+    {
+      "kana": "ニット",
+      "english": "knitwear"
+    },
+    {
+      "kana": "ニュアンス",
+      "english": "nuance"
+    },
+    {
+      "kana": "ニュージーランド",
+      "english": "New Zealand"
+    },
+    {
+      "kana": "ニュース",
+      "english": "news"
+    },
+    {
+      "kana": "ネオン",
+      "english": "neon"
+    },
+    {
+      "kana": "ネガ",
+      "english": "negative"
+    },
+    {
+      "kana": "ネクタイ",
+      "english": "necktie"
+    },
+    {
+      "kana": "ネクター",
+      "english": "nectar"
+    },
+    {
+      "kana": "ネコ",
+      "english": "cat"
+    },
+    {
+      "kana": "ネックレス",
+      "english": "necklace"
+    },
+    {
+      "kana": "ネットワーク",
+      "english": "network"
+    },
+    {
+      "kana": "ネル",
+      "english": "flannel"
+    },
+    {
+      "kana": "ネーム",
+      "english": "name"
+    },
+    {
+      "kana": "ノイローゼ",
+      "english": "neurosis"
+    },
+    {
+      "kana": "ノック",
+      "english": "knock"
+    },
+    {
+      "kana": "ノックアウト",
+      "english": "knockout"
+    },
+    {
+      "kana": "ノミネート",
+      "english": "nominate"
+    },
+    {
+      "kana": "ノルウェー",
+      "english": "Norway"
+    },
+    {
+      "kana": "ノルマ",
+      "english": "quota"
+    },
+    {
+      "kana": "ノークレームノーリターン",
+      "english": "sold as is"
+    },
+    {
+      "kana": "ノーコメント",
+      "english": "no comment"
+    },
+    {
+      "kana": "ノート",
+      "english": "notebook"
+    },
+    {
+      "kana": "ノーベル賞",
+      "english": "Nobel Prize"
+    },
+    {
+      "kana": "ノーマル",
+      "english": "normal"
+    },
+    {
+      "kana": "ハイカー",
+      "english": "hiker"
+    },
+    {
+      "kana": "ハイキング",
+      "english": "hiking"
+    },
+    {
+      "kana": "ハイタッチ",
+      "english": "high five"
+    },
+    {
+      "kana": "ハイテク",
+      "english": "high-tech"
+    },
+    {
+      "kana": "ハイネック",
+      "english": "turtleneck"
+    },
+    {
+      "kana": "ハイヒール",
+      "english": "high heels"
+    },
+    {
+      "kana": "ハイヤー",
+      "english": "hired car"
+    },
+    {
+      "kana": "ハイライト",
+      "english": "highlight"
+    },
+    {
+      "kana": "ハウス",
+      "english": "house"
+    },
+    {
+      "kana": "ハッカー",
+      "english": "hacker"
+    },
+    {
+      "kana": "ハネムーン",
+      "english": "honeymoon"
+    },
+    {
+      "kana": "ハム",
+      "english": "ham"
+    },
+    {
+      "kana": "ハリケーン",
+      "english": "hurricane"
+    },
+    {
+      "kana": "ハワイ",
+      "english": "Hawaii"
+    },
+    {
+      "kana": "ハンカチ",
+      "english": "handkerchief"
+    },
+    {
+      "kana": "ハンサム",
+      "english": "handsome"
+    },
+    {
+      "kana": "ハンチング帽",
+      "english": "hunting cap"
+    },
+    {
+      "kana": "ハンドバッグ",
+      "english": "handbag"
+    },
+    {
+      "kana": "ハンドル",
+      "english": "handle"
+    },
+    {
+      "kana": "ハンバーガー",
+      "english": "hamburger"
+    },
+    {
+      "kana": "ハンバーグ",
+      "english": "hamburger patty"
+    },
+    {
+      "kana": "ハンマー",
+      "english": "hammer"
+    },
+    {
+      "kana": "ハンモック",
+      "english": "hammock"
+    },
+    {
+      "kana": "ハーフタイム",
+      "english": "half time"
+    },
+    {
+      "kana": "ハーモニカ",
+      "english": "harmonica"
+    },
+    {
+      "kana": "バイオリン",
+      "english": "violin"
+    },
+    {
+      "kana": "バイキング",
+      "english": "buffet"
+    },
+    {
+      "kana": "バイク",
+      "english": "motorcycle"
+    },
+    {
+      "kana": "バカンス",
+      "english": "vacation"
+    },
+    {
+      "kana": "バス",
+      "english": "bus"
+    },
+    {
+      "kana": "バスケットボール",
+      "english": "basketball"
+    },
+    {
+      "kana": "バス停",
+      "english": "bus stop"
+    },
+    {
+      "kana": "バター",
+      "english": "butter"
+    },
+    {
+      "kana": "バックナンバー",
+      "english": "back issue"
+    },
+    {
+      "kana": "バックミラー",
+      "english": "rear-view mirror"
+    },
+    {
+      "kana": "バッグ",
+      "english": "bag"
+    },
+    {
+      "kana": "バッジ",
+      "english": "badge"
+    },
+    {
+      "kana": "バナナ",
+      "english": "banana"
+    },
+    {
+      "kana": "バリアフリー",
+      "english": "accessible facilities"
+    },
+    {
+      "kana": "バルブ",
+      "english": "valve"
+    },
+    {
+      "kana": "バレーボール",
+      "english": "volleyball"
+    },
+    {
+      "kana": "バンパイア",
+      "english": "vampire"
+    },
+    {
+      "kana": "バー",
+      "english": "bar"
+    },
+    {
+      "kana": "バーゲンセール",
+      "english": "bargain sale"
+    },
+    {
+      "kana": "バーコード",
+      "english": "bar code"
+    },
+    {
+      "kana": "バーベキュー",
+      "english": "barbecue"
+    },
+    {
+      "kana": "パイン",
+      "english": "pineapple"
+    },
+    {
+      "kana": "パジャマ",
+      "english": "pajamas"
+    },
+    {
+      "kana": "パスポート",
+      "english": "passport"
+    },
+    {
+      "kana": "パソコン",
+      "english": "personal computer"
+    },
+    {
+      "kana": "パチンコ",
+      "english": "pachinko"
+    },
+    {
+      "kana": "パトカー",
+      "english": "police car"
+    },
+    {
+      "kana": "パネリスト",
+      "english": "panelist"
+    },
+    {
+      "kana": "パリ",
+      "english": "Paris"
+    },
+    {
+      "kana": "パン",
+      "english": "bread"
+    },
+    {
+      "kana": "パンク",
+      "english": "flat tire"
+    },
+    {
+      "kana": "パンスト",
+      "english": "pantyhose"
+    },
+    {
+      "kana": "パンダ",
+      "english": "panda"
+    },
+    {
+      "kana": "パンツ",
+      "english": "pants"
+    },
+    {
+      "kana": "パンフレット",
+      "english": "pamphlet"
+    },
+    {
+      "kana": "パーセント",
+      "english": "percent"
+    },
+    {
+      "kana": "パーティー",
+      "english": "party"
+    },
+    {
+      "kana": "パートタイム",
+      "english": "part-time"
+    },
+    {
+      "kana": "ヒステリー",
+      "english": "hysteria"
+    },
+    {
+      "kana": "ヒッチハイク",
+      "english": "hitchhiking"
+    },
+    {
+      "kana": "ヒューズ",
+      "english": "fuse"
+    },
+    {
+      "kana": "ヒレ",
+      "english": "filet"
+    },
+    {
+      "kana": "ヒント",
+      "english": "hint"
+    },
+    {
+      "kana": "ヒーター",
+      "english": "heater"
+    },
+    {
+      "kana": "ヒール",
+      "english": "heel"
+    },
+    {
+      "kana": "ビザ",
+      "english": "visa"
+    },
+    {
+      "kana": "ビジネス",
+      "english": "business"
+    },
+    {
+      "kana": "ビジネスホテル",
+      "english": "business hotel"
+    },
+    {
+      "kana": "ビタミン",
+      "english": "vitamin"
+    },
+    {
+      "kana": "ビデオ",
+      "english": "video"
+    },
+    {
+      "kana": "ビニール",
+      "english": "vinyl"
+    },
+    {
+      "kana": "ビル",
+      "english": "building"
+    },
+    {
+      "kana": "ビロード",
+      "english": "velvet"
+    },
+    {
+      "kana": "ビーナス",
+      "english": "Venus"
+    },
+    {
+      "kana": "ビール",
+      "english": "beer"
+    },
+    {
+      "kana": "ピアノ",
+      "english": "piano"
+    },
+    {
+      "kana": "ピエロ",
+      "english": "clown"
+    },
+    {
+      "kana": "ピクニック",
+      "english": "picnic"
+    },
+    {
+      "kana": "ピザ",
+      "english": "pizza"
+    },
+    {
+      "kana": "ピッツァ",
+      "english": "pizza"
+    },
+    {
+      "kana": "ピンク",
+      "english": "pink"
+    },
+    {
+      "kana": "ピンセット",
+      "english": "tweezers"
+    },
+    {
+      "kana": "ピント",
+      "english": "focus"
+    },
+    {
+      "kana": "ピンポン",
+      "english": "table tennis"
+    },
+    {
+      "kana": "ピーナッツ",
+      "english": "peanut"
+    },
+    {
+      "kana": "ピーマン",
+      "english": "bell pepper"
+    },
+    {
+      "kana": "ファイト",
+      "english": "fight"
+    },
+    {
+      "kana": "ファイナル",
+      "english": "final"
+    },
+    {
+      "kana": "ファイル",
+      "english": "file"
+    },
+    {
+      "kana": "ファスナー",
+      "english": "zipper"
+    },
+    {
+      "kana": "ファックス",
+      "english": "fax"
+    },
+    {
+      "kana": "ファッション",
+      "english": "fashion"
+    },
+    {
+      "kana": "ファン",
+      "english": "fan"
+    },
+    {
+      "kana": "ファンタジック",
+      "english": "fantastic"
+    },
+    {
+      "kana": "ファンファーレ",
+      "english": "fanfare"
+    },
+    {
+      "kana": "フィアンセ",
+      "english": "fiance"
+    },
+    {
+      "kana": "フィリピン",
+      "english": "Philippines"
+    },
+    {
+      "kana": "フィルム",
+      "english": "film"
+    },
+    {
+      "kana": "フェア",
+      "english": "fair"
+    },
+    {
+      "kana": "フェチ",
+      "english": "fetish"
+    },
+    {
+      "kana": "フェリー",
+      "english": "ferry"
+    },
+    {
+      "kana": "フォーク",
+      "english": "fork"
+    },
+    {
+      "kana": "フォークソング",
+      "english": "folk song"
+    },
+    {
+      "kana": "フューチャー",
+      "english": "future"
+    },
+    {
+      "kana": "フライ",
+      "english": "fry"
+    },
+    {
+      "kana": "フライト",
+      "english": "flight"
+    },
+    {
+      "kana": "フライドポテト",
+      "english": "french fries"
+    },
+    {
+      "kana": "フライパン",
+      "english": "frying pan"
+    },
+    {
+      "kana": "フランス",
+      "english": "France"
+    },
+    {
+      "kana": "フリル",
+      "english": "frill"
+    },
+    {
+      "kana": "フリー",
+      "english": "free"
+    },
+    {
+      "kana": "フリーダイヤル",
+      "english": "toll-free number"
+    },
+    {
+      "kana": "フルコース",
+      "english": "full course"
+    },
+    {
+      "kana": "フルマラソン",
+      "english": "full marathon"
+    },
+    {
+      "kana": "フルーツ",
+      "english": "fruit"
+    },
+    {
+      "kana": "ブレーキ",
+      "english": "brake"
+    },
+    {
+      "kana": "ブーツ",
+      "english": "boots"
+    },
+    {
+      "kana": "ブーム",
+      "english": "boom"
+    },
+    {
+      "kana": "ブラインド",
+      "english": "blind"
+    },
+    {
+      "kana": "ブラウザー",
+      "english": "browser"
+    },
+    {
+      "kana": "ブラシ",
+      "english": "brush"
+    },
+    {
+      "kana": "ブラジャー",
+      "english": "brassiere"
+    },
+    {
+      "kana": "ブラック",
+      "english": "black"
+    },
+    {
+      "kana": "ブラックコーヒー",
+      "english": "black coffee"
+    },
+    {
+      "kana": "ブラックペッパー",
+      "english": "black pepper"
+    },
+    {
+      "kana": "ブラブラ",
+      "english": "stroll"
+    },
+    {
+      "kana": "ブルガリア",
+      "english": "Bulgaria"
+    },
+    {
+      "kana": "ブルゾン",
+      "english": "blouson"
+    },
+    {
+      "kana": "ブルドーザー",
+      "english": "bulldozer"
+    },
+    {
+      "kana": "ブルマ",
+      "english": "bloomers"
+    },
+    {
+      "kana": "プーさん",
+      "english": "Winnie the Pooh"
+    },
+    {
+      "kana": "プール",
+      "english": "pool"
+    },
+    {
+      "kana": "プリン",
+      "english": "pudding"
+    },
+    {
+      "kana": "プリンター",
+      "english": "printer"
+    },
+    {
+      "kana": "プレー",
+      "english": "play"
+    },
+    {
+      "kana": "プレゼント",
+      "english": "present"
+    },
+    {
+      "kana": "プレハブ",
+      "english": "prefab"
+    },
+    {
+      "kana": "プロ",
+      "english": "professional"
+    },
+    {
+      "kana": "プログラム",
+      "english": "program"
+    },
+    {
+      "kana": "プロジェクト",
+      "english": "project"
+    },
+    {
+      "kana": "ヘアピン",
+      "english": "hairpin"
+    },
+    {
+      "kana": "ヘアー",
+      "english": "hair"
+    },
+    {
+      "kana": "ヘアードライヤー",
+      "english": "hair dryer"
+    },
+    {
+      "kana": "ヘアーブラシ",
+      "english": "hairbrush"
+    },
+    {
+      "kana": "ヘクタール",
+      "english": "hectare"
+    },
+    {
+      "kana": "ベアリング",
+      "english": "bearing"
+    },
+    {
+      "kana": "ベッド",
+      "english": "bed"
+    },
+    {
+      "kana": "ベトナム",
+      "english": "Vietnam"
+    },
+    {
+      "kana": "ベル",
+      "english": "bell"
+    },
+    {
+      "kana": "ベルト",
+      "english": "belt"
+    },
+    {
+      "kana": "ペア",
+      "english": "pair"
+    },
+    {
+      "kana": "ペアリング",
+      "english": "pair ring"
+    },
+    {
+      "kana": "ペイント",
+      "english": "paint"
+    },
+    {
+      "kana": "ペット",
+      "english": "pet"
+    },
+    {
+      "kana": "ペットボトル",
+      "english": "PET bottle"
+    },
+    {
+      "kana": "ペン",
+      "english": "pen"
+    },
+    {
+      "kana": "ペンキ",
+      "english": "paint"
+    },
+    {
+      "kana": "ペンション",
+      "english": "pension"
+    },
+    {
+      "kana": "ホイール",
+      "english": "wheel"
+    },
+    {
+      "kana": "ホステス",
+      "english": "hostess"
+    },
+    {
+      "kana": "ホスト",
+      "english": "host"
+    },
+    {
+      "kana": "ホチキス",
+      "english": "stapler"
+    },
+    {
+      "kana": "ホテル",
+      "english": "hotel"
+    },
+    {
+      "kana": "ホノルル",
+      "english": "Honolulu"
+    },
+    {
+      "kana": "ホルモン",
+      "english": "hormone"
+    },
+    {
+      "kana": "ホワイト",
+      "english": "white"
+    },
+    {
+      "kana": "ホワイトボード",
+      "english": "whiteboard"
+    },
+    {
+      "kana": "ホンコン",
+      "english": "Hong Kong"
+    },
+    {
+      "kana": "ボーイフレンド",
+      "english": "boyfriend"
+    },
+    {
+      "kana": "ボール",
+      "english": "ball"
+    },
+    {
+      "kana": "ボールペン",
+      "english": "ballpoint pen"
+    },
+    {
+      "kana": "ボクシング",
+      "english": "boxing"
+    },
+    {
+      "kana": "ボス",
+      "english": "boss"
+    },
+    {
+      "kana": "ボタン",
+      "english": "button"
+    },
+    {
+      "kana": "ボディー",
+      "english": "body"
+    },
+    {
+      "kana": "ボランティア",
+      "english": "volunteer"
+    },
+    {
+      "kana": "ボルト",
+      "english": "bolt"
+    },
+    {
+      "kana": "ボンボン",
+      "english": "bonbon"
+    },
+    {
+      "kana": "ポエム",
+      "english": "poem"
+    },
+    {
+      "kana": "ポケット",
+      "english": "pocket"
+    },
+    {
+      "kana": "ポスター",
+      "english": "poster"
+    },
+    {
+      "kana": "ポスト",
+      "english": "mailbox"
+    },
+    {
+      "kana": "ポタージュ",
+      "english": "potage"
+    },
+    {
+      "kana": "ポップコーン",
+      "english": "popcorn"
+    },
+    {
+      "kana": "ポプリ",
+      "english": "potpourri"
+    },
+    {
+      "kana": "ポルノ",
+      "english": "porno"
+    },
+    {
+      "kana": "ポンプ",
+      "english": "pump"
+    },
+    {
+      "kana": "ポーランド",
+      "english": "Poland"
+    },
+    {
+      "kana": "マシン",
+      "english": "machine"
+    },
+    {
+      "kana": "マスク",
+      "english": "mask"
+    },
+    {
+      "kana": "マスコミ",
+      "english": "mass media"
+    },
+    {
+      "kana": "マスター",
+      "english": "master"
+    },
+    {
+      "kana": "マシンガン",
+      "english": "machine gun"
+    },
+    {
+      "kana": "マタニティー",
+      "english": "maternity"
+    },
+    {
+      "kana": "マニキュア",
+      "english": "manicure"
+    },
+    {
+      "kana": "マフラー",
+      "english": "muffler"
+    },
+    {
+      "kana": "ママ",
+      "english": "mama"
+    },
+    {
+      "kana": "マラソン",
+      "english": "marathon"
+    },
+    {
+      "kana": "マリファナ",
+      "english": "marijuana"
+    },
+    {
+      "kana": "マルチ",
+      "english": "multi"
+    },
+    {
+      "kana": "マンガ",
+      "english": "manga"
+    },
+    {
+      "kana": "マンション",
+      "english": "apartment"
+    },
+    {
+      "kana": "ミイラ",
+      "english": "mummy"
+    },
+    {
+      "kana": "ミキサー",
+      "english": "mixer"
+    },
+    {
+      "kana": "ミシン",
+      "english": "sewing machine"
+    },
+    {
+      "kana": "ミス",
+      "english": "miss"
+    },
+    {
+      "kana": "ミステリー",
+      "english": "mystery"
+    },
+    {
+      "kana": "ミリメートル",
+      "english": "millimeter"
+    },
+    {
+      "kana": "ミルク",
+      "english": "milk"
+    },
+    {
+      "kana": "ムード",
+      "english": "mood"
+    },
+    {
+      "kana": "メイク",
+      "english": "makeup"
+    },
+    {
+      "kana": "メガネ",
+      "english": "glasses"
+    },
+    {
+      "kana": "メッセージ",
+      "english": "message"
+    },
+    {
+      "kana": "メス",
+      "english": "scalpel"
+    },
+    {
+      "kana": "メダル",
+      "english": "medal"
+    },
+    {
+      "kana": "メチルアルコール",
+      "english": "methyl alcohol"
+    },
+    {
+      "kana": "メニュー",
+      "english": "menu"
+    },
+    {
+      "kana": "メモ",
+      "english": "memo"
+    },
+    {
+      "kana": "メロディー",
+      "english": "melody"
+    },
+    {
+      "kana": "メンバー",
+      "english": "member"
+    },
+    {
+      "kana": "メンテナンス",
+      "english": "maintenance"
+    },
+    {
+      "kana": "モーテル",
+      "english": "motel"
+    },
+    {
+      "kana": "モザイク",
+      "english": "mosaic"
+    },
+    {
+      "kana": "モデル",
+      "english": "model"
+    },
+    {
+      "kana": "モデム",
+      "english": "modem"
+    },
+    {
+      "kana": "モノクロ",
+      "english": "monochrome"
+    },
+    {
+      "kana": "モノレール",
+      "english": "monorail"
+    },
+    {
+      "kana": "モラル",
+      "english": "moral"
+    },
+    {
+      "kana": "モルヒネ",
+      "english": "morphine"
+    },
+    {
+      "kana": "モンスター",
+      "english": "monster"
+    },
+    {
+      "kana": "モンテカルロ",
+      "english": "Monte Carlo"
+    },
+    {
+      "kana": "モーゲージ",
+      "english": "mortgage"
+    },
+    {
+      "kana": "モーニングコール",
+      "english": "morning call"
+    },
+    {
+      "kana": "ヤシ",
+      "english": "coconut palm"
+    },
+    {
+      "kana": "ヤフー",
+      "english": "Yahoo"
+    },
+    {
+      "kana": "ヤンキー",
+      "english": "Yankee"
+    },
+    {
+      "kana": "ユーモア",
+      "english": "humor"
+    },
+    {
+      "kana": "ユニット",
+      "english": "unit"
+    },
+    {
+      "kana": "ユニフォーム",
+      "english": "uniform"
+    },
+    {
+      "kana": "ヨーグルト",
+      "english": "yogurt"
+    },
+    {
+      "kana": "ヨーロッパ",
+      "english": "Europe"
+    },
+    {
+      "kana": "ライン",
+      "english": "line"
+    },
+    {
+      "kana": "ライター",
+      "english": "lighter"
+    },
+    {
+      "kana": "ライフル",
+      "english": "rifle"
+    },
+    {
+      "kana": "ライム",
+      "english": "lime"
+    },
+    {
+      "kana": "ラケット",
+      "english": "racket"
+    },
+    {
+      "kana": "ラジカセ",
+      "english": "radio cassette"
+    },
+    {
+      "kana": "ラジオ",
+      "english": "radio"
+    },
+    {
+      "kana": "ラッシュアワー",
+      "english": "rush hour"
+    },
+    {
+      "kana": "ラッパ",
+      "english": "trumpet"
+    },
+    {
+      "kana": "ラブ",
+      "english": "love"
+    },
+    {
+      "kana": "ラブレター",
+      "english": "love letter"
+    },
+    {
+      "kana": "ランチ",
+      "english": "lunch"
+    },
+    {
+      "kana": "ランプ",
+      "english": "lamp"
+    },
+    {
+      "kana": "ランニング",
+      "english": "running"
+    },
+    {
+      "kana": "ランドセル",
+      "english": "school bag"
+    },
+    {
+      "kana": "リズム",
+      "english": "rhythm"
+    },
+    {
+      "kana": "リセット",
+      "english": "reset"
+    },
+    {
+      "kana": "リチュアル",
+      "english": "ritual"
+    },
+    {
+      "kana": "リニアモーターカー",
+      "english": "linear motor car"
+    },
+    {
+      "kana": "リハビリ",
+      "english": "rehabilitation"
+    },
+    {
+      "kana": "リフト",
+      "english": "lift"
+    },
+    {
+      "kana": "リフレッシュ",
+      "english": "refresh"
+    },
+    {
+      "kana": "リベンジ",
+      "english": "revenge"
+    },
+    {
+      "kana": "リポーター",
+      "english": "reporter"
+    },
+    {
+      "kana": "リモコン",
+      "english": "remote control"
+    },
+    {
+      "kana": "リモート",
+      "english": "remote"
+    },
+    {
+      "kana": "リラックス",
+      "english": "relax"
+    },
+    {
+      "kana": "リンゴ",
+      "english": "apple"
+    },
+    {
+      "kana": "リンス",
+      "english": "conditioner"
+    },
+    {
+      "kana": "リング",
+      "english": "ring"
+    },
+    {
+      "kana": "ルーズリーフ",
+      "english": "loose leaf"
+    },
+    {
+      "kana": "ルール",
+      "english": "rule"
+    },
+    {
+      "kana": "ルーレット",
+      "english": "roulette"
+    },
+    {
+      "kana": "レア",
+      "english": "rare"
+    },
+    {
+      "kana": "レインコート",
+      "english": "raincoat"
+    },
+    {
+      "kana": "レコード",
+      "english": "record"
+    },
+    {
+      "kana": "レシーバー",
+      "english": "receiver"
+    },
+    {
+      "kana": "レシート",
+      "english": "receipt"
+    },
+    {
+      "kana": "レジャー",
+      "english": "leisure"
+    },
+    {
+      "kana": "レスリング",
+      "english": "wrestling"
+    },
+    {
+      "kana": "レストラン",
+      "english": "restaurant"
+    },
+    {
+      "kana": "レタス",
+      "english": "lettuce"
+    },
+    {
+      "kana": "レバー",
+      "english": "lever"
+    },
+    {
+      "kana": "レパートリー",
+      "english": "repertoire"
+    },
+    {
+      "kana": "レポーター",
+      "english": "reporter"
+    },
+    {
+      "kana": "レポート",
+      "english": "report"
+    },
+    {
+      "kana": "レビュー",
+      "english": "review"
+    },
+    {
+      "kana": "レーザー",
+      "english": "laser"
+    },
+    {
+      "kana": "レベル",
+      "english": "level"
+    },
+    {
+      "kana": "レモン",
+      "english": "lemon"
+    },
+    {
+      "kana": "レモネード",
+      "english": "lemonade"
+    },
+    {
+      "kana": "レントゲン",
+      "english": "X-ray"
+    },
+    {
+      "kana": "ローション",
+      "english": "lotion"
+    },
+    {
+      "kana": "ロッカー",
+      "english": "locker"
+    },
+    {
+      "kana": "ロック",
+      "english": "lock"
+    },
+    {
+      "kana": "ロマンス",
+      "english": "romance"
+    },
+    {
+      "kana": "ロマンチック",
+      "english": "romantic"
+    },
+    {
+      "kana": "ロリータ",
+      "english": "Lolita"
+    },
+    {
+      "kana": "ロレックス",
+      "english": "Rolex"
+    },
+    {
+      "kana": "ロンドン",
+      "english": "London"
+    },
+    {
+      "kana": "ロープ",
+      "english": "rope"
+    },
+    {
+      "kana": "ローマ",
+      "english": "Rome"
+    },
+    {
+      "kana": "ワイドショー",
+      "english": "talk show"
+    },
+    {
+      "kana": "ワイパー",
+      "english": "wiper"
+    },
+    {
+      "kana": "ワイヤー",
+      "english": "wire"
+    },
+    {
+      "kana": "ワイン",
+      "english": "wine"
+    },
+    {
+      "kana": "ワックス",
+      "english": "wax"
+    },
+    {
+      "kana": "ワッペン",
+      "english": "patch"
+    },
+    {
+      "kana": "ワンピース",
+      "english": "one-piece dress"
+    },
+    {
+      "kana": "ワーキング",
+      "english": "working"
+    },
+    {
+      "kana": "ワードプロセッサ",
+      "english": "word processor"
+    },
+    {
+      "kana": "ワールドカップ",
+      "english": "World Cup"
+    },
+    {
+      "kana": "ヴァイオリン",
+      "english": "violin"
+    },
+    {
+      "kana": "ヴァージン",
+      "english": "virgin"
+    },
+       {
+      "hiragana": "オオカミ",
+      "kanji": "狼",
+      "romaji": "ōkami",
+      "english": "wolf",
+      "category": "nouns",
+      "subcategory": "animals"
+    },
+    {
+      "hiragana": "キリン",
+      "kanji": "麒麟",
+      "romaji": "kirin",
+      "english": "giraffe",
+      "category": "nouns",
+      "subcategory": "animals"
+    },
+    {
+      "hiragana": "ミカン",
+      "kanji": "蜜柑",
+      "romaji": "mikan",
+      "english": "mandarin orange",
+      "category": "nouns",
+      "subcategory": "crops_and_ingredients"
+    },
+    {
+      "hiragana": "けしゴム",
+      "kanji": "消しゴム",
+      "romaji": "keshigomu",
+      "english": "eraser",
+      "category": "nouns",
+      "subcategory": "stationery"
+    },
+    {
+      "hiragana": "ガス",
+      "kanji": null,
+      "romaji": "gasu",
+      "english": "gas",
+      "category": "nouns",
+      "subcategory": "materials"
+    },
+    {
+      "hiragana": "カタカナ",
+      "kanji": "片仮名",
+      "romaji": "kana",
+      "english": "kana syllabary characters",
+      "category": "nouns",
+      "subcategory": "language_and_media"
+    }
+  ]
+}
