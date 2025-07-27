@@ -51,9 +51,9 @@ export function Toast({ message, type = 'info' }: { message: string; type?: stri
         backgroundColor: backgroundType || '#333',
         color: '#fff',
         marginBottom: 8,
-        padding: '10px 20px',
+        padding: '20px 20px',
         borderRadius: 4,
-        boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
+        boxShadow: '0 3px 8px rgba(0,0,0,0.5)',
         minWidth: 200,
       }}
     >
