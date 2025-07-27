@@ -18,12 +18,15 @@ import katakanaData from './assets/katakana_words.json';
 // Example words, replace with your actual imports from hiragana_words.json & katakana_words.json
 const hiraganaWords = hiraganaData.vocabulary as Word[] || [];
 const katakanaWords = katakanaData.vocabulary as Word[] || [];
+const MAX_COOLDOWN = 100;
+
 
 const App: React.FC = () => {
   const [hiraganaChecked, setHiraganaChecked] = useState(true);
   const [katakanaChecked, setKatakanaChecked] = useState(false);
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [toasts, setToasts] = useState<ToastProps[]>([]);
+  const [cooldownWords, setCooldownWords] = useState<string[]>([]);
 
   // vocabulary state
   const [words, setWords] = useState<Word[]>([]);
@@ -149,17 +152,34 @@ const App: React.FC = () => {
       showToast(wrongMessage, 'error');
     }
 
-    // Then your code to go to the next word
+    // Pick next word with cooldown
     if (words.length > 0) {
-      let nextWord = words[Math.floor(Math.random() * words.length)];
-      if (words.length > 1) {
-        while (nextWord.kana === currentWord.kana) {
-          nextWord = words[Math.floor(Math.random() * words.length)];
-        }
-      }
+      let nextWord;
+      const attemptsLimit = MAX_COOLDOWN + 1;
+      let attempts = 0;
+
+      do {
+        nextWord = words[Math.floor(Math.random() * words.length)];
+        attempts++;
+        // If only one word or attempts exhausted, break anyway
+        if (words.length === 1 || attempts >= attemptsLimit) break;
+      } while (
+        nextWord.kana === currentWord.kana || // no immediate repeat
+        cooldownWords.includes(nextWord.kana) // not in cooldown
+      );
+
       setCurrentWord(nextWord);
       setUserInput('');
       inputRef.current?.focus();
+
+      // Update cooldownWords queue
+      setCooldownWords(prev => {
+        const newCooldown = [...prev, nextWord.kana];
+        if (newCooldown.length > MAX_COOLDOWN) {
+          newCooldown.shift(); // remove oldest
+        }
+        return newCooldown;
+      });
 
       if (timedMode) {
         clearInterval(timerRef.current!);
@@ -175,7 +195,8 @@ const App: React.FC = () => {
     inputRef,
     timedMode,
     timerDuration,
-    variants
+    variants,
+    cooldownWords
   ]);
 
   // Effect 1: countdown timer
