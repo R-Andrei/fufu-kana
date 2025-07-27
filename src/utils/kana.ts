@@ -627,3 +627,35 @@ export function checkAnswer(input: string, word: Word): boolean {
     normalizedInput === variants.double.toLowerCase()
   );
 }
+
+export function splitKanaByRomaji(kana: string, romajiParts: string[]): string[] {
+  const kanaSyllables: string[] = [];
+  let kanaIndex = 0;
+
+  for (const romaji of romajiParts) {
+    let chunk = '';
+
+    // Accumulate kana characters until the romaji of the chunk matches the romaji part
+    while (kanaIndex < kana.length) {
+      chunk += kana[kanaIndex];
+      kanaIndex++;
+
+      // Convert current kana chunk to romaji using your own function
+      const { hepburn } = kanaToRomajiVariants(chunk);
+
+      // Match against romaji part
+      if (hepburn === romaji) {
+        kanaSyllables.push(chunk);
+        break;
+      }
+
+      // Optional guard: break if chunk gets too long (to avoid infinite loop)
+      if (chunk.length > 3) {
+        console.warn('Could not resolve romaji match for:', romaji);
+        break;
+      }
+    }
+  }
+
+  return kanaSyllables;
+}

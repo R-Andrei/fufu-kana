@@ -8,17 +8,17 @@ import doitforher from '/src/assets/doitforher.png';
 import type { ToastProps } from './components/toast';
 import type { Word, ExtendedWord, HistoryEntry } from './types';
 import { getRandomCorrectMessage, getRandomWrongMessage } from './utils/messages';
-import { checkAnswer, kanaToRomajiVariants } from './utils/kana';
+import { checkAnswer, kanaToRomajiVariants, splitKanaByRomaji } from './utils/kana';
 import { Toast } from './components/toast';
 
 import hiraganaData from './assets/hiragana_words.json';
 import katakanaData from './assets/katakana_words.json';
 
 
-
 // Example words, replace with your actual imports from hiragana_words.json & katakana_words.json
 const hiraganaWords = hiraganaData.vocabulary as Word[] || [];
 const katakanaWords = katakanaData.vocabulary as Word[] || [];
+
 
 const App: React.FC = () => {
   const [hiraganaChecked, setHiraganaChecked] = useState(true);
@@ -42,6 +42,23 @@ const App: React.FC = () => {
   const tickRate = 100;
   const timerRef = useRef<number | null>(null);
 
+  const variants = useMemo(() => {
+    if (!currentWord) {
+      return {
+        hepburn: '',
+        double: '',
+        hepburnArray: [],
+        doubleArray: []
+      };
+    }
+    return kanaToRomajiVariants(currentWord.kana)
+  }, [currentWord]);
+
+  const kanaParts = useMemo(() => {
+    if (!currentWord || !variants.hepburnArray.length) return [];
+    return splitKanaByRomaji(currentWord.kana, variants.hepburnArray);
+  }, [currentWord, variants]);
+
   const extendedWord: ExtendedWord = useMemo(() => {
     if (!currentWord) {
       return {
@@ -54,20 +71,20 @@ const App: React.FC = () => {
       };
     }
 
-    const getRomajiParts = (kana: string, type: 'hepburn' | 'double') => {
-      const variants = kanaToRomajiVariants(kana);
-      console.log(`Romaji parts for ${kana}:`, variants.hepburnArray, variants.doubleArray);
+    const getRomajiParts = (type: 'hepburn' | 'double') => {
+
+      console.log(`Romaji parts for ${currentWord.kana}:`, variants.hepburnArray, variants.doubleArray);
       return type === 'hepburn' ? variants.hepburnArray : variants.doubleArray;
     };
 
     return {
       ...currentWord,
       romajiParts: {
-        hepburn: getRomajiParts(currentWord.kana, "hepburn"),
-        double: getRomajiParts(currentWord.kana, "double")
+        hepburn: getRomajiParts("hepburn"),
+        double: getRomajiParts("double")
       }
     };
-  }, [currentWord]);
+  }, [currentWord, variants]);
 
   // Example function to add to history
   function addHistory(entry: HistoryEntry) {
@@ -95,7 +112,6 @@ const App: React.FC = () => {
     if (!currentWord) return;
 
     const submitAnswer = (input: string, word: Word) => {
-      const variants = kanaToRomajiVariants(word.kana);
       const isCorrect =
         userInput.trim().toLowerCase() === variants.hepburn.toLowerCase() ||
         userInput.trim().toLowerCase() === variants.double.toLowerCase();
@@ -159,7 +175,8 @@ const App: React.FC = () => {
     setUserInput,
     inputRef,
     timedMode,
-    timerDuration
+    timerDuration,
+    variants
   ]);
 
   // Effect 1: countdown timer
@@ -212,6 +229,8 @@ const App: React.FC = () => {
   const wrongCount = history.length - correctCount;
   const totalCount = history.length;
   const accuracy = totalCount === 0 ? 0 : Math.round((correctCount / totalCount) * 100);
+
+  let typedIndex = 0;
 
   return (
     <div className='flex w-full h-full practice-container' style={{ display: 'flex', height: '100vh' }}>
@@ -307,9 +326,8 @@ const App: React.FC = () => {
                       gap: '0.5rem',
                     }}
                   >
-                    {extendedWord.kana.split('').map((kanaChar, index) => {
+                    {kanaParts.map((kanaSyllable, index) => {
                       if (!syllableFeedback) {
-                        // Just display kana normally, no coloring logic
                         return (
                           <p
                             key={index}
@@ -320,25 +338,23 @@ const App: React.FC = () => {
                               transition: 'color 0.2s ease-in-out',
                             }}
                           >
-                            {kanaChar}
+                            {kanaSyllable}
                           </p>
                         );
                       }
 
-                      // Syllable feedback enabled: apply your coloring logic
-                      const currentTyped = userInput.toLowerCase();
-
-                      const partialH = extendedWord.romajiParts.hepburn.slice(0, index + 1).join('');
-                      const partialD = extendedWord.romajiParts.double.slice(0, index + 1).join('');
+                      const romajiH = variants.hepburnArray[index];
+                      const romajiD = variants.doubleArray[index];
+                      const remainingInput = userInput.toLowerCase().slice(typedIndex);
 
                       let isCorrect = false;
-                      if (currentTyped.length > 0) {
-                        if (
-                          (currentTyped.startsWith(partialH) && currentTyped.length >= partialH.length) ||
-                          (currentTyped.startsWith(partialD) && currentTyped.length >= partialD.length)
-                        ) {
-                          isCorrect = true;
-                        }
+
+                      if (remainingInput.startsWith(romajiH)) {
+                        isCorrect = true;
+                        typedIndex += romajiH.length;
+                      } else if (remainingInput.startsWith(romajiD)) {
+                        isCorrect = true;
+                        typedIndex += romajiD.length;
                       }
 
                       return (
@@ -351,7 +367,7 @@ const App: React.FC = () => {
                             transition: 'color 0.2s ease-in-out',
                           }}
                         >
-                          {kanaChar}
+                          {kanaSyllable}
                         </p>
                       );
                     })}
