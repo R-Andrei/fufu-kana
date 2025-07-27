@@ -188,62 +188,102 @@ button:disabled {
     outline-offset: 2px;
 }
 
+.word-display {
+    background-color: #161616;
+    /* darker than page background */
+    padding: 0.6rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.word-kana {
+    color: #dfdfdf;
+    font-weight: bold;
+}
+
+.word-definition {
+    color: #cccccc;
+    font-style: italic;
+    margin-top: -2rem;
+    font-size: 1.1rem;
+}
+
+.kana-syllable {
+    font-size: 2.2rem;
+}
+
 .practice-room-bg {
     position: absolute;
-    top: 28%;
+    top: 25%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 54%;
+    max-width: 48%;
     opacity: 0.69;
     pointer-events: none;
     z-index: 1;
 }
 
 .practice-room-content {
-    margin-top: 400px;
+    margin-top: 320px;
 }
 
 @media (min-width: 2500px) {
-  .practice-room-bg {
-    max-width: 40%;
-    top: 25%;
-  }
-  .practice-room-content {
-    margin-top: 250px;
-  }
+    .practice-room-bg {
+        max-width: 30%;
+        top: 25%;
+    }
+
+    .practice-room-content {
+        margin-top: 260px;
+    }
+
+    .kana-syllable {
+        font-size: 3.2rem;
+    }
+    .word-definition {
+        font-size: 1.5rem;
+        margin-top: -2.5rem;
+    }
+
+    .word-display {
+        padding: 1rem;
+    }
 }
 
 .check-button {
-  background: none;
-  border: none;
-  padding: 0.25rem;
-  cursor: pointer;
-  color: #4f8ef7; /* A nice blue for dark theme */
-  transition: color 0.2s ease-in-out;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 1px;
-  right: -38px;
+    background: none;
+    border: none;
+    padding: 0.25rem;
+    cursor: pointer;
+    color: #4f8ef7;
+    /* A nice blue for dark theme */
+    transition: color 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 1px;
+    right: -38px;
 }
 
 .check-button:hover:not(:disabled) {
-  color: #aaccff;
+    color: #aaccff;
 }
 
 .check-button:disabled {
-  color: #555;
-  cursor: not-allowed;
+    color: #555;
+    cursor: not-allowed;
 }
 
 .check-button:focus {
-  outline: none;
+    outline: none;
 }
 
 .check-button:focus-visible {
-  outline: 2px solid #aaccff;
-  outline-offset: 2px;
+    outline: 2px solid #aaccff;
+    outline-offset: 2px;
 }
 
 .practice-room .input-group {
@@ -255,103 +295,84 @@ button:disabled {
 }
 
 .timer-bar-wrapper {
-  width: 100%;
-  height: 8px;
-  background-color: #ddd;
-  overflow: hidden;
-  border-radius: 4px;
+    width: 100%;
+    height: 8px;
+    background-color: #ddd;
+    overflow: hidden;
+    border-radius: 4px;
 }
 
 .timer-bar {
-  height: 100%;
-  background-color: #4caf50;
-  width: 100%; /* will be overwritten by inline style */
-  transition: width 0.1s linear, background-color 0.2s linear;
-  border-radius: 4px;
+    height: 100%;
+    background-color: #4caf50;
+    width: 100%;
+    /* will be overwritten by inline style */
+    transition: width 0.1s linear, background-color 0.2s linear;
+    border-radius: 4px;
 }
 
 .settings-group {
-  border: 1px solid #333;
-  border-radius: 6px;
-  padding: 0.75rem;
-  margin-bottom: 1.5rem;
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
 }
 
 .settings-group legend {
-  padding: 0 0.5rem;
-  font-size: 0.9rem;
-  color: #aaa;
+    padding: 0 0.5rem;
+    font-size: 0.9rem;
+    color: #aaa;
 }
 
 .settings-group label {
-  display: block;
-  cursor: pointer;
-  margin-bottom: 0.25rem;
+    display: block;
+    cursor: pointer;
+    margin-bottom: 0.25rem;
 }
 
 .settings-group input[type="checkbox"] {
-  margin-right: 0.5rem;
-  accent-color: #4caf50; /* Optional: gives greenish tint to checkboxes */
+    margin-right: 0.5rem;
+    accent-color: #4caf50;
+    /* Optional: gives greenish tint to checkboxes */
 }
 
 .timer-slider-wrapper {
-  margin-top: 1rem;
+    margin-top: 1rem;
 }
 
 .timer-slider-wrapper label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: #ccc;
-  font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #ccc;
+    font-size: 0.85rem;
 }
 
 .timer-slider {
-  width: 100%;
-  appearance: none;
-  height: 4px;
-  background: #444;
-  border-radius: 2px;
-  outline: none;
-  transition: background 0.2s ease-in-out;
+    width: 100%;
+    appearance: none;
+    height: 4px;
+    background: #444;
+    border-radius: 2px;
+    outline: none;
+    transition: background 0.2s ease-in-out;
 }
 
 .timer-slider::-webkit-slider-thumb {
-  appearance: none;
-  width: 14px;
-  height: 14px;
-  background: #4caf50;
-  border-radius: 50%;
-  cursor: pointer;
-  border: 2px solid #222;
-  transition: background 0.2s ease;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    background: #4caf50;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #222;
+    transition: background 0.2s ease;
 }
 
 .timer-slider::-moz-range-thumb {
-  width: 14px;
-  height: 14px;
-  background: #4caf50;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.word-display {
-  background-color: #161616; /* darker than page background */
-  padding: 1rem;
-  border-radius: 0.5rem;
-  margin-bottom: 1rem;
-  text-align: center;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-}
-
-.word-kana {
-  font-size: 2.5rem;
-  color: #ebebeb;
-  font-weight: bold;
-}
-
-.word-definition {
-  color: #cccccc;
-  font-style: italic;
-  margin-top: -2.5rem;
+    width: 14px;
+    height: 14px;
+    background: #4caf50;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
 }

@@ -73,7 +73,7 @@ const App: React.FC = () => {
 
     const getRomajiParts = (type: 'hepburn' | 'double') => {
 
-      console.log(`Romaji parts for ${currentWord.kana}:`, variants.hepburnArray, variants.doubleArray);
+      console.log(`Romaji parts for ${currentWord.kana}:`, variants.hepburn, variants.double, variants.hepburnArray, variants.doubleArray);
       return type === 'hepburn' ? variants.hepburnArray : variants.doubleArray;
     };
 
@@ -130,10 +130,10 @@ const App: React.FC = () => {
     const showToast = (message: string, type: 'success' | 'error') => {
       const id = Date.now(); // or any unique ID generator
       setToasts(prev => [...prev, { id, message, type }]);
-      // Remove after 3 seconds
+      // Remove after 5 seconds
       setTimeout(() => {
         setToasts(prev => prev.filter(toast => toast.id !== id));
-      }, 3000);
+      }, 5000);
     };
 
 
@@ -330,11 +330,10 @@ const App: React.FC = () => {
                       if (!syllableFeedback) {
                         return (
                           <p
+                            className='kana-syllable'
                             key={index}
                             style={{
-                              fontSize: '3.1rem',
                               fontWeight: 'bold',
-                              color: 'inherit',
                               transition: 'color 0.2s ease-in-out',
                             }}
                           >
@@ -359,9 +358,9 @@ const App: React.FC = () => {
 
                       return (
                         <p
+                          className='kana-syllable'
                           key={index}
                           style={{
-                            fontSize: '3.1rem',
                             fontWeight: 'bold',
                             color: isCorrect ? 'limegreen' : 'inherit',
                             transition: 'color 0.2s ease-in-out',
@@ -375,7 +374,7 @@ const App: React.FC = () => {
                 )}
                 <div
                   className='word-definition'
-                  style={{ fontSize: '1.2rem', color: '#666', marginBottom: '2rem', textAlign: 'center' }}
+                  style={{ color: '#666', marginBottom: '2rem', textAlign: 'center' }}
                 >
                   ({currentWord.english})
                 </div>
