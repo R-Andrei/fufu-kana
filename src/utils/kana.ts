@@ -346,7 +346,37 @@ export const longSyllablesKatakanaMap: Record<string, { hepburn: string; double:
   ケー: { hepburn: "kē", double: "kee" },
   テー: { hepburn: "tē", double: "tee" },
   ネー: { hepburn: "nē", double: "nee" },
+  ニー: { hepburn: 'nī', double: 'nii' },
+  ワー: { hepburn: 'wā', double: 'waa' },
+  ター: { hepburn: 'tā', double: 'taa' },
+  シー: { hepburn: 'shī', double: 'shii' },
+  コー: { hepburn: 'kō', double: 'koo' },
+  カー: { hepburn: 'kā', double: 'kaa' },
+  ヤー: { hepburn: 'yā', double: 'yaa' },
+  キー: { hepburn: 'kī', double: 'kii' },
+  ヒー: { hepburn: 'hī', double: 'hii' },
+  ソー: { hepburn: 'sō', double: 'soo' },
+  トー: { hepburn: 'tō', double: 'too' },
+  サー: { hepburn: 'sā', double: 'saa' },
+  モー: { hepburn: 'mō', double: 'moo' },
+  クォー: { hepburn: 'kwō', double: 'kwoo' },
+  ノー: { hepburn: 'nō', double: 'noo' },
+  スー: { hepburn: 'sū', double: 'suu' },
+  ヒュー: { hepburn: 'hyū', double: 'hyuu' },
+  クー: { hepburn: 'kū', double: 'kuu' },
+  ミー: { hepburn: 'mī', double: 'mii' },
+  マー: { hepburn: 'mā', double: 'maa' },
+  ドゥー: { hepburn: 'dū', double: 'duu' },
+  ムー: { hepburn: 'mū', double: 'muu' },
+  ジャー: { hepburn: 'jā', double: 'jaa' },
+  ユー: { hepburn: 'yū', double: 'yuu' },
+  ハー: { hepburn: 'hā', double: 'haa' },
+  ウォー: { hepburn: 'wō', double: 'woo' },
+  ビュー: { hepburn: 'byū', double: 'byuu' },
+  ヨー: { hepburn: 'yō', double: 'you' },
+  ジュー: { hepburn: 'jū', double: 'juu' },
 
+  ァー: { hepburn: 'ā', double: 'aa' },
   アー: { hepburn: 'ā', double: 'aa' },
   イー: { hepburn: 'ī', double: 'ii' },
   ウー: { hepburn: 'ū', double: 'uu' },
@@ -364,6 +394,8 @@ export const longSyllablesKatakanaMap: Record<string, { hepburn: string; double:
   ズー: { hepburn: 'zū', double: 'zuu' },
   ゼー: { hepburn: 'zē', double: 'zee' },
   ゾー: { hepburn: 'zō', double: 'zoo' },
+  ュー: { hepburn: 'yū', double: 'yuu' },
+  ナー: { hepburn: 'nā', double: 'naa' },
 
   ラー: { hepburn: 'rā', double: 'raa' },
   リー: { hepburn: 'rī', double: 'rii' },
@@ -392,6 +424,9 @@ export const longSyllablesKatakanaMap: Record<string, { hepburn: string; double:
   ミャー: { hepburn: "myā", double: "myaa" },
   ミュー: { hepburn: "myū", double: "myuu" },
   ミョー: { hepburn: "myō", double: "myou" },
+  ニュー: { hepburn: "nyū", double: "nyuu" },
+  ファー: { hepburn: "fā", double: "faa" },
+  ウェー: { hepburn: "wē", double: "wee" },
 
   ヂャ: { hepburn: "ja", double: "ja" },
   ヂュ: { hepburn: "ju", double: "ju" },
@@ -697,7 +732,9 @@ export function katakanaToRomajiVariants(katakana: string): { hepburn: string; d
 }
 
 function isKatakana(text: string): boolean {
-  return [...text].every(char => {
+  if (text === undefined || !text) return false;
+
+  return [...((text) ? text : '')].every(char => {
     const code = char.charCodeAt(0);
     return code >= 0x30A0 && code <= 0x30FF;
   });

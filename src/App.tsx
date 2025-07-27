@@ -23,7 +23,7 @@ const MAX_COOLDOWN = 100;
 
 const App: React.FC = () => {
   const [hiraganaChecked, setHiraganaChecked] = useState(true);
-  const [katakanaChecked, setKatakanaChecked] = useState(false);
+  const [katakanaChecked, setKatakanaChecked] = useState(true);
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [toasts, setToasts] = useState<ToastProps[]>([]);
   const [cooldownWords, setCooldownWords] = useState<string[]>([]);
@@ -33,7 +33,7 @@ const App: React.FC = () => {
   const [currentWord, setCurrentWord] = useState<Word | null>(null);
   const [userInput, setUserInput] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
-  const [syllableFeedback, setSyllableFeedback] = useState(false);
+  const [syllableFeedback, setSyllableFeedback] = useState(true);
 
   // timer state
   const [timedMode, setTimedMode] = useState(false);

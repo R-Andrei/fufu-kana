@@ -1,8 +1,8 @@
 {
   "vocabulary": [
     {
-      "kana": "Tシャツ",
-      "english": "T-shirt"
+      "kana": "シャツ",
+      "english": "shirt"
     },
     {
       "kana": "ユーターン",
@@ -857,10 +857,6 @@
       "english": "campaign"
     },
     {
-      "kana": "キリスト教",
-      "english": "Christianity"
-    },
-    {
       "kana": "キログラム",
       "english": "kilogram"
     },
@@ -1419,10 +1415,6 @@
     {
       "kana": "ジェットコースター",
       "english": "roller coaster"
-    },
-    {
-      "kana": "ジェット機",
-      "english": "jet airplane"
     },
     {
       "kana": "ジェンダーフリー",
@@ -2441,10 +2433,6 @@
       "english": "handsome"
     },
     {
-      "kana": "ハンチング帽",
-      "english": "hunting cap"
-    },
-    {
       "kana": "ハンドバッグ",
       "english": "handbag"
     },
@@ -2499,10 +2487,6 @@
     {
       "kana": "バスケットボール",
       "english": "basketball"
-    },
-    {
-      "kana": "バス停",
-      "english": "bus stop"
     },
     {
       "kana": "バター",
@@ -3947,6 +3931,18 @@
     {
       "kana": "ヒット",
       "english": "hit"
+    },
+    {
+      "kana": "ジュフフ",
+      "english": "jufufu (amazing tiger)"
+    },
+    {
+      "kana": "ジュフーフー",
+      "english": "jufufu (amazing tiger)"
+    },
+        {
+      "kana": "ジューフーフー",
+      "english": "jufufu (amazing tiger)"
     }
   ]
 }
