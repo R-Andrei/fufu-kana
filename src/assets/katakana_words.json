@@ -829,10 +829,6 @@
       "english": "catwalk"
     },
     {
-      "kana": "キャップ",
-      "english": "cap"
-    },
-    {
       "kana": "キャディー",
       "english": "caddie"
     },
@@ -1103,14 +1099,6 @@
     {
       "kana": "コスプレ",
       "english": "cosplay"
-    },
-    {
-      "kana": "コック",
-      "english": "cook"
-    },
-    {
-      "kana": "コップ",
-      "english": "glass"
     },
     {
       "kana": "コピー",
@@ -3668,7 +3656,7 @@
       "kana": "ヴァージン",
       "english": "virgin"
     },
-       {
+    {
       "hiragana": "オオカミ",
       "kanji": "狼",
       "romaji": "ōkami",
@@ -3715,6 +3703,250 @@
       "english": "kana syllabary characters",
       "category": "nouns",
       "subcategory": "language_and_media"
+    },
+    {
+      "kana": "コップ",
+      "english": "glass / cup"
+    },
+    {
+      "kana": "スタッフ",
+      "english": "staff"
+    },
+    {
+      "kana": "バット",
+      "english": "bat (baseball)"
+    },
+    {
+      "kana": "レッスン",
+      "english": "lesson"
+    },
+    {
+      "kana": "ホット",
+      "english": "hot"
+    },
+    {
+      "kana": "カット",
+      "english": "cut"
+    },
+    {
+      "kana": "ミット",
+      "english": "mitt / glove"
+    },
+    {
+      "kana": "ショット",
+      "english": "shot"
+    },
+    {
+      "kana": "キャップ",
+      "english": "cap / hat"
+    },
+    {
+      "kana": "ビッグ",
+      "english": "big"
+    },
+    {
+      "kana": "ピッチ",
+      "english": "pitch"
+    },
+    {
+      "kana": "カッター",
+      "english": "cutter / box cutter"
+    },
+    {
+      "kana": "キット",
+      "english": "kit"
+    },
+    {
+      "kana": "ウィット",
+      "english": "wit"
+    },
+    {
+      "kana": "パッケージ",
+      "english": "package"
+    },
+    {
+      "kana": "エッセイ",
+      "english": "essay"
+    },
+    {
+      "kana": "バック",
+      "english": "back / bag"
+    },
+    {
+      "kana": "トップ",
+      "english": "top"
+    },
+    {
+      "kana": "アット",
+      "english": "at"
+    },
+    {
+      "kana": "ボックス",
+      "english": "box"
+    },
+    {
+      "kana": "ジャッジ",
+      "english": "judge"
+    },
+    {
+      "kana": "パット",
+      "english": "putt (golf)"
+    },
+    {
+      "kana": "タッチ",
+      "english": "touch"
+    },
+    {
+      "kana": "ヒッチ",
+      "english": "hitch"
+    },
+    {
+      "kana": "フット",
+      "english": "foot"
+    },
+    {
+      "kana": "マッチ",
+      "english": "match"
+    },
+    {
+      "kana": "リッチ",
+      "english": "rich"
+    },
+    {
+      "kana": "ニッチ",
+      "english": "niche"
+    },
+    {
+      "kana": "シット",
+      "english": "sit"
+    },
+    {
+      "kana": "スパッツ",
+      "english": "spats / leggings"
+    },
+    {
+      "kana": "スカット",
+      "english": "refreshing"
+    },
+    {
+      "kana": "パッシブ",
+      "english": "passive"
+    },
+    {
+      "kana": "ハット",
+      "english": "hat"
+    },
+    {
+      "kana": "ピックアップ",
+      "english": "pickup"
+    },
+    {
+      "kana": "ワット",
+      "english": "watt"
+    },
+    {
+      "kana": "グッド",
+      "english": "good"
+    },
+    {
+      "kana": "ダッシュ",
+      "english": "dash"
+    },
+    {
+      "kana": "ラッキー",
+      "english": "lucky"
+    },
+    {
+      "kana": "ヒップ",
+      "english": "hip"
+    },
+    {
+      "kana": "ハッピー",
+      "english": "happy"
+    },
+    {
+      "kana": "カッコ",
+      "english": "style / coolness"
+    },
+    {
+      "kana": "バッター",
+      "english": "batter"
+    },
+    {
+      "kana": "キック",
+      "english": "kick"
+    },
+    {
+      "kana": "ポット",
+      "english": "pot"
+    },
+    {
+      "kana": "ピット",
+      "english": "pit"
+    },
+    {
+      "kana": "スキップ",
+      "english": "skip"
+    },
+    {
+      "kana": "アップ",
+      "english": "up"
+    },
+    {
+      "kana": "タップ",
+      "english": "tap"
+    },
+    {
+      "kana": "パワーアップ",
+      "english": "power-up"
+    },
+    {
+      "kana": "リップ",
+      "english": "lip"
+    },
+    {
+      "kana": "コック",
+      "english": "cook / chef"
+    },
+    {
+      "kana": "ラップ",
+      "english": "wrap / rap"
+    },
+    {
+      "kana": "タッキー",
+      "english": "tacky"
+    },
+    {
+      "kana": "ピッタリ",
+      "english": "perfectly fitting"
+    },
+    {
+      "kana": "パッツン",
+      "english": "bangs (haircut)"
+    },
+    {
+      "kana": "キッチン",
+      "english": "kitchen"
+    },
+    {
+      "kana": "ロック",
+      "english": "rock (music)"
+    },
+    {
+      "kana": "パッセージ",
+      "english": "passage"
+    },
+    {
+      "kana": "ストップ",
+      "english": "stop"
+    },
+    {
+      "kana": "バッテリー",
+      "english": "battery"
+    },
+    {
+      "kana": "ヒット",
+      "english": "hit"
     }
   ]
 }

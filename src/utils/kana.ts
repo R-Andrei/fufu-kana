@@ -24,7 +24,7 @@ export const hiraganaToRomaji: Record<string, string> = {
 
   // Small hiragana
   ぁ: 'a', ぃ: 'i', ぅ: 'u', ぇ: 'e', ぉ: 'o',
-  ゃ: 'ya', ゅ: 'yu', ょ: 'yo', っ: 'tsu',
+  ゃ: 'ya', ゅ: 'yu', ょ: 'yo'
 };
 
 export const longSyllablesHiraganaMap: Record<string, { hepburn: string; double: string }> = {
@@ -347,7 +347,7 @@ export const longSyllablesKatakanaMap: Record<string, { hepburn: string; double:
   テー: { hepburn: "tē", double: "tee" },
   ネー: { hepburn: "nē", double: "nee" },
 
-   アー: { hepburn: 'ā', double: 'aa' },
+  アー: { hepburn: 'ā', double: 'aa' },
   イー: { hepburn: 'ī', double: 'ii' },
   ウー: { hepburn: 'ū', double: 'uu' },
   エー: { hepburn: 'ē', double: 'ee' },
@@ -493,6 +493,11 @@ for (const [kana, romajiObj] of Object.entries(longSyllablesKatakanaMap)) {
   romajiToKatakana[romajiObj.double].push(kana);
 };
 
+function getLeadingConsonant(romaji: string): string {
+  if (!romaji) return '';
+  const match = romaji.match(/^([bcdfghjklmnpqrstvwxyz])/i);
+  return match ? match[1].toLowerCase() : '';
+}
 
 export function hiraganaToRomajiVariants(hiragana: string): { hepburn: string; double: string, hepburnArray: string[], doubleArray: string[] } {
   let hepburnResult = '';
@@ -500,18 +505,66 @@ export function hiraganaToRomajiVariants(hiragana: string): { hepburn: string; d
   const hepburnArray: string[] = [];
   const doubleArray: string[] = [];
 
-  // We'll parse the string left to right, checking for longest possible match in longSyllablesHiraganaMap first.
   let i = 0;
   while (i < hiragana.length) {
     let matched = false;
 
-    // Try longest possible match (3 kana max, adjust as needed)
+    // Handle small っ (sokuon)
+    if (hiragana[i] === 'っ') {
+      // Peek ahead to next syllable to duplicate the initial consonant
+      let consonant = '';
+      let found = false;
+
+      // Check long syllables first (3 kana max)
+      for (let len = 3; len > 0; len--) {
+        if (i + 1 + len <= hiragana.length) {
+          const segment = hiragana.substring(i + 1, i + 1 + len);
+          const mapping = longSyllablesHiraganaMap[segment];
+          if (mapping) {
+            consonant = getLeadingConsonant(mapping.double);
+            hepburnResult += consonant + mapping.hepburn;
+            doubleResult += consonant + mapping.double;
+            hepburnArray.push(consonant + mapping.hepburn);
+            doubleArray.push(consonant + mapping.double);
+            i += 1 + len;
+            found = true;
+            break;
+          }
+        }
+      }
+
+      if (!found && i + 1 < hiragana.length) {
+        const nextKana = hiragana[i + 1];
+        const romaji = hiraganaToRomaji[nextKana];
+        if (romaji) {
+          consonant = getLeadingConsonant(romaji);
+          hepburnResult += consonant + romaji;
+          doubleResult += consonant + romaji;
+          hepburnArray.push(consonant + romaji);
+          doubleArray.push(consonant + romaji);
+          i += 2;
+          continue;
+        }
+      }
+
+      if (!found) {
+        // Fallback: treat っ as unknown
+        hepburnResult += 'っ';
+        doubleResult += 'っ';
+        hepburnArray.push('っ');
+        doubleArray.push('っ');
+        i++;
+      }
+
+      continue;
+    }
+
+    // Try long syllables
     for (let len = 3; len > 0; len--) {
       if (i + len <= hiragana.length) {
         const segment = hiragana.substring(i, i + len);
-
-        if (longSyllablesHiraganaMap[segment]) {
-          const longSyllable = longSyllablesHiraganaMap[segment];
+        const longSyllable = longSyllablesHiraganaMap[segment];
+        if (longSyllable) {
           hepburnResult += longSyllable.hepburn;
           doubleResult += longSyllable.double;
           hepburnArray.push(longSyllable.hepburn);
@@ -525,12 +578,9 @@ export function hiraganaToRomajiVariants(hiragana: string): { hepburn: string; d
 
     if (matched) continue;
 
-    // No long syllable matched, process single kana normally
     const kana = hiragana[i];
     const romaji = hiraganaToRomaji[kana];
-
     if (!romaji) {
-      // Unknown kana fallback, just append as is
       hepburnResult += kana;
       doubleResult += kana;
       hepburnArray.push(kana);
@@ -547,24 +597,73 @@ export function hiraganaToRomajiVariants(hiragana: string): { hepburn: string; d
   return { hepburn: hepburnResult, double: doubleResult, hepburnArray: hepburnArray, doubleArray: doubleArray };
 }
 
+
 export function katakanaToRomajiVariants(katakana: string): { hepburn: string; double: string, hepburnArray: string[], doubleArray: string[] } {
   let hepburnResult = '';
   let doubleResult = '';
   const hepburnArray: string[] = [];
   const doubleArray: string[] = [];
 
-  // Parse the string left to right, checking for longest possible match in longSyllablesKatakanaMap first.
   let i = 0;
   while (i < katakana.length) {
     let matched = false;
 
-    // Try longest possible match (3 kana max, adjust as needed)
+    // Handle small ッ (sokuon)
+    if (katakana[i] === 'ッ') {
+      // Peek ahead to next syllable to duplicate the initial consonant
+      let consonant = '';
+      let found = false;
+
+      // Check long syllables first (3 kana max)
+      for (let len = 3; len > 0; len--) {
+        if (i + 1 + len <= katakana.length) {
+          const segment = katakana.substring(i + 1, i + 1 + len);
+          const mapping = longSyllablesKatakanaMap[segment];
+          if (mapping) {
+            consonant = getLeadingConsonant(mapping.double);
+            hepburnResult += consonant + mapping.hepburn;
+            doubleResult += consonant + mapping.double;
+            hepburnArray.push(consonant + mapping.hepburn);
+            doubleArray.push(consonant + mapping.double);
+            i += 1 + len;
+            found = true;
+            break;
+          }
+        }
+      }
+
+      if (!found && i + 1 < katakana.length) {
+        const nextKana = katakana[i + 1];
+        const romaji = katakanaToRomaji[nextKana];
+        if (romaji) {
+          consonant = getLeadingConsonant(romaji);
+          hepburnResult += consonant + romaji;
+          doubleResult += consonant + romaji;
+          hepburnArray.push(consonant + romaji);
+          doubleArray.push(consonant + romaji);
+          i += 2;
+          continue;
+        }
+      }
+
+      if (!found) {
+        // Fallback: treat ッ as unknown
+        hepburnResult += 'ッ';
+        doubleResult += 'ッ';
+        hepburnArray.push('ッ');
+        doubleArray.push('ッ');
+        i++;
+      }
+
+      continue;
+    }
+
+    // Try long syllables
     for (let len = 3; len > 0; len--) {
       if (i + len <= katakana.length) {
         const segment = katakana.substring(i, i + len);
-
-        if (longSyllablesKatakanaMap[segment]) {
-          const longSyllable = longSyllablesKatakanaMap[segment];
+        const longSyllable = longSyllablesKatakanaMap[segment];
+        if (longSyllable) {
           hepburnResult += longSyllable.hepburn;
           doubleResult += longSyllable.double;
           hepburnArray.push(longSyllable.hepburn);
@@ -578,12 +677,9 @@ export function katakanaToRomajiVariants(katakana: string): { hepburn: string; d
 
     if (matched) continue;
 
-    // No long syllable matched, process single kana normally
     const kana = katakana[i];
     const romaji = katakanaToRomaji[kana];
-
     if (!romaji) {
-      // Unknown kana fallback, just append as is
       hepburnResult += kana;
       doubleResult += kana;
       hepburnArray.push(kana);

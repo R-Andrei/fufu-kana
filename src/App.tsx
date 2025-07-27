@@ -19,7 +19,6 @@ import katakanaData from './assets/katakana_words.json';
 const hiraganaWords = hiraganaData.vocabulary as Word[] || [];
 const katakanaWords = katakanaData.vocabulary as Word[] || [];
 
-
 const App: React.FC = () => {
   const [hiraganaChecked, setHiraganaChecked] = useState(true);
   const [katakanaChecked, setKatakanaChecked] = useState(false);
