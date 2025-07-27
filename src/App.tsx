@@ -187,7 +187,7 @@ const App: React.FC = () => {
   const accuracy = totalCount === 0 ? 0 : Math.round((correctCount / totalCount) * 100);
 
   return (
-    <div className='flex w-full h-full practice-container' style={{ display: 'flex', height: '100vh', fontFamily: 'sans-serif' }}>
+    <div className='flex w-full h-full practice-container' style={{ display: 'flex', height: '100vh' }}>
       {/* Left sidebar for options */}
       <section
         className="w-1/4 p-4 border-r practice-settings"
@@ -263,18 +263,24 @@ const App: React.FC = () => {
         <div className="practice-room-content" style={{ position: 'relative', zIndex: 2 }}>
           {currentWord ? (
             <>
-              <div
-                style={{
-                  fontSize: '4.2rem',
-                  fontWeight: 'bold',
-                  marginBottom: '0.3rem',
-                  textAlign: 'center',
-                }}
-              >
-                {currentWord.kana}
-              </div>
-              <div style={{ fontSize: '1.4rem', color: '#666', marginBottom: '2rem', textAlign: 'center' }}>
-                ({currentWord.english})
+              <div className="word-display">
+                <div
+                  className='word-kana'
+                  style={{
+                    fontSize: '3.1rem',
+                    fontWeight: 'bold',
+                    marginBottom: '0.3rem',
+                    textAlign: 'center',
+                  }}
+                >
+                  {currentWord.kana}
+                </div>
+                <div
+                  className='word-definition'
+                  style={{ fontSize: '1.2rem', color: '#666', marginBottom: '2rem', textAlign: 'center' }}
+                >
+                  ({currentWord.english})
+                </div>
               </div>
 
               <div className="input-group">
@@ -285,7 +291,7 @@ const App: React.FC = () => {
                   onChange={(e) => setUserInput(e.target.value)}
                   onKeyDown={onInputKeyDown}
                   placeholder="Type romaji here..."
-                  style={{ fontSize: '1.5rem', padding: '0.5rem', width: '420px', textAlign: 'center' }}
+                  style={{ fontSize: '1.2rem', padding: '0.45rem', width: '420px', textAlign: 'center' }}
                   autoFocus
                 />
                 <button
@@ -332,7 +338,7 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        {history.length === 0 && <p>No history yet.</p>}
+        {history.length === 0 && null}
         <ul>
           {history.map((entry, idx) => (
             <li

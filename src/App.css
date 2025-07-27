@@ -2,7 +2,7 @@ body {
     background-color: #121212;
     color: #e0e0e0;
     margin: 0;
-    font-family: sans-serif;
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
 }
 
 input[type="text"],
@@ -168,6 +168,7 @@ button:disabled {
     background: none;
     border: none;
     padding: 0.25rem;
+    margin-left: 5px;
     height: 25px;
     cursor: pointer;
     color: #ccc;
@@ -189,7 +190,7 @@ button:disabled {
 
 .practice-room-bg {
     position: absolute;
-    top: 27%;
+    top: 29%;
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 54%;
@@ -199,7 +200,7 @@ button:disabled {
 }
 
 .practice-room-content {
-    margin-top: 300px;
+    margin-top: 350px;
 }
 
 @media (min-width: 2500px) {
@@ -223,8 +224,8 @@ button:disabled {
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 4px;
-  right: -40px;
+  top: 1px;
+  right: -38px;
 }
 
 .check-button:hover:not(:disabled) {
@@ -331,4 +332,25 @@ button:disabled {
   border: none;
   border-radius: 50%;
   cursor: pointer;
+}
+
+.word-display {
+  background-color: #161616; /* darker than page background */
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.word-kana {
+  font-size: 2.5rem;
+  color: #ebebeb;
+  font-weight: bold;
+}
+
+.word-definition {
+  color: #cccccc;
+  font-style: italic;
+  margin-top: 0.5rem;
 }
