@@ -2,7 +2,14 @@
 export type Word = {
   kana: string;
   english: string;
-  [key: string]: string; // Allow for additional properties if needed
+  [key: string]: string | object; // Allow for additional properties if needed
+};
+
+export type ExtendedWord = Word & {
+  romajiParts: {
+    hepburn: string[];
+    double: string[];
+  };
 };
 
 export type HistoryEntry = {

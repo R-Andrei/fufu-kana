@@ -190,7 +190,7 @@ button:disabled {
 
 .practice-room-bg {
     position: absolute;
-    top: 29%;
+    top: 28%;
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 54%;
@@ -200,7 +200,7 @@ button:disabled {
 }
 
 .practice-room-content {
-    margin-top: 350px;
+    margin-top: 400px;
 }
 
 @media (min-width: 2500px) {
@@ -209,7 +209,7 @@ button:disabled {
     top: 25%;
   }
   .practice-room-content {
-    margin-top: 225px;
+    margin-top: 250px;
   }
 }
 
@@ -286,6 +286,7 @@ button:disabled {
 .settings-group label {
   display: block;
   cursor: pointer;
+  margin-bottom: 0.25rem;
 }
 
 .settings-group input[type="checkbox"] {
@@ -352,5 +353,5 @@ button:disabled {
 .word-definition {
   color: #cccccc;
   font-style: italic;
-  margin-top: 0.5rem;
+  margin-top: -2.5rem;
 }

@@ -494,9 +494,11 @@ for (const [kana, romajiObj] of Object.entries(longSyllablesKatakanaMap)) {
 };
 
 
-export function hiraganaToRomajiVariants(hiragana: string): { hepburn: string; double: string } {
+export function hiraganaToRomajiVariants(hiragana: string): { hepburn: string; double: string, hepburnArray: string[], doubleArray: string[] } {
   let hepburnResult = '';
   let doubleResult = '';
+  const hepburnArray: string[] = [];
+  const doubleArray: string[] = [];
 
   // We'll parse the string left to right, checking for longest possible match in longSyllablesHiraganaMap first.
   let i = 0;
@@ -512,6 +514,8 @@ export function hiraganaToRomajiVariants(hiragana: string): { hepburn: string; d
           const longSyllable = longSyllablesHiraganaMap[segment];
           hepburnResult += longSyllable.hepburn;
           doubleResult += longSyllable.double;
+          hepburnArray.push(longSyllable.hepburn);
+          doubleArray.push(longSyllable.double);
           i += len;
           matched = true;
           break;
@@ -529,19 +533,25 @@ export function hiraganaToRomajiVariants(hiragana: string): { hepburn: string; d
       // Unknown kana fallback, just append as is
       hepburnResult += kana;
       doubleResult += kana;
+      hepburnArray.push(kana);
+      doubleArray.push(kana);
     } else {
       hepburnResult += romaji;
       doubleResult += romaji;
+      hepburnArray.push(romaji);
+      doubleArray.push(romaji);
     }
     i++;
   }
 
-  return { hepburn: hepburnResult, double: doubleResult };
+  return { hepburn: hepburnResult, double: doubleResult, hepburnArray: hepburnArray, doubleArray: doubleArray };
 }
 
-export function katakanaToRomajiVariants(katakana: string): { hepburn: string; double: string } {
+export function katakanaToRomajiVariants(katakana: string): { hepburn: string; double: string, hepburnArray: string[], doubleArray: string[] } {
   let hepburnResult = '';
   let doubleResult = '';
+  const hepburnArray: string[] = [];
+  const doubleArray: string[] = [];
 
   // Parse the string left to right, checking for longest possible match in longSyllablesKatakanaMap first.
   let i = 0;
@@ -557,6 +567,8 @@ export function katakanaToRomajiVariants(katakana: string): { hepburn: string; d
           const longSyllable = longSyllablesKatakanaMap[segment];
           hepburnResult += longSyllable.hepburn;
           doubleResult += longSyllable.double;
+          hepburnArray.push(longSyllable.hepburn);
+          doubleArray.push(longSyllable.double);
           i += len;
           matched = true;
           break;
@@ -574,14 +586,18 @@ export function katakanaToRomajiVariants(katakana: string): { hepburn: string; d
       // Unknown kana fallback, just append as is
       hepburnResult += kana;
       doubleResult += kana;
+      hepburnArray.push(kana);
+      doubleArray.push(kana);
     } else {
       hepburnResult += romaji;
       doubleResult += romaji;
+      hepburnArray.push(romaji);
+      doubleArray.push(romaji);
     }
     i++;
   }
 
-  return { hepburn: hepburnResult, double: doubleResult };
+  return { hepburn: hepburnResult, double: doubleResult, hepburnArray: hepburnArray, doubleArray: doubleArray };
 }
 
 function isKatakana(text: string): boolean {
@@ -591,7 +607,7 @@ function isKatakana(text: string): boolean {
   });
 }
 
-export function kanaToRomajiVariants(kana: string): { hepburn: string; double: string } {
+export function kanaToRomajiVariants(kana: string): { hepburn: string; double: string, hepburnArray: string[], doubleArray: string[] } {
   if (isKatakana(kana)) {
     return katakanaToRomajiVariants(kana);
   } else {

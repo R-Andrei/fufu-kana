@@ -1,12 +1,12 @@
 
 import './App.css'
 
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { RefreshCcw, ArrowRightCircle } from 'lucide-react';
 
 import doitforher from '/src/assets/doitforher.png';
 import type { ToastProps } from './components/toast';
-import type { Word, HistoryEntry } from './types';
+import type { Word, ExtendedWord, HistoryEntry } from './types';
 import { getRandomCorrectMessage, getRandomWrongMessage } from './utils/messages';
 import { checkAnswer, kanaToRomajiVariants } from './utils/kana';
 import { Toast } from './components/toast';
@@ -31,6 +31,7 @@ const App: React.FC = () => {
   const [currentWord, setCurrentWord] = useState<Word | null>(null);
   const [userInput, setUserInput] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
+  const [syllableFeedback, setSyllableFeedback] = useState(false);
 
   // timer state
   const [timedMode, setTimedMode] = useState(false);
@@ -40,6 +41,33 @@ const App: React.FC = () => {
   const timerDuration = timerDurationSec * 1000;
   const tickRate = 100;
   const timerRef = useRef<number | null>(null);
+
+  const extendedWord: ExtendedWord = useMemo(() => {
+    if (!currentWord) {
+      return {
+        kana: "",
+        english: "",
+        romajiParts: {
+          hepburn: [],
+          double: []
+        }
+      };
+    }
+
+    const getRomajiParts = (kana: string, type: 'hepburn' | 'double') => {
+      const variants = kanaToRomajiVariants(kana);
+      console.log(`Romaji parts for ${kana}:`, variants.hepburnArray, variants.doubleArray);
+      return type === 'hepburn' ? variants.hepburnArray : variants.doubleArray;
+    };
+
+    return {
+      ...currentWord,
+      romajiParts: {
+        hepburn: getRomajiParts(currentWord.kana, "hepburn"),
+        double: getRomajiParts(currentWord.kana, "double")
+      }
+    };
+  }, [currentWord]);
 
   // Example function to add to history
   function addHistory(entry: HistoryEntry) {
@@ -97,7 +125,6 @@ const App: React.FC = () => {
       showToast(getRandomCorrectMessage(), 'success');
     } else {
       const variants = kanaToRomajiVariants(currentWord.kana);
-      console.log(currentWord.kana, variants);
       const correctRomaji =
         variants.hepburn === variants.double
           ? variants.hepburn
@@ -205,7 +232,6 @@ const App: React.FC = () => {
             />
             Hiragana
           </label>
-          <br />
           <label>
             <input
               type="checkbox"
@@ -218,6 +244,14 @@ const App: React.FC = () => {
 
         <fieldset className="settings-group">
           <legend><strong>Additional Options</strong></legend>
+          <label style={{ display: 'block' }}>
+            <input
+              type="checkbox"
+              checked={syllableFeedback}
+              onChange={() => setSyllableFeedback(prev => !prev)}
+            />
+            Syllable feedback
+          </label>
           <label>
             <input
               type="checkbox"
@@ -264,17 +298,65 @@ const App: React.FC = () => {
           {currentWord ? (
             <>
               <div className="word-display">
-                <div
-                  className='word-kana'
-                  style={{
-                    fontSize: '3.1rem',
-                    fontWeight: 'bold',
-                    marginBottom: '0.3rem',
-                    textAlign: 'center',
-                  }}
-                >
-                  {currentWord.kana}
-                </div>
+                {extendedWord && (
+                  <div
+                    className="word-kana"
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      gap: '0.5rem',
+                    }}
+                  >
+                    {extendedWord.kana.split('').map((kanaChar, index) => {
+                      if (!syllableFeedback) {
+                        // Just display kana normally, no coloring logic
+                        return (
+                          <p
+                            key={index}
+                            style={{
+                              fontSize: '3.1rem',
+                              fontWeight: 'bold',
+                              color: 'inherit',
+                              transition: 'color 0.2s ease-in-out',
+                            }}
+                          >
+                            {kanaChar}
+                          </p>
+                        );
+                      }
+
+                      // Syllable feedback enabled: apply your coloring logic
+                      const currentTyped = userInput.toLowerCase();
+
+                      const partialH = extendedWord.romajiParts.hepburn.slice(0, index + 1).join('');
+                      const partialD = extendedWord.romajiParts.double.slice(0, index + 1).join('');
+
+                      let isCorrect = false;
+                      if (currentTyped.length > 0) {
+                        if (
+                          (currentTyped.startsWith(partialH) && currentTyped.length >= partialH.length) ||
+                          (currentTyped.startsWith(partialD) && currentTyped.length >= partialD.length)
+                        ) {
+                          isCorrect = true;
+                        }
+                      }
+
+                      return (
+                        <p
+                          key={index}
+                          style={{
+                            fontSize: '3.1rem',
+                            fontWeight: 'bold',
+                            color: isCorrect ? 'limegreen' : 'inherit',
+                            transition: 'color 0.2s ease-in-out',
+                          }}
+                        >
+                          {kanaChar}
+                        </p>
+                      );
+                    })}
+                  </div>
+                )}
                 <div
                   className='word-definition'
                   style={{ fontSize: '1.2rem', color: '#666', marginBottom: '2rem', textAlign: 'center' }}
