@@ -253,43 +253,6 @@ export const longSyllablesKatakanaMap: Record<string, { hepburn: string; double:
   リュ: { hepburn: 'ryu', double: 'ryu' },
   リョ: { hepburn: 'ryo', double: 'ryo' },
 
-  // Long vowels with う and ー (including voiced and p-sounds)
-  アー: { hepburn: 'ā', double: 'aa' },
-  イー: { hepburn: 'ī', double: 'ii' },
-  ウー: { hepburn: 'ū', double: 'uu' },
-  エー: { hepburn: 'ē', double: 'ee' },
-  オー: { hepburn: 'ō', double: 'oo' },
-
-  ガー: { hepburn: 'gā', double: 'gaa' },
-  ギー: { hepburn: 'gī', double: 'gii' },
-  グー: { hepburn: 'gū', double: 'guu' },
-  ゲー: { hepburn: 'gē', double: 'gee' },
-  ゴー: { hepburn: 'gō', double: 'goo' },
-
-  ザー: { hepburn: 'zā', double: 'zaa' },
-  ジー: { hepburn: 'jī', double: 'jii' },
-  ズー: { hepburn: 'zū', double: 'zuu' },
-  ゼー: { hepburn: 'zē', double: 'zee' },
-  ゾー: { hepburn: 'zō', double: 'zoo' },
-
-  ダー: { hepburn: 'dā', double: 'daa' },
-  ヂー: { hepburn: 'jī', double: 'jii' },
-  ヅー: { hepburn: 'zū', double: 'zuu' },
-  デー: { hepburn: 'dē', double: 'dee' },
-  ドー: { hepburn: 'dō', double: 'doo' },
-
-  バー: { hepburn: 'bā', double: 'baa' },
-  ビー: { hepburn: 'bī', double: 'bii' },
-  ブー: { hepburn: 'bū', double: 'buu' },
-  ベー: { hepburn: 'bē', double: 'bee' },
-  ボー: { hepburn: 'bō', double: 'boo' },
-
-  パー: { hepburn: 'pā', double: 'paa' },
-  ピー: { hepburn: 'pī', double: 'pii' },
-  プー: { hepburn: 'pū', double: 'puu' },
-  ペー: { hepburn: 'pē', double: 'pee' },
-  ポー: { hepburn: 'pō', double: 'poo' },
-
   // Long vowels spelled with う instead of ー (common in native words)
   アイ: { hepburn: 'ai', double: 'ai' },
   エイ: { hepburn: 'ē', double: 'ei' },
@@ -343,19 +306,17 @@ export const longSyllablesKatakanaMap: Record<string, { hepburn: string; double:
   ザエ: { hepburn: 'zae', double: 'zae' },
   ザオ: { hepburn: 'zao', double: 'zao' },
 
-  // Some loanword and extended combos (rare but useful)
+  // Some loanword and extended combos
   フィー: { hepburn: 'fī', double: 'fii' },
   ティー: { hepburn: 'tī', double: 'tii' },
   ディー: { hepburn: 'dī', double: 'dii' },
   ヴィー: { hepburn: 'vī', double: 'vii' },
   ウィー: { hepburn: 'wī', double: 'wii' },
 
-  // Edge cases for extended katakana combinations
   シェー: { hepburn: 'shē', double: 'shee' },
   ジェー: { hepburn: 'jē', double: 'jee' },
   チェー: { hepburn: 'chē', double: 'chee' },
 
-  // Bonus: small kana long vowel (rarely used but valid)
   アイー: { hepburn: 'aī', double: 'aii' },
   オーイ: { hepburn: 'ōi', double: 'ooi' },
 
@@ -381,14 +342,53 @@ export const longSyllablesKatakanaMap: Record<string, { hepburn: string; double:
   チュー: { hepburn: "chū", double: "chuu" },
   チョー: { hepburn: "chō", double: "chou" },
 
-  // standalone vowels + long mark
-  セー: { hepburn: "sē", double: "sei" },
-  ケー: { hepburn: "kē", double: "kei" },
-  テー: { hepburn: "tē", double: "tei" },
-  ネー: { hepburn: "nē", double: "nei" },
-  レー: { hepburn: "rē", double: "rei" },
+  セー: { hepburn: "sē", double: "see" },
+  ケー: { hepburn: "kē", double: "kee" },
+  テー: { hepburn: "tē", double: "tee" },
+  ネー: { hepburn: "nē", double: "nee" },
 
-  // more examples:
+   アー: { hepburn: 'ā', double: 'aa' },
+  イー: { hepburn: 'ī', double: 'ii' },
+  ウー: { hepburn: 'ū', double: 'uu' },
+  エー: { hepburn: 'ē', double: 'ee' },
+  オー: { hepburn: 'ō', double: 'oo' },
+
+  ガー: { hepburn: 'gā', double: 'gaa' },
+  ギー: { hepburn: 'gī', double: 'gii' },
+  グー: { hepburn: 'gū', double: 'guu' },
+  ゲー: { hepburn: 'gē', double: 'gee' },
+  ゴー: { hepburn: 'gō', double: 'goo' },
+
+  ザー: { hepburn: 'zā', double: 'zaa' },
+  ジー: { hepburn: 'jī', double: 'jii' },
+  ズー: { hepburn: 'zū', double: 'zuu' },
+  ゼー: { hepburn: 'zē', double: 'zee' },
+  ゾー: { hepburn: 'zō', double: 'zoo' },
+
+  ラー: { hepburn: 'rā', double: 'raa' },
+  リー: { hepburn: 'rī', double: 'rii' },
+  ルー: { hepburn: 'rū', double: 'ruu' },
+  レー: { hepburn: 'rē', double: 'ree' },
+  ロー: { hepburn: 'rō', double: 'roo' },
+
+  ダー: { hepburn: 'dā', double: 'daa' },
+  ヂー: { hepburn: 'jī', double: 'jii' },
+  ヅー: { hepburn: 'zū', double: 'zuu' },
+  デー: { hepburn: 'dē', double: 'dee' },
+  ドー: { hepburn: 'dō', double: 'doo' },
+
+  バー: { hepburn: 'bā', double: 'baa' },
+  ビー: { hepburn: 'bī', double: 'bii' },
+  ブー: { hepburn: 'bū', double: 'buu' },
+  ベー: { hepburn: 'bē', double: 'bee' },
+  ボー: { hepburn: 'bō', double: 'boo' },
+
+  パー: { hepburn: 'pā', double: 'paa' },
+  ピー: { hepburn: 'pī', double: 'pii' },
+  プー: { hepburn: 'pū', double: 'puu' },
+  ペー: { hepburn: 'pē', double: 'pee' },
+  ポー: { hepburn: 'pō', double: 'poo' },
+
   ミャー: { hepburn: "myā", double: "myaa" },
   ミュー: { hepburn: "myū", double: "myuu" },
   ミョー: { hepburn: "myō", double: "myou" },
