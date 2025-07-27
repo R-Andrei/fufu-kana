@@ -1,7 +1,7 @@
 
 import './App.css'
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { RefreshCcw, ArrowRightCircle } from 'lucide-react';
 
 import doitforher from '/src/assets/doitforher.png';
@@ -26,19 +26,20 @@ const App: React.FC = () => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [toasts, setToasts] = useState<ToastProps[]>([]);
 
+  // vocabulary state
   const [words, setWords] = useState<Word[]>([]);
   const [currentWord, setCurrentWord] = useState<Word | null>(null);
   const [userInput, setUserInput] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const showToast = (message: string, type: 'success' | 'error') => {
-    const id = Date.now(); // or any unique ID generator
-    setToasts(prev => [...prev, { id, message, type }]);
-    // Remove after 3 seconds
-    setTimeout(() => {
-      setToasts(prev => prev.filter(toast => toast.id !== id));
-    }, 3000);
-  };
+  // timer state
+  const [timedMode, setTimedMode] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(0);
+  const [timerDurationSec, setTimerDuration] = useState(8); // default 8 seconds
+  const [timerStarted, setTimerStarted] = useState(false);
+  const timerDuration = timerDurationSec * 1000;
+  const tickRate = 100;
+  const timerRef = useRef<number | null>(null);
 
   // Example function to add to history
   function addHistory(entry: HistoryEntry) {
@@ -62,44 +63,53 @@ const App: React.FC = () => {
     }
   }, [hiraganaChecked, katakanaChecked]);
 
-  // Dummy romaji checker (replace with your real function)
-  const submitAnswer = (input: string, word: Word) => {
-    const variants = kanaToRomajiVariants(word.kana);
-    const isCorrect =
-      userInput.trim().toLowerCase() === variants.hepburn.toLowerCase() ||
-      userInput.trim().toLowerCase() === variants.double.toLowerCase();
-
-    addHistory({
-      word: word.kana,
-      meaning: word.english,
-      input: userInput.trim(),
-      correctRomaji: isCorrect ? userInput.trim() : variants.double,
-      isCorrect,
-    });
-
-    return checkAnswer(input, word);
-  };
-
-  const onCheck = () => {
+  const onCheck = useCallback(() => {
     if (!currentWord) return;
+
+    const submitAnswer = (input: string, word: Word) => {
+      const variants = kanaToRomajiVariants(word.kana);
+      const isCorrect =
+        userInput.trim().toLowerCase() === variants.hepburn.toLowerCase() ||
+        userInput.trim().toLowerCase() === variants.double.toLowerCase();
+
+      addHistory({
+        word: word.kana,
+        meaning: word.english,
+        input: userInput.trim(),
+        correctRomaji: isCorrect ? userInput.trim() : variants.double,
+        isCorrect,
+      });
+
+      return checkAnswer(input, word);
+    };
+
+    const showToast = (message: string, type: 'success' | 'error') => {
+      const id = Date.now(); // or any unique ID generator
+      setToasts(prev => [...prev, { id, message, type }]);
+      // Remove after 3 seconds
+      setTimeout(() => {
+        setToasts(prev => prev.filter(toast => toast.id !== id));
+      }, 3000);
+    };
+
 
     if (submitAnswer(userInput.trim(), currentWord)) {
       showToast(getRandomCorrectMessage(), 'success');
     } else {
       const variants = kanaToRomajiVariants(currentWord.kana);
-      console.log(currentWord.kana, variants)
-      const correctRomaji = (variants.hepburn === variants.double)
-        ? `${variants.hepburn}`
-        : `${variants.hepburn} or ${variants.double}.`
+      console.log(currentWord.kana, variants);
+      const correctRomaji =
+        variants.hepburn === variants.double
+          ? variants.hepburn
+          : `${variants.hepburn} or ${variants.double}.`;
 
       const wrongMessage = getRandomWrongMessage(currentWord.kana, correctRomaji);
       showToast(wrongMessage, 'error');
     }
 
-    // Show next random word
+    // Then your code to go to the next word
     if (words.length > 0) {
       let nextWord = words[Math.floor(Math.random() * words.length)];
-      // Avoid immediate repeat if possible
       if (words.length > 1) {
         while (nextWord.kana === currentWord.kana) {
           nextWord = words[Math.floor(Math.random() * words.length)];
@@ -108,8 +118,51 @@ const App: React.FC = () => {
       setCurrentWord(nextWord);
       setUserInput('');
       inputRef.current?.focus();
+
+      if (timedMode) {
+        clearInterval(timerRef.current!);
+        setTimeLeft(timerDuration);
+      }
     }
-  };
+  }, [
+    currentWord,
+    userInput,
+    words,
+    setCurrentWord,
+    setUserInput,
+    inputRef,
+    timedMode,
+    timerDuration
+  ]);
+
+  // Effect 1: countdown timer
+  useEffect(() => {
+    if (!timedMode || !currentWord) return;
+
+    setTimeLeft(timerDuration);
+    if (timerRef.current) clearInterval(timerRef.current);
+
+    timerRef.current = window.setInterval(() => {
+      setTimeLeft((prev) => {
+        const next = prev - tickRate;
+        return next <= 0 ? 0 : next;
+      });
+    }, tickRate);
+
+    setTimerStarted(true);
+
+    return () => {
+      clearInterval(timerRef.current!);
+      setTimerStarted(false); // clear when effect is cleaned up
+    };
+  }, [currentWord, timedMode, timerDuration]);
+
+  // Effect 2: auto-submit on 0
+  useEffect(() => {
+    if (timeLeft === 0 && timedMode && timerStarted) {
+      onCheck();
+    }
+  }, [timeLeft, timedMode, onCheck, timerStarted]);
 
   const resetHistory = () => {
     setHistory([]);  // or whatever state update clears history
@@ -121,6 +174,13 @@ const App: React.FC = () => {
     }
   };
 
+  const getBarColor = (progressRatio: number) => {
+    if (progressRatio > 0.7) return '#4caf50'; // Green
+    if (progressRatio > 0.5) return '#ffc107'; // Yellow
+    if (progressRatio > 0.25) return '#ff9800'; // Orange
+    return '#f44336'; // Red
+  };
+
   const correctCount = history.filter(entry => entry.isCorrect).length;
   const wrongCount = history.length - correctCount;
   const totalCount = history.length;
@@ -129,25 +189,58 @@ const App: React.FC = () => {
   return (
     <div className='flex w-full h-full practice-container' style={{ display: 'flex', height: '100vh', fontFamily: 'sans-serif' }}>
       {/* Left sidebar for options */}
-      <section className='w-1/4 p-4 border-r practice-settings' style={{ width: '200px', padding: '1rem' }}>
+      <section
+        className="w-1/4 p-4 border-r practice-settings"
+        style={{ width: '200px', padding: '1rem' }}
+      >
         <h2>Practice Settings</h2>
-        <label>
-          <input
-            type="checkbox"
-            checked={hiraganaChecked}
-            onChange={() => setHiraganaChecked(!hiraganaChecked)}
-          />
-          Hiragana
-        </label>
-        <br />
-        <label>
-          <input
-            type="checkbox"
-            checked={katakanaChecked}
-            onChange={() => setKatakanaChecked(!katakanaChecked)}
-          />
-          Katakana
-        </label>
+
+        <fieldset className="settings-group" style={{ marginBottom: '1rem' }}>
+          <legend><strong>Word Practice</strong></legend>
+          <label>
+            <input
+              type="checkbox"
+              checked={hiraganaChecked}
+              onChange={() => setHiraganaChecked(!hiraganaChecked)}
+            />
+            Hiragana
+          </label>
+          <br />
+          <label>
+            <input
+              type="checkbox"
+              checked={katakanaChecked}
+              onChange={() => setKatakanaChecked(!katakanaChecked)}
+            />
+            Katakana
+          </label>
+        </fieldset>
+
+        <fieldset className="settings-group">
+          <legend><strong>Additional Options</strong></legend>
+          <label>
+            <input
+              type="checkbox"
+              checked={timedMode}
+              onChange={() => setTimedMode((prev) => !prev)}
+            />
+            Timed Mode
+          </label>
+
+          <div className="timer-slider-wrapper">
+            <label htmlFor="timerDuration">Timer Duration: {timerDurationSec}s</label>
+            <input
+              id="timerDuration"
+              type="range"
+              min={3}
+              max={30}
+              step={1}
+              value={timerDurationSec}
+              onChange={(e) => setTimerDuration(parseInt(e.target.value))}
+              className="timer-slider"
+            />
+          </div>
+        </fieldset>
       </section>
 
       {/* Main practice area */}
@@ -172,7 +265,7 @@ const App: React.FC = () => {
             <>
               <div
                 style={{
-                  fontSize: '4rem',
+                  fontSize: '4.2rem',
                   fontWeight: 'bold',
                   marginBottom: '0.3rem',
                   textAlign: 'center',
@@ -180,8 +273,8 @@ const App: React.FC = () => {
               >
                 {currentWord.kana}
               </div>
-              <div style={{ fontSize: '1rem', color: '#666', marginBottom: '2rem', textAlign: 'center' }}>
-                {currentWord.english}
+              <div style={{ fontSize: '1.4rem', color: '#666', marginBottom: '2rem', textAlign: 'center' }}>
+                ({currentWord.english})
               </div>
 
               <div className="input-group">
@@ -203,6 +296,17 @@ const App: React.FC = () => {
                 >
                   <ArrowRightCircle size={28} />
                 </button>
+                {timedMode && (
+                  <div className="timer-bar-wrapper">
+                    <div
+                      className="timer-bar"
+                      style={{
+                        width: `${(timeLeft / timerDuration) * 100}%`,
+                        backgroundColor: getBarColor(timeLeft / timerDuration)
+                      }}
+                    ></div>
+                  </div>
+                )}
               </div>
             </>
           ) : (

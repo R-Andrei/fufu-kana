@@ -189,22 +189,26 @@ button:disabled {
 
 .practice-room-bg {
     position: absolute;
-    top: 25%;
+    top: 27%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 58%;
+    max-width: 54%;
     opacity: 0.69;
     pointer-events: none;
     z-index: 1;
 }
 
 .practice-room-content {
-    margin-top: 200px;
+    margin-top: 300px;
 }
 
 @media (min-width: 2500px) {
   .practice-room-bg {
     max-width: 40%;
+    top: 25%;
+  }
+  .practice-room-content {
+    margin-top: 225px;
   }
 }
 
@@ -218,6 +222,9 @@ button:disabled {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  top: 4px;
+  right: -40px;
 }
 
 .check-button:hover:not(:disabled) {
@@ -241,5 +248,87 @@ button:disabled {
 .practice-room .input-group {
     display: flex;
     align-items: center;
+    flex-direction: column;
     gap: 8px;
+    position: relative;
+}
+
+.timer-bar-wrapper {
+  width: 100%;
+  height: 8px;
+  background-color: #ddd;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.timer-bar {
+  height: 100%;
+  background-color: #4caf50;
+  width: 100%; /* will be overwritten by inline style */
+  transition: width 0.1s linear, background-color 0.2s linear;
+  border-radius: 4px;
+}
+
+.settings-group {
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.settings-group legend {
+  padding: 0 0.5rem;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+.settings-group label {
+  display: block;
+  cursor: pointer;
+}
+
+.settings-group input[type="checkbox"] {
+  margin-right: 0.5rem;
+  accent-color: #4caf50; /* Optional: gives greenish tint to checkboxes */
+}
+
+.timer-slider-wrapper {
+  margin-top: 1rem;
+}
+
+.timer-slider-wrapper label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #ccc;
+  font-size: 0.85rem;
+}
+
+.timer-slider {
+  width: 100%;
+  appearance: none;
+  height: 4px;
+  background: #444;
+  border-radius: 2px;
+  outline: none;
+  transition: background 0.2s ease-in-out;
+}
+
+.timer-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: #4caf50;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #222;
+  transition: background 0.2s ease;
+}
+
+.timer-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: #4caf50;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
 }
