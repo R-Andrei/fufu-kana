@@ -27,6 +27,7 @@ const App: React.FC = () => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [toasts, setToasts] = useState<ToastProps[]>([]);
   const [cooldownWords, setCooldownWords] = useState<string[]>([]);
+  const [autoSubmit, setAutoSubmit] = useState(true);
 
   // vocabulary state
   const [words, setWords] = useState<Word[]>([]);
@@ -199,6 +200,24 @@ const App: React.FC = () => {
     cooldownWords
   ]);
 
+  useEffect(() => {
+    if (!autoSubmit || !userInput || !variants.hepburn || !variants.double) return;
+
+    const normalizedInput = userInput.trim().toLowerCase();
+    const normalizedHepburn = variants.hepburn.toLowerCase();
+    const normalizedDouble = variants.double.toLowerCase();
+
+    if (normalizedInput === normalizedHepburn || normalizedInput === normalizedDouble) {
+      const timer = setTimeout(() => {
+        console.log('Auto-submit triggered');
+        onCheck(); // Automatically submit
+      }, 500);
+
+      // Clear timeout if input changes before 500ms
+      return () => clearTimeout(timer);
+    }
+  }, [userInput, variants, onCheck, autoSubmit]);
+
   // Effect 1: countdown timer
   useEffect(() => {
     if (!timedMode || !currentWord) return;
@@ -283,6 +302,14 @@ const App: React.FC = () => {
 
         <fieldset className="settings-group">
           <legend><strong>Additional Options</strong></legend>
+          <label style={{ display: 'block' }}>
+            <input
+              type="checkbox"
+              checked={autoSubmit}
+              onChange={() => setAutoSubmit(prev => !prev)}
+            />
+            Auto-submit
+          </label>
           <label style={{ display: 'block' }}>
             <input
               type="checkbox"
