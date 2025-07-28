@@ -380,6 +380,7 @@ export const longSyllablesKatakanaMap: Record<string, { hepburn: string; double:
   ヌー: { hepburn: 'nū', double: 'nuu' },
   メー: { hepburn: 'mē', double: 'mee' },
   フォー: { hepburn: 'fō', double: 'foo' },
+  チー: { hepburn: 'chī', double: 'chii' },
 
   ァー: { hepburn: 'ā', double: 'aa' },
   アー: { hepburn: 'ā', double: 'aa' },
