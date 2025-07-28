@@ -221,10 +221,6 @@
       "english": "Recreational Vehicle"
     },
     {
-      "kana": "イェール大学",
-      "english": "Yale University"
-    },
-    {
       "kana": "イエス",
       "english": "Jesus"
     },
@@ -425,10 +421,6 @@
       "english": "wool"
     },
     {
-      "kana": "ウーロン茶",
-      "english": "oolong tea"
-    },
-    {
       "kana": "エアコン",
       "english": "air conditioner"
     },
@@ -505,7 +497,7 @@
       "english": "engine"
     },
     {
-      "hiragana": "エンジニア",
+      "kana": "エンジニア",
       "kanji": null,
       "romaji": "enjinia",
       "english": "engineer",
@@ -881,10 +873,6 @@
       "english": "gift"
     },
     {
-      "kana": "ギブ(アップ)",
-      "english": "give up"
-    },
-    {
       "kana": "ギプス",
       "english": "cast"
     },
@@ -1255,11 +1243,7 @@
     {
       "kana": "サテン",
       "english": "satin"
-    },
-    {
-      "kana": "サボる",
-      "english": "slack off"
-    },
+    }, 
     {
       "kana": "サマー・スクール",
       "english": "summer school"
@@ -1347,10 +1331,6 @@
     {
       "kana": "シネマ",
       "english": "cinema"
-    },
-    {
-      "kana": "シャボン玉",
-      "english": "soap bubble"
     },
     {
       "kana": "シャワー",
@@ -2065,10 +2045,6 @@
       "english": "department store"
     },
     {
-      "kana": "デパ地下",
-      "english": "department store basement"
-    },
-    {
       "kana": "デビュー",
       "english": "debut"
     },
@@ -2197,7 +2173,7 @@
       "english": "document"
     },
     {
-      "kana": "ドクター ストップ",
+      "kana": "ドクターストップ",
       "english": "medical prohibition"
     },
     {
@@ -2359,10 +2335,6 @@
     {
       "kana": "ノート",
       "english": "notebook"
-    },
-    {
-      "kana": "ノーベル賞",
-      "english": "Nobel Prize"
     },
     {
       "kana": "ノーマル",
@@ -2899,10 +2871,6 @@
     {
       "kana": "ブルマ",
       "english": "bloomers"
-    },
-    {
-      "kana": "プーさん",
-      "english": "Winnie the Pooh"
     },
     {
       "kana": "プール",
@@ -3641,7 +3609,7 @@
       "english": "virgin"
     },
     {
-      "hiragana": "オオカミ",
+      "kana": "オオカミ",
       "kanji": "狼",
       "romaji": "ōkami",
       "english": "wolf",
@@ -3649,7 +3617,7 @@
       "subcategory": "animals"
     },
     {
-      "hiragana": "キリン",
+      "kana": "キリン",
       "kanji": "麒麟",
       "romaji": "kirin",
       "english": "giraffe",
@@ -3657,7 +3625,7 @@
       "subcategory": "animals"
     },
     {
-      "hiragana": "ミカン",
+      "kana": "ミカン",
       "kanji": "蜜柑",
       "romaji": "mikan",
       "english": "mandarin orange",
@@ -3665,15 +3633,7 @@
       "subcategory": "crops_and_ingredients"
     },
     {
-      "hiragana": "けしゴム",
-      "kanji": "消しゴム",
-      "romaji": "keshigomu",
-      "english": "eraser",
-      "category": "nouns",
-      "subcategory": "stationery"
-    },
-    {
-      "hiragana": "ガス",
+      "kana": "ガス",
       "kanji": null,
       "romaji": "gasu",
       "english": "gas",
@@ -3681,7 +3641,7 @@
       "subcategory": "materials"
     },
     {
-      "hiragana": "カタカナ",
+      "kana": "カタカナ",
       "kanji": "片仮名",
       "romaji": "kana",
       "english": "kana syllabary characters",
@@ -3943,6 +3903,10 @@
         {
       "kana": "ジューフーフー",
       "english": "jufufu (amazing tiger)"
+    },
+    {
+      "kana": "キスショット・アセロラオリオン・ハートアンダーブレード",
+      "english": "Kiss-Shot Acerola-Orion Heart-Under-Blade"
     }
   ]
 }

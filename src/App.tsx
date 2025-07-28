@@ -46,7 +46,7 @@ const App: React.FC = () => {
   const timerRef = useRef<number | null>(null);
 
   const variants = useMemo(() => {
-    if (!currentWord) {
+    if (!currentWord || currentWord === undefined) {
       return {
         hepburn: '',
         double: '',
@@ -143,7 +143,6 @@ const App: React.FC = () => {
     if (submitAnswer(userInput.trim(), currentWord)) {
       showToast(getRandomCorrectMessage(), 'success');
     } else {
-      const variants = kanaToRomajiVariants(currentWord.kana);
       const correctRomaji =
         variants.hepburn === variants.double
           ? variants.hepburn
@@ -168,7 +167,6 @@ const App: React.FC = () => {
         nextWord.kana === currentWord.kana || // no immediate repeat
         cooldownWords.includes(nextWord.kana) // not in cooldown
       );
-
       setCurrentWord(nextWord);
       setUserInput('');
       inputRef.current?.focus();
@@ -200,6 +198,7 @@ const App: React.FC = () => {
     cooldownWords
   ]);
 
+  // Effect 0: auto-submit on correct input
   useEffect(() => {
     if (!autoSubmit || !userInput || !variants.hepburn || !variants.double) return;
 
@@ -211,7 +210,7 @@ const App: React.FC = () => {
       const timer = setTimeout(() => {
         console.log('Auto-submit triggered');
         onCheck(); // Automatically submit
-      }, 500);
+      }, 400);
 
       // Clear timeout if input changes before 500ms
       return () => clearTimeout(timer);
@@ -240,7 +239,6 @@ const App: React.FC = () => {
     };
   }, [currentWord, timedMode, timerDuration]);
 
-  // Effect 2: auto-submit on 0
   useEffect(() => {
     if (timeLeft === 0 && timedMode && timerStarted) {
       onCheck();
@@ -258,17 +256,17 @@ const App: React.FC = () => {
   };
 
   const getBarColor = (progressRatio: number) => {
-    if (progressRatio >= 1.0) return '#2e7d32'; // Deep Green
+    if (progressRatio >= 1.0) return '#2e7d32';
     if (progressRatio >= 0.9) return '#388e3c';
     if (progressRatio >= 0.8) return '#43a047';
-    if (progressRatio >= 0.7) return '#4caf50'; // Base Green
-    if (progressRatio >= 0.6) return '#7cb342'; // Yellow-Green
-    if (progressRatio >= 0.5) return '#c0ca33'; // Yellow-Lime
-    if (progressRatio >= 0.4) return '#fbc02d'; // Strong Yellow
-    if (progressRatio >= 0.3) return '#ffb300'; // Amber
-    if (progressRatio >= 0.2) return '#fb8c00'; // Dark Orange
-    if (progressRatio >= 0.1) return '#f4511e'; // Orange-Red
-    return '#e53935'; // Red
+    if (progressRatio >= 0.7) return '#4caf50';
+    if (progressRatio >= 0.6) return '#7cb342';
+    if (progressRatio >= 0.5) return '#c0ca33';
+    if (progressRatio >= 0.4) return '#fbc02d';
+    if (progressRatio >= 0.3) return '#ffb300';
+    if (progressRatio >= 0.2) return '#fb8c00';
+    if (progressRatio >= 0.1) return '#f4511e';
+    return '#e53935';
   };
 
   const correctnessArray = useMemo(() => {
@@ -370,7 +368,7 @@ const App: React.FC = () => {
               id="timerDuration"
               type="range"
               min={3}
-              max={30}
+              max={25}
               step={1}
               value={timerDurationSec}
               onChange={(e) => setTimerDuration(parseInt(e.target.value))}
