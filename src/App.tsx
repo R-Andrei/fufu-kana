@@ -258,18 +258,55 @@ const App: React.FC = () => {
   };
 
   const getBarColor = (progressRatio: number) => {
-    if (progressRatio > 0.7) return '#4caf50'; // Green
-    if (progressRatio > 0.5) return '#ffc107'; // Yellow
-    if (progressRatio > 0.25) return '#ff9800'; // Orange
-    return '#f44336'; // Red
+    if (progressRatio >= 1.0) return '#2e7d32'; // Deep Green
+    if (progressRatio >= 0.9) return '#388e3c';
+    if (progressRatio >= 0.8) return '#43a047';
+    if (progressRatio >= 0.7) return '#4caf50'; // Base Green
+    if (progressRatio >= 0.6) return '#7cb342'; // Yellow-Green
+    if (progressRatio >= 0.5) return '#c0ca33'; // Yellow-Lime
+    if (progressRatio >= 0.4) return '#fbc02d'; // Strong Yellow
+    if (progressRatio >= 0.3) return '#ffb300'; // Amber
+    if (progressRatio >= 0.2) return '#fb8c00'; // Dark Orange
+    if (progressRatio >= 0.1) return '#f4511e'; // Orange-Red
+    return '#e53935'; // Red
   };
+
+  const correctnessArray = useMemo(() => {
+    const result: boolean[] = [];
+    if (!syllableFeedback || !variants.hepburnArray.length) return result;
+
+    let i = 0;
+    const input = userInput.toLowerCase();
+    let stillCorrect = true;
+
+    for (let j = 0; j < variants.hepburnArray.length; j++) {
+      const hep = variants.hepburnArray[j];
+      const dbl = variants.doubleArray[j];
+
+      if (!stillCorrect) {
+        result.push(false);
+        continue;
+      }
+
+      if (input.slice(i, i + hep.length) === hep) {
+        result.push(true);
+        i += hep.length;
+      } else if (input.slice(i, i + dbl.length) === dbl) {
+        result.push(true);
+        i += dbl.length;
+      } else {
+        result.push(false);
+        stillCorrect = false;
+      }
+    }
+
+    return result;
+  }, [userInput, variants, syllableFeedback]);
 
   const correctCount = history.filter(entry => entry.isCorrect).length;
   const wrongCount = history.length - correctCount;
   const totalCount = history.length;
   const accuracy = totalCount === 0 ? 0 : Math.round((correctCount / totalCount) * 100);
-
-  let typedIndex = 0;
 
   return (
     <div className='flex w-full h-full practice-container' style={{ display: 'flex', height: '100vh' }}>
@@ -374,38 +411,11 @@ const App: React.FC = () => {
                     }}
                   >
                     {kanaParts.map((kanaSyllable, index) => {
-                      if (!syllableFeedback) {
-                        return (
-                          <p
-                            className='kana-syllable'
-                            key={index}
-                            style={{
-                              fontWeight: 'bold',
-                              transition: 'color 0.2s ease-in-out',
-                            }}
-                          >
-                            {kanaSyllable}
-                          </p>
-                        );
-                      }
-
-                      const romajiH = variants.hepburnArray[index];
-                      const romajiD = variants.doubleArray[index];
-                      const remainingInput = userInput.toLowerCase().slice(typedIndex);
-
-                      let isCorrect = false;
-
-                      if (remainingInput.startsWith(romajiH)) {
-                        isCorrect = true;
-                        typedIndex += romajiH.length;
-                      } else if (remainingInput.startsWith(romajiD)) {
-                        isCorrect = true;
-                        typedIndex += romajiD.length;
-                      }
+                      const isCorrect = correctnessArray[index] || false;
 
                       return (
                         <p
-                          className='kana-syllable'
+                          className="kana-syllable"
                           key={index}
                           style={{
                             fontWeight: 'bold',
