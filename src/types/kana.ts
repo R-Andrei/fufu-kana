@@ -2,7 +2,8 @@
 export type Word = {
   kana: string;
   english: string;
-  [key: string]: string | object; // Allow for additional properties if needed
+  kanji?: string; 
+  [key: string]: string | object | undefined; 
 };
 
 export type ExtendedWord = Word & {
@@ -13,9 +14,9 @@ export type ExtendedWord = Word & {
 };
 
 export type HistoryEntry = {
-  word: string;       // kana
-  meaning: string;    // English meaning
-  input: string;      // user input romaji
-  correctRomaji: string; // correct romaji (Hepburn or double)
+  word: string;
+  meaning: string;
+  input: string;
+  correctRomaji: string;
   isCorrect: boolean;
 };

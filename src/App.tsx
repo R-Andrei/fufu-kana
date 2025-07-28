@@ -10,6 +10,7 @@ import type { Word, ExtendedWord, HistoryEntry } from './types';
 import { getRandomCorrectMessage, getRandomWrongMessage } from './utils/messages';
 import { checkAnswer, kanaToRomajiVariants, splitKanaByRomaji } from './utils/kana';
 import { Toast } from './components/toast';
+import RenderWord from './components/Word';
 
 import hiraganaData from './assets/hiragana_words.json';
 import katakanaData from './assets/katakana_words.json';
@@ -24,6 +25,7 @@ const MAX_COOLDOWN = 100;
 const App: React.FC = () => {
   const [hiraganaChecked, setHiraganaChecked] = useState(true);
   const [katakanaChecked, setKatakanaChecked] = useState(true);
+  const [kanjiChecked, setKanjiChecked] = useState(false);
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [toasts, setToasts] = useState<ToastProps[]>([]);
   const [cooldownWords, setCooldownWords] = useState<string[]>([]);
@@ -76,7 +78,7 @@ const App: React.FC = () => {
 
     const getRomajiParts = (type: 'hepburn' | 'double') => {
 
-      console.log(`Romaji parts for ${currentWord.kana}:`, variants.hepburn, variants.double, variants.hepburnArray, variants.doubleArray);
+      console.log(`Romaji parts for ${(currentWord?.kanji) ? currentWord.kanji : currentWord.kana}:`, variants.hepburn, variants.double, variants.hepburnArray, variants.doubleArray);
       return type === 'hepburn' ? variants.hepburnArray : variants.doubleArray;
     };
 
@@ -111,14 +113,15 @@ const App: React.FC = () => {
     }
   }, [hiraganaChecked, katakanaChecked]);
 
+  const isCorrect = useMemo(() => {
+    return userInput.trim().toLowerCase() === variants.hepburn.toLowerCase() ||
+      userInput.trim().toLowerCase() === variants.double.toLowerCase();
+  }, [userInput, variants]);
+
   const onCheck = useCallback(() => {
     if (!currentWord) return;
 
     const submitAnswer = (input: string, word: Word) => {
-      const isCorrect =
-        userInput.trim().toLowerCase() === variants.hepburn.toLowerCase() ||
-        userInput.trim().toLowerCase() === variants.double.toLowerCase();
-
       addHistory({
         word: word.kana,
         meaning: word.english,
@@ -195,7 +198,8 @@ const App: React.FC = () => {
     timedMode,
     timerDuration,
     variants,
-    cooldownWords
+    cooldownWords,
+    isCorrect
   ]);
 
   // Effect 0: auto-submit on correct input
@@ -208,11 +212,9 @@ const App: React.FC = () => {
 
     if (normalizedInput === normalizedHepburn || normalizedInput === normalizedDouble) {
       const timer = setTimeout(() => {
-        console.log('Auto-submit triggered');
-        onCheck(); // Automatically submit
+        onCheck();
       }, 400);
 
-      // Clear timeout if input changes before 500ms
       return () => clearTimeout(timer);
     }
   }, [userInput, variants, onCheck, autoSubmit]);
@@ -311,12 +313,12 @@ const App: React.FC = () => {
       {/* Left sidebar for options */}
       <section
         className="w-1/4 p-4 border-r practice-settings"
-        style={{ width: '200px', padding: '1rem' }}
+        style={{ width: '250px', padding: '1rem' }}
       >
         <h2>Practice Settings</h2>
 
         <fieldset className="settings-group" style={{ marginBottom: '1rem' }}>
-          <legend><strong>Word Practice</strong></legend>
+          <legend><strong>Word Practice ― Romaji</strong></legend>
           <label>
             <input
               type="checkbox"
@@ -332,6 +334,14 @@ const App: React.FC = () => {
               onChange={() => setKatakanaChecked(!katakanaChecked)}
             />
             Katakana
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={kanjiChecked}
+              onChange={() => setKanjiChecked(prev => !prev)}
+            />
+            Kanji
           </label>
         </fieldset>
 
@@ -399,34 +409,13 @@ const App: React.FC = () => {
           {currentWord ? (
             <>
               <div className="word-display">
-                {extendedWord && (
-                  <div
-                    className="word-kana"
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      gap: '0.5rem',
-                    }}
-                  >
-                    {kanaParts.map((kanaSyllable, index) => {
-                      const isCorrect = correctnessArray[index] || false;
-
-                      return (
-                        <p
-                          className="kana-syllable"
-                          key={index}
-                          style={{
-                            fontWeight: 'bold',
-                            color: isCorrect ? 'limegreen' : 'inherit',
-                            transition: 'color 0.2s ease-in-out',
-                          }}
-                        >
-                          {kanaSyllable}
-                        </p>
-                      );
-                    })}
-                  </div>
-                )}
+                <RenderWord
+                  currentWord={extendedWord}
+                  kanaParts={kanaParts}
+                  correctnessArray={correctnessArray}
+                  kanjiChecked={kanjiChecked}
+                  isCorrect={isCorrect}
+                />
                 <div
                   className='word-definition'
                   style={{ color: '#666', marginBottom: '2rem', textAlign: 'center' }}
@@ -468,7 +457,7 @@ const App: React.FC = () => {
               </div>
             </>
           ) : (
-            <div>Please select at least one kana set to start practicing.</div>
+            <div>Please select at least one word set to start practicing.</div>
           )}
         </div>
       </section>

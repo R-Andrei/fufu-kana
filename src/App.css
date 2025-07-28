@@ -61,7 +61,7 @@ button:disabled {
     position: fixed;
     top: 25px;
     left: 50%;
-    transform: translateX(calc(-50% - 65px));
+    transform: translateX(calc(-50% - 42px));
     display: flex;
     flex-direction: column;
     gap: 8px;

@@ -797,3 +797,7 @@ export function splitKanaByRomaji(kana: string, romajiParts: string[]): string[]
 
   return kanaSyllables;
 }
+
+export function isKana(char: string): boolean {
+  return /[\u3040-\u309F\u30A0-\u30FF]/.test(char);
+}
