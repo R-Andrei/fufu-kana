@@ -2102,15 +2102,6 @@
       "subcategory": "case"
     },
     {
-      "kana": "へ",
-      "kanji": null,
-      "romaji": "e",
-      "english": "to",
-      "notes": "へ is normally read he, but when used as this particle its reading changes to e",
-      "category": "particles",
-      "subcategory": "case"
-    },
-    {
       "kana": "まで",
       "kanji": null,
       "romaji": "made",
@@ -2143,14 +2134,6 @@
       "subcategory": "case"
     },
     {
-      "kana": "ね",
-      "kanji": null,
-      "romaji": "ne",
-      "english": "emphasis and question marker, equivalent to 'right?'",
-      "category": "particles",
-      "subcategory": "final"
-    },
-    {
       "kana": "か",
       "kanji": null,
       "romaji": "ka",
@@ -2158,27 +2141,12 @@
       "category": "particles",
       "subcategory": "final"
     },
-    {
-      "kana": "な",
-      "kanji": null,
-      "romaji": "na",
-      "english": "the copula particle used after quasi-adjectives",
-      "category": "particles",
-      "subcategory": "final"
-    },
+
     {
       "kana": "かしら",
       "kanji": null,
       "romaji": "kashira",
       "english": "I wonder",
-      "category": "particles",
-      "subcategory": "final"
-    },
-    {
-      "kana": "さ",
-      "kanji": null,
-      "romaji": "sa",
-      "english": "-ness",
       "category": "particles",
       "subcategory": "final"
     },
@@ -2219,15 +2187,6 @@
       "kanji": null,
       "romaji": "mo",
       "english": "too, also",
-      "category": "particles",
-      "subcategory": "adverbial"
-    },
-    {
-      "kana": "は",
-      "kanji": null,
-      "romaji": "wa",
-      "english": "topic marker",
-      "notes": "although ha is the kana used, wa is the pronunciation",
       "category": "particles",
       "subcategory": "adverbial"
     },

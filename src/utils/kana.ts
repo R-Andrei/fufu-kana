@@ -24,7 +24,8 @@ export const hiraganaToRomaji: Record<string, string> = {
 
   // Small hiragana
   ぁ: 'a', ぃ: 'i', ぅ: 'u', ぇ: 'e', ぉ: 'o',
-  ゃ: 'ya', ゅ: 'yu', ょ: 'yo'
+  ゃ: 'ya', ゅ: 'yu', ょ: 'yo',
+  "・": " "
 };
 
 export const longSyllablesHiraganaMap: Record<string, { hepburn: string; double: string }> = {
@@ -205,6 +206,7 @@ export const katakanaToRomaji: Record<string, string> = {
   // Small katakana
   ァ: 'a', ィ: 'i', ゥ: 'u', ェ: 'e', ォ: 'o',
   ャ: 'ya', ュ: 'yu', ョ: 'yo', ッ: 'tsu',
+  "・": " "
 };
 
 export const longSyllablesKatakanaMap: Record<string, { hepburn: string; double: string }> = {
