@@ -11,6 +11,7 @@ import { getRandomCorrectMessage, getRandomWrongMessage } from './utils/messages
 import { checkAnswer, kanaToRomajiVariants, splitKanaByRomaji } from './utils/kana';
 import { Toast } from './components/toast';
 import RenderWord from './components/Word';
+import KanaReferenceModal from './components/KanaReferenceModal';
 
 import hiraganaData from './assets/hiragana_words.json';
 import katakanaData from './assets/katakana_words.json';
@@ -37,6 +38,9 @@ const App: React.FC = () => {
   const [userInput, setUserInput] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
   const [syllableFeedback, setSyllableFeedback] = useState(true);
+  const [showEnglishTranslation, setShowEnglishTranslation] = useState(true);
+  const [isDefinitionRevealed, setIsDefinitionRevealed] = useState(true);
+  const [isKanaReferenceOpen, setIsKanaReferenceOpen] = useState(false);
 
   // timer state
   const [timedMode, setTimedMode] = useState(false);
@@ -105,13 +109,17 @@ const App: React.FC = () => {
 
     // Reset current word when options change
     if (combinedWords.length > 0) {
-      setCurrentWord(combinedWords[Math.floor(Math.random() * combinedWords.length)]);
+      setCurrentWord({ ...combinedWords[Math.floor(Math.random() * combinedWords.length)] });
       setUserInput('');
       inputRef.current?.focus();
     } else {
       setCurrentWord(null);
     }
   }, [hiraganaChecked, katakanaChecked]);
+
+  useEffect(() => {
+    setIsDefinitionRevealed(showEnglishTranslation);
+  }, [currentWord, showEnglishTranslation]);
 
   const isCorrect = useMemo(() => {
     return userInput.trim().toLowerCase() === variants.hepburn.toLowerCase() ||
@@ -170,8 +178,9 @@ const App: React.FC = () => {
         nextWord.kana === currentWord.kana || // no immediate repeat
         cooldownWords.includes(nextWord.kana) // not in cooldown
       );
-      setCurrentWord(nextWord);
+      setCurrentWord({ ...nextWord });
       setUserInput('');
+      setIsDefinitionRevealed(showEnglishTranslation);
       inputRef.current?.focus();
 
       // Update cooldownWords queue
@@ -199,7 +208,8 @@ const App: React.FC = () => {
     timerDuration,
     variants,
     cooldownWords,
-    isCorrect
+    isCorrect,
+    showEnglishTranslation
   ]);
 
   // Effect 0: auto-submit on correct input
@@ -313,7 +323,7 @@ const App: React.FC = () => {
       {/* Left sidebar for options */}
       <section
         className="w-1/4 p-4 border-r practice-settings"
-        style={{ width: '250px', padding: '1rem' }}
+        style={{ width: '250px', padding: '1rem', display: 'flex', flexDirection: 'column' }}
       >
         <h2>Practice Settings</h2>
 
@@ -363,6 +373,14 @@ const App: React.FC = () => {
             />
             Syllable feedback
           </label>
+          <label style={{ display: 'block' }}>
+            <input
+              type="checkbox"
+              checked={showEnglishTranslation}
+              onChange={() => setShowEnglishTranslation(prev => !prev)}
+            />
+            Show English translation
+          </label>
           <label>
             <input
               type="checkbox"
@@ -386,6 +404,16 @@ const App: React.FC = () => {
             />
           </div>
         </fieldset>
+
+        <div className="settings-sidebar-footer">
+          <button
+            type="button"
+            className="kana-reference-button"
+            onClick={() => setIsKanaReferenceOpen(true)}
+          >
+            Kana Study Chart
+          </button>
+        </div>
       </section>
 
       {/* Main practice area */}
@@ -420,7 +448,19 @@ const App: React.FC = () => {
                   className='word-definition'
                   style={{ color: '#666', marginBottom: '2rem', textAlign: 'center' }}
                 >
-                  ({currentWord.english})
+                  {showEnglishTranslation || isDefinitionRevealed ? (
+                    <span>({currentWord.english})</span>
+                  ) : (
+                    <button
+                      type="button"
+                      className="word-definition-spoiler"
+                      onClick={() => setIsDefinitionRevealed(true)}
+                      aria-label="Reveal English translation"
+                      title="Reveal English translation"
+                    >
+                      ({currentWord.english})
+                    </button>
+                  )}
                 </div>
               </div>
 
@@ -499,6 +539,11 @@ const App: React.FC = () => {
           <Toast key={toast.id} message={toast.message} type={toast.type} />
         ))}
       </div>
+
+      <KanaReferenceModal
+        isOpen={isKanaReferenceOpen}
+        onClose={() => setIsKanaReferenceOpen(false)}
+      />
     </div>
   );
 };

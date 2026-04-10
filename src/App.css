@@ -208,6 +208,39 @@ button:disabled {
     font-style: italic;
     margin-top: -2rem;
     font-size: 1.1rem;
+    min-height: 1.75rem;
+}
+
+.word-definition span {
+    display: inline-block;
+}
+
+.word-definition-spoiler {
+    display: inline-block;
+    padding: 0.12rem 0.45rem;
+    border-radius: 6px;
+    border: 1px solid #111;
+    background: #050505;
+    color: transparent;
+    font: inherit;
+    letter-spacing: inherit;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.word-definition-spoiler:hover {
+    background: #111;
+    border-color: #1f1f1f;
+}
+
+.word-definition-spoiler:focus {
+    outline: none;
+}
+
+.word-definition-spoiler:focus-visible {
+    outline: 2px solid #aaccff;
+    outline-offset: 2px;
 }
 
 .kana-syllable {
@@ -347,6 +380,382 @@ button:disabled {
     font-size: 0.85rem;
 }
 
+.settings-sidebar-footer {
+    margin-top: auto;
+    padding-top: 0.5rem;
+}
+
+.kana-reference-button {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border-radius: 12px;
+    border: 1px solid #335945;
+    background: linear-gradient(135deg, #173024 0%, #1f4332 55%, #234b38 100%);
+    color: #ebfff4;
+    font-size: 0.98rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.24);
+}
+
+.kana-reference-button:hover:not(:disabled) {
+    background: linear-gradient(135deg, #1c392b 0%, #25503c 55%, #2b5d45 100%);
+    border-color: #4a7b62;
+}
+
+.kana-modal-body,
+.kana-script-scroll,
+.kana-drawer-content {
+    scrollbar-width: thin;
+    scrollbar-color: #4b6073 #141a20;
+}
+
+.kana-modal-body::-webkit-scrollbar,
+.kana-script-scroll::-webkit-scrollbar,
+.kana-drawer-content::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.kana-modal-body::-webkit-scrollbar-track,
+.kana-script-scroll::-webkit-scrollbar-track,
+.kana-drawer-content::-webkit-scrollbar-track {
+    background: #141a20;
+    border-radius: 999px;
+}
+
+.kana-modal-body::-webkit-scrollbar-thumb,
+.kana-script-scroll::-webkit-scrollbar-thumb,
+.kana-drawer-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #435667 0%, #5a7388 100%);
+    border-radius: 999px;
+    border: 2px solid #141a20;
+}
+
+.kana-modal-body::-webkit-scrollbar-thumb:hover,
+.kana-script-scroll::-webkit-scrollbar-thumb:hover,
+.kana-drawer-content::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #567086 0%, #6f8ea7 100%);
+}
+
+.kana-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    background: rgba(3, 5, 8, 0.78);
+    backdrop-filter: blur(8px);
+}
+
+.kana-modal {
+    width: min(1400px, calc(100vw - 16px));
+    height: min(920px, calc(100vh - 16px));
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 18px;
+    border: 1px solid #2f3742;
+    background:
+        radial-gradient(circle at top left, rgba(79, 142, 247, 0.1), transparent 26%),
+        radial-gradient(circle at top right, rgba(76, 175, 80, 0.08), transparent 20%),
+        linear-gradient(180deg, #171b20 0%, #111418 100%);
+    box-shadow: 0 28px 60px rgba(0, 0, 0, 0.42);
+}
+
+.kana-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.9rem;
+    padding: 1rem 1.15rem 0.9rem;
+    border-bottom: 1px solid rgba(125, 147, 171, 0.18);
+}
+
+.kana-modal-eyebrow {
+    margin: 0 0 0.25rem;
+    color: #627d96;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+.kana-modal-header h3 {
+    margin: 0;
+    color: #cbd7e2;
+    font-size: 1.08rem;
+    font-weight: 500;
+}
+
+.kana-modal-description {
+    margin: 0.35rem 0 0;
+    max-width: 72ch;
+    color: #7f92a4;
+    font-size: 0.76rem;
+    line-height: 1.4;
+}
+
+.kana-modal-close {
+    flex-shrink: 0;
+    border-radius: 999px;
+    border: 1px solid #425064;
+    background: rgba(24, 30, 37, 0.92);
+    color: #eef4ff;
+    font-weight: 700;
+    padding: 0.55rem 0.95rem;
+}
+
+.kana-modal-close:hover:not(:disabled) {
+    background: rgba(33, 41, 51, 0.98);
+    border-color: #617791;
+}
+
+.kana-modal-body {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 0.9rem 1.15rem 1rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.kana-core-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+}
+
+.kana-script-panel {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 14px;
+    border: 1px solid #2f3742;
+    background: rgba(23, 28, 34, 0.76);
+}
+
+.kana-script-panel-hiragana {
+    box-shadow: inset 0 1px 0 rgba(152, 214, 255, 0.05);
+}
+
+.kana-script-panel-katakana {
+    box-shadow: inset 0 1px 0 rgba(140, 218, 164, 0.05);
+}
+
+.kana-script-panel-header {
+    padding: 0.7rem 0.85rem 0.65rem;
+    border-bottom: 1px solid rgba(125, 147, 171, 0.14);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.kana-script-panel-header h4 {
+    margin: 0.1rem 0 0;
+    color: #b8c5d0;
+    font-size: 0.76rem;
+    font-weight: 500;
+}
+
+.kana-script-label {
+    margin: 0;
+    color: #617b93;
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.kana-script-hint {
+    color: #677988;
+    font-size: 0.58rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.kana-script-core {
+    padding: 0.45rem 0.55rem 0.55rem;
+}
+
+.kana-script-scroll {
+    padding: 0.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.kana-drawer {
+    border-radius: 14px;
+    border: 1px solid #2b333d;
+    background: linear-gradient(180deg, rgba(20, 25, 31, 0.98), rgba(13, 16, 20, 0.98));
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.kana-drawer-summary {
+    list-style: none;
+    position: relative;
+    cursor: pointer;
+    padding: 0.8rem 2.8rem 0.8rem 0.95rem;
+}
+
+.kana-drawer-summary::-webkit-details-marker {
+    display: none;
+}
+
+.kana-drawer-summary::after {
+    content: '▾';
+    position: absolute;
+    top: 50%;
+    right: 0.95rem;
+    transform: translateY(-50%);
+    color: #9ab4c8;
+    font-size: 0.95rem;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.kana-drawer[open] .kana-drawer-summary::after {
+    transform: translateY(-50%) rotate(180deg);
+    color: #c6d6e3;
+}
+
+.kana-drawer[open] .kana-drawer-summary {
+    border-bottom: 1px solid rgba(125, 147, 171, 0.14);
+}
+
+.kana-drawer-summary-text {
+    display: block;
+}
+
+.kana-drawer-summary-text strong {
+    display: block;
+    color: #c1ccd7;
+    font-size: 0.78rem;
+    font-weight: 500;
+}
+
+.kana-drawer-summary-text small {
+    display: block;
+    margin-top: 0.18rem;
+    color: #748697;
+    font-size: 0.67rem;
+    line-height: 1.35;
+}
+
+.kana-drawer-content {
+    overflow: visible;
+}
+
+.kana-drawer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem;
+    padding: 0.7rem;
+}
+
+.kana-script-panel-drawer {
+    min-height: 0;
+}
+
+.kana-extra-section {
+    border-radius: 12px;
+    border: 1px solid #2b333d;
+    background: linear-gradient(180deg, rgba(31, 37, 44, 0.96), rgba(21, 25, 31, 0.96));
+    overflow: hidden;
+}
+
+.kana-extra-section-header {
+    padding: 0.55rem 0.65rem 0.12rem;
+}
+
+.kana-extra-section-header h5 {
+    margin: 0;
+    color: #bcc7d1;
+    font-size: 0.72rem;
+    font-weight: 500;
+}
+
+.kana-extra-section-header p {
+    margin: 0.18rem 0 0;
+    color: #718292;
+    font-size: 0.64rem;
+    line-height: 1.28;
+}
+
+.kana-table {
+    padding: 0.45rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.22rem;
+    background: rgba(23, 28, 34, 0.76);
+}
+
+.kana-row {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: 0.22rem;
+    align-items: center;
+}
+
+.kana-row-label {
+    color: #8ba5ba;
+    font-size: 0.67rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+.kana-row-cells {
+    display: grid;
+    gap: 0.18rem;
+}
+
+.kana-cell {
+    min-height: 39px;
+    padding: 0.11rem 0.07rem 0.08rem;
+    border-radius: 6px;
+    border: none;
+    background: linear-gradient(180deg, rgba(18, 22, 27, 0.9), rgba(10, 13, 17, 0.9));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.02rem;
+    text-align: center;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.kana-cell-empty {
+    border: none;
+    background: rgba(26, 31, 37, 0.4);
+    box-shadow: none;
+}
+
+.kana-cell-kana {
+    color: #f4f7fb;
+    font-size: 1.28rem;
+    line-height: 1;
+    font-weight: 700;
+}
+
+.kana-cell-romaji {
+    color: #9caab7;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: lowercase;
+    line-height: 1.1;
+}
+
 .timer-slider {
     width: 100%;
     appearance: none;
@@ -375,4 +784,70 @@ button:disabled {
     border: none;
     border-radius: 50%;
     cursor: pointer;
+}
+
+@media (max-width: 1200px) {
+    .kana-core-grid,
+    .kana-drawer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .kana-drawer-content {
+        max-height: 48vh;
+    }
+}
+
+@media (max-width: 900px) {
+    .kana-modal-overlay {
+        padding: 12px;
+    }
+
+    .kana-modal {
+        width: calc(100vw - 24px);
+        height: calc(100vh - 24px);
+    }
+
+    .kana-modal-header {
+        padding: 0.9rem 0.9rem 0.85rem;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .kana-modal-header h3 {
+        font-size: 1rem;
+    }
+
+    .kana-modal-body {
+        padding: 0.8rem;
+    }
+
+    .kana-script-core,
+    .kana-script-scroll {
+        padding: 0.65rem;
+    }
+
+    .kana-table {
+        padding: 0.55rem;
+    }
+
+    .kana-row {
+        grid-template-columns: 76px minmax(0, 1fr);
+        gap: 0.3rem;
+    }
+
+    .kana-cell {
+        min-height: 37px;
+    }
+
+    .kana-cell-kana {
+        font-size: 1.2rem;
+    }
+
+    .kana-cell-romaji {
+        font-size: 0.72rem;
+    }
+
+    .kana-drawer-summary {
+        padding: 0.72rem 2.7rem 0.72rem 0.85rem;
+    }
 }
