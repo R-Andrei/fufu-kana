@@ -1,7 +1,5 @@
-import React, { useMemo } from 'react';
-import { mapKanaToKanjiSyllables } from '../utils/kanji';
+import React from 'react';
 import type { Word } from '../types/kana';
-import type { KanjiChunk } from '../types/kanji';
 
 
 interface Props {
@@ -20,34 +18,23 @@ const WordDisplay: React.FC<Props> = ({
     isCorrect,
 }) => {
 
-    const kanjiChunks = useMemo(() => {
-        if (kanjiChecked && currentWord.kanji) {
-            return mapKanaToKanjiSyllables(currentWord.kanji, kanaParts);
-        }
-        return [];
-    }, [kanjiChecked, currentWord.kanji, kanaParts]);
-
     if (kanjiChecked && currentWord.kanji) {
+        // Furifont needs an uninterrupted word to select contextual readings.
         return (
             <div
                 className="word-kanji-highlighted"
-                style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem' }}
+                lang="ja"
             >
-                {kanjiChunks.map((chunk: KanjiChunk, index) => {
-                    return (
-                        <p
-                            key={index}
-                            style={{
-                                fontWeight: 'bold',
-                                color: isCorrect ? 'limegreen' : 'inherit',
-                                fontSize: '2rem',
-                                transition: 'color 0.2s ease-in-out',
-                            }}
-                        >
-                            {chunk.text}
-                        </p>
-                    );
-                })}
+                <p
+                    style={{
+                        fontWeight: 'bold',
+                        color: isCorrect ? 'limegreen' : 'inherit',
+                        fontSize: '2rem',
+                        transition: 'color 0.2s ease-in-out',
+                    }}
+                >
+                    {currentWord.kanji}
+                </p>
             </div>
         );
     }

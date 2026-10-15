@@ -74,7 +74,7 @@ export function Toast({ message, type = 'info' }: { message: string; type?: stri
           zIndex: 1,
           fontSize: '1rem',
           color: '#f0f0f0',
-          fontFamily: 'Inter, sans-serif',
+          fontFamily: 'inherit',
           fontWeight: 500,
         }}
       >

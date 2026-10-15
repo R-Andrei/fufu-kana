@@ -1,5 +1,6 @@
 
 import './App.css'
+import './fonts.css'
 
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { RefreshCcw, ArrowRightCircle } from 'lucide-react';
@@ -8,10 +9,22 @@ import doitforher from '/src/assets/doitforher.png';
 import type { ToastProps } from './components/toast';
 import type { Word, ExtendedWord, HistoryEntry } from './types';
 import { getRandomCorrectMessage, getRandomWrongMessage } from './utils/messages';
-import { checkAnswer, kanaToRomajiVariants, splitKanaByRomaji } from './utils/kana';
+import {
+  checkAnswer,
+  kanaToRomajiVariants,
+  splitKanaByRomaji,
+  hiraganaToRomaji,
+  katakanaToRomaji,
+  longSyllablesHiraganaMap,
+  longSyllablesKatakanaMap,
+} from './utils/kana';
 import { Toast } from './components/toast';
 import RenderWord from './components/Word';
 import KanaReferenceModal from './components/KanaReferenceModal';
+import AdvancedKanaSelectionModal from './components/AdvancedKanaSelectionModal';
+import { buildScriptSections } from './utils/kanaCharts';
+import { loadFontMode, saveFontMode } from './utils/font';
+import type { FontMode } from './utils/font';
 
 import hiraganaData from './assets/hiragana_words.json';
 import katakanaData from './assets/katakana_words.json';
@@ -22,8 +35,238 @@ const hiraganaWords = hiraganaData.vocabulary as Word[] || [];
 const katakanaWords = katakanaData.vocabulary as Word[] || [];
 const MAX_COOLDOWN = 100;
 
+const HIRAGANA_CORE_KEYS = new Set([
+  'あ','い','う','え','お',
+  'か','き','く','け','こ',
+  'さ','し','す','せ','そ',
+  'た','ち','つ','て','と',
+  'な','に','ぬ','ね','の',
+  'は','ひ','ふ','へ','ほ',
+  'ま','み','む','め','も',
+  'や','ゆ','よ',
+  'ら','り','る','れ','ろ',
+  'わ','を','ん',
+  'が','ぎ','ぐ','げ','ご',
+  'ざ','じ','ず','ぜ','ぞ',
+  'だ','ぢ','づ','で','ど',
+  'ば','び','ぶ','べ','ぼ',
+  'ぱ','ぴ','ぷ','ぺ','ぽ',
+]);
+
+const KATAKANA_CORE_KEYS = new Set([
+  'ア','イ','ウ','エ','オ',
+  'カ','キ','ク','ケ','コ',
+  'サ','シ','ス','セ','ソ',
+  'タ','チ','ツ','テ','ト',
+  'ナ','ニ','ヌ','ネ','ノ',
+  'ハ','ヒ','フ','ヘ','ホ',
+  'マ','ミ','ム','メ','モ',
+  'ヤ','ユ','ヨ',
+  'ラ','リ','ル','レ','ロ',
+  'ワ','ヲ','ン',
+  'ガ','ギ','グ','ゲ','ゴ',
+  'ザ','ジ','ズ','ゼ','ゾ',
+  'ダ','ヂ','ヅ','デ','ド',
+  'バ','ビ','ブ','ベ','ボ',
+  'パ','ピ','プ','ペ','ポ',
+]);
+
+type CharacterScript = 'hiragana' | 'katakana';
+
+type CharacterItem = {
+  kana: string;
+  romaji: string;
+  script: CharacterScript;
+  isSingleKana: boolean;
+};
+
+type CharacterPrompt = {
+  stage: 1 | 2 | 3 | 4;
+  promptType: 'kanaToRomaji' | 'romajiToKana' | 'typing';
+  kana: string;
+  romaji: string;
+  choices?: string[];
+  answerKana: string;
+  answerRomaji: string;
+};
+
+const shuffleArray = <T,>(items: T[]): T[] => {
+  return [...items].sort(() => Math.random() - 0.5);
+};
+
+const pickRandom = <T,>(items: T[]): T | undefined => {
+  if (!items.length) return undefined;
+  return items[Math.floor(Math.random() * items.length)];
+};
+
+const pickUniqueItems = <T,>(items: T[], count: number, keyFn: (item: T) => string): T[] => {
+  const unique = new Map<string, T>();
+  const shuffled = shuffleArray(items);
+
+  for (const item of shuffled) {
+    const key = keyFn(item);
+    if (!unique.has(key)) {
+      unique.set(key, item);
+      if (unique.size >= count) break;
+    }
+  }
+
+  return Array.from(unique.values()).slice(0, count);
+};
+
+const buildCharacterItems = (
+  script: CharacterScript,
+  includeExtended: boolean,
+): CharacterItem[] => {
+  const baseMap = script === 'hiragana' ? hiraganaToRomaji : katakanaToRomaji;
+  const longMap = script === 'hiragana' ? longSyllablesHiraganaMap : longSyllablesKatakanaMap;
+  const coreKeys = script === 'hiragana' ? HIRAGANA_CORE_KEYS : KATAKANA_CORE_KEYS;
+
+  const items: CharacterItem[] = Object.entries(baseMap)
+    .filter(([kana]) => coreKeys.has(kana) || includeExtended)
+    .map(([kana, romaji]) => ({
+      kana,
+      romaji,
+      script,
+      isSingleKana: kana.length === 1,
+    }));
+
+  if (includeExtended) {
+    for (const [kana, mapping] of Object.entries(longMap)) {
+      if (!items.some(item => item.kana === kana)) {
+        items.push({
+          kana,
+          romaji: mapping.hepburn,
+          script,
+          isSingleKana: kana.length === 1,
+        });
+      }
+    }
+  }
+
+  return items;
+};
+
+const createCharacterPrompt = (
+  stage: 1 | 2 | 3 | 4,
+  pool: CharacterItem[],
+): CharacterPrompt | null => {
+  if (!pool.length) return null;
+
+  const answerItems = [...pool];
+
+  if (stage === 4) {
+    const singleItems = pool.filter(item => item.isSingleKana);
+    const sourceItems = singleItems.length >= 3 ? singleItems : pool;
+    const chosen = pickUniqueItems(sourceItems, 3, item => item.kana);
+
+    if (chosen.length < 3) return null;
+
+    const kana = chosen.map(item => item.kana).join('');
+    const romaji = chosen.map(item => item.romaji).join('');
+
+    return {
+      stage: 4,
+      promptType: 'typing',
+      kana,
+      romaji,
+      answerKana: kana,
+      answerRomaji: romaji,
+    };
+  }
+
+  if (stage === 3) {
+    const singleItems = pool.filter(item => item.isSingleKana);
+    const item = pickRandom(singleItems.length ? singleItems : pool)!;
+    return {
+      stage: 3,
+      promptType: 'typing',
+      kana: item.kana,
+      romaji: item.romaji,
+      answerKana: item.kana,
+      answerRomaji: item.romaji,
+    };
+  }
+
+  const item = pickRandom(answerItems)!;
+
+  if (stage === 1) {
+    const wrongOptions = pickUniqueItems(
+      answerItems.filter(other => other.romaji !== item.romaji),
+      2,
+      other => other.romaji,
+    ).map(other => other.romaji);
+
+    const choices = shuffleArray([item.romaji, ...wrongOptions]);
+
+    return {
+      stage: 1,
+      promptType: 'kanaToRomaji',
+      kana: item.kana,
+      romaji: item.romaji,
+      choices,
+      answerKana: item.kana,
+      answerRomaji: item.romaji,
+    };
+  }
+
+  const wrongOptions = pickUniqueItems(
+    answerItems.filter(other => other.kana !== item.kana),
+    2,
+    other => other.kana,
+  ).map(other => other.kana);
+
+  const choices = shuffleArray([item.kana, ...wrongOptions]);
+
+  return {
+    stage: 2,
+    promptType: 'romajiToKana',
+    kana: item.kana,
+    romaji: item.romaji,
+    choices,
+    answerKana: item.kana,
+    answerRomaji: item.romaji,
+  };
+};
+
+const getCharacterStageLabel = (stage: 1 | 2 | 3 | 4) => {
+  switch (stage) {
+    case 1:
+      return 'Stage 1 — Kana → Romaji';
+    case 2:
+      return 'Stage 2 — Romaji → Kana';
+    case 3:
+      return 'Stage 3 — Type the answer';
+    case 4:
+      return 'Stage 4 — Type 3 characters';
+    default:
+      return 'Character Practice';
+  }
+};
+
+const normalizeCharacterAnswer = (answer: string) => answer.trim();
+
+const validateCharacterAnswer = (answer: string, prompt: CharacterPrompt) => {
+  const normalized = normalizeCharacterAnswer(answer);
+
+  if (prompt.promptType === 'kanaToRomaji') {
+    return normalized.toLowerCase() === prompt.answerRomaji.toLowerCase();
+  }
+
+  if (prompt.promptType === 'romajiToKana') {
+    return normalized === prompt.answerKana;
+  }
+
+  return checkAnswer(normalized, { kana: prompt.answerKana, english: '' });
+};
 
 const App: React.FC = () => {
+  const [fontMode, setFontMode] = useState<FontMode>(loadFontMode);
+
+  useEffect(() => {
+    saveFontMode(fontMode);
+  }, [fontMode]);
+
   const [hiraganaChecked, setHiraganaChecked] = useState(true);
   const [katakanaChecked, setKatakanaChecked] = useState(true);
   const [kanjiChecked, setKanjiChecked] = useState(false);
@@ -42,10 +285,23 @@ const App: React.FC = () => {
   const [isDefinitionRevealed, setIsDefinitionRevealed] = useState(true);
   const [isKanaReferenceOpen, setIsKanaReferenceOpen] = useState(false);
 
+  // practice mode state
+  const [practiceMode, setPracticeMode] = useState<'word' | 'character'>('word');
+  const [characterHiraganaChecked, setCharacterHiraganaChecked] = useState(true);
+  const [characterKatakanaChecked, setCharacterKatakanaChecked] = useState(true);
+  const [characterAdvancedMode, setCharacterAdvancedMode] = useState(false);
+  const [characterAdvancedSelectionOpen, setCharacterAdvancedSelectionOpen] = useState(false);
+  const [selectedAdvancedRowIds, setSelectedAdvancedRowIds] = useState<string[]>([]);
+  const [characterStage, setCharacterStage] = useState<1 | 2 | 3 | 4>(1);
+  const [characterScore, setCharacterScore] = useState(0);
+  const [characterPrompt, setCharacterPrompt] = useState<CharacterPrompt | null>(null);
+  const [characterInput, setCharacterInput] = useState('');
+
   // timer state
   const [timedMode, setTimedMode] = useState(false);
   const [timeLeft, setTimeLeft] = useState(0);
   const [timerDurationSec, setTimerDuration] = useState(8); // default 8 seconds
+  const [pointsToAdvance, setPointsToAdvance] = useState(10); // default 10 points for stage progression
   const [timerStarted, setTimerStarted] = useState(false);
   const timerDuration = timerDurationSec * 1000;
   const tickRate = 100;
@@ -95,10 +351,140 @@ const App: React.FC = () => {
     };
   }, [currentWord, variants]);
 
-  // Example function to add to history
-  function addHistory(entry: HistoryEntry) {
-    setHistory(prev => [entry, ...prev]); // newest first
-  }
+  const addToast = useCallback((message: string, type: 'success' | 'error') => {
+    const id = Date.now();
+    setToasts(prev => [...prev, { id, message, type }]);
+    setTimeout(() => {
+      setToasts(prev => prev.filter(toast => toast.id !== id));
+    }, 5000);
+  }, []);
+
+  const addHistory = useCallback((entry: HistoryEntry) => {
+    setHistory(prev => [entry, ...prev]);
+  }, []);
+
+  const makeAdvancedRowId = (script: CharacterScript, sectionTitle: string, rowLabel: string) => `${script}|${sectionTitle}|${rowLabel}`;
+
+  const selectedAdvancedRowSet = useMemo(() => new Set(selectedAdvancedRowIds), [selectedAdvancedRowIds]);
+
+  const getAllAdvancedRowIdsForScripts = useCallback((scripts: CharacterScript[]) => {
+    return scripts.flatMap((script) =>
+      buildScriptSections(script).flatMap((section) =>
+        section.rows.map((row) => makeAdvancedRowId(script, section.title, row.label))
+      )
+    );
+  }, []);
+
+  const selectedCharacterPool = useMemo(() => {
+    if (characterAdvancedMode) {
+      const poolMap = new Map<string, CharacterItem>();
+      const addRowItems = (script: CharacterScript) => {
+        const scriptSections = buildScriptSections(script);
+        for (const section of scriptSections) {
+          for (const row of section.rows) {
+            const rowId = makeAdvancedRowId(script, section.title, row.label);
+            if (!selectedAdvancedRowSet.has(rowId)) continue;
+            for (const cell of row.cells) {
+              if (!cell.kana) continue;
+              poolMap.set(cell.kana, {
+                kana: cell.kana,
+                romaji: cell.romaji,
+                script,
+                isSingleKana: cell.kana.length === 1,
+              });
+            }
+          }
+        }
+      };
+
+      addRowItems('hiragana');
+      addRowItems('katakana');
+
+      return Array.from(poolMap.values());
+    }
+
+    let pool: CharacterItem[] = [];
+    if (characterHiraganaChecked) {
+      pool = pool.concat(buildCharacterItems('hiragana', false));
+    }
+    if (characterKatakanaChecked) {
+      pool = pool.concat(buildCharacterItems('katakana', false));
+    }
+    return pool;
+  }, [characterAdvancedMode, selectedAdvancedRowSet, characterHiraganaChecked, characterKatakanaChecked]);
+
+  const initializeAdvancedSelection = useCallback(() => {
+    if (selectedAdvancedRowIds.length) return;
+
+    const scripts: CharacterScript[] = [];
+    if (characterHiraganaChecked) scripts.push('hiragana');
+    if (characterKatakanaChecked) scripts.push('katakana');
+    if (!scripts.length) scripts.push('hiragana', 'katakana');
+
+    setSelectedAdvancedRowIds(getAllAdvancedRowIdsForScripts(scripts));
+  }, [selectedAdvancedRowIds.length, characterHiraganaChecked, characterKatakanaChecked, getAllAdvancedRowIdsForScripts]);
+
+  const openAdvancedSelection = useCallback(() => {
+    if (!characterAdvancedMode) {
+      setCharacterAdvancedMode(true);
+    }
+    initializeAdvancedSelection();
+    setCharacterAdvancedSelectionOpen(true);
+  }, [characterAdvancedMode, initializeAdvancedSelection]);
+
+  const disableAdvancedMode = useCallback(() => {
+    setCharacterAdvancedMode(false);
+    setCharacterAdvancedSelectionOpen(false);
+  }, []);
+
+  const resetCharacterPractice = useCallback(() => {
+    setCharacterStage(1);
+    setCharacterScore(0);
+    setCharacterInput('');
+    if (selectedCharacterPool.length) {
+      setCharacterPrompt(createCharacterPrompt(1, selectedCharacterPool));
+    } else {
+      setCharacterPrompt(null);
+    }
+  }, [selectedCharacterPool]);
+
+  const submitCharacterResponse = useCallback((answer: string) => {
+    if (!characterPrompt) return;
+
+    const isCorrect = validateCharacterAnswer(answer, characterPrompt);
+    const nextScore = characterScore + (isCorrect ? 1 : -1);
+    const reachedTarget = isCorrect && nextScore >= pointsToAdvance;
+    const nextStage = reachedTarget ? (characterStage < 4 ? (characterStage + 1) as 1 | 2 | 3 | 4 : 1 as 1 | 2 | 3 | 4) : characterStage;
+    const nextScoreValue = reachedTarget ? 0 : nextScore;
+
+    if (isCorrect) {
+      addToast(getRandomCorrectMessage(), 'success');
+    } else {
+      const wrongMessage = getRandomWrongMessage(characterPrompt.kana, characterPrompt.answerRomaji);
+      addToast(wrongMessage, 'error');
+    }
+
+    addHistory({
+      word: characterPrompt.kana,
+      meaning: `Stage ${characterPrompt.stage}`,
+      input: answer.trim(),
+      correctRomaji: characterPrompt.answerRomaji,
+      isCorrect,
+    });
+
+    if (reachedTarget) {
+      if (characterStage < 4) {
+        addToast(`Great! Advancing to ${getCharacterStageLabel(nextStage)}.`, 'success');
+      } else {
+        addToast('Final stage complete! Restarting character practice from stage 1.', 'success');
+      }
+    }
+
+    setCharacterScore(nextScoreValue);
+    setCharacterStage(nextStage);
+    setCharacterInput('');
+    setCharacterPrompt(createCharacterPrompt(nextStage, selectedCharacterPool));
+  }, [addHistory, addToast, characterPrompt, characterScore, characterStage, pointsToAdvance, selectedCharacterPool]);
 
   // Update words list based on selection
   useEffect(() => {
@@ -116,6 +502,12 @@ const App: React.FC = () => {
       setCurrentWord(null);
     }
   }, [hiraganaChecked, katakanaChecked]);
+
+  useEffect(() => {
+    if (practiceMode === 'character') {
+      resetCharacterPractice();
+    }
+  }, [practiceMode, selectedCharacterPool, resetCharacterPractice]);
 
   useEffect(() => {
     setIsDefinitionRevealed(showEnglishTranslation);
@@ -209,29 +601,52 @@ const App: React.FC = () => {
     variants,
     cooldownWords,
     isCorrect,
-    showEnglishTranslation
+    showEnglishTranslation,
+    addHistory
   ]);
 
   // Effect 0: auto-submit on correct input
   useEffect(() => {
-    if (!autoSubmit || !userInput || !variants.hepburn || !variants.double) return;
+    if (!autoSubmit) return;
 
-    const normalizedInput = userInput.trim().toLowerCase();
-    const normalizedHepburn = variants.hepburn.toLowerCase();
-    const normalizedDouble = variants.double.toLowerCase();
+    if (practiceMode === 'word') {
+      if (!userInput || !variants.hepburn || !variants.double) return;
 
-    if (normalizedInput === normalizedHepburn || normalizedInput === normalizedDouble) {
-      const timer = setTimeout(() => {
-        onCheck();
-      }, 400);
+      const normalizedInput = userInput.trim().toLowerCase();
+      const normalizedHepburn = variants.hepburn.toLowerCase();
+      const normalizedDouble = variants.double.toLowerCase();
 
-      return () => clearTimeout(timer);
+      if (normalizedInput === normalizedHepburn || normalizedInput === normalizedDouble) {
+        const timer = setTimeout(() => {
+          onCheck();
+        }, 400);
+
+        return () => clearTimeout(timer);
+      }
+
+      return;
     }
-  }, [userInput, variants, onCheck, autoSubmit]);
+
+    if (practiceMode === 'character' && characterPrompt && characterPrompt.promptType === 'typing') {
+      if (!characterInput) return;
+
+      const normalizedInput = characterInput.trim();
+      const normalizedAnswer = characterPrompt.answerRomaji.toLowerCase();
+
+      if (normalizedInput.toLowerCase() === normalizedAnswer) {
+        const timer = setTimeout(() => {
+          submitCharacterResponse(characterInput);
+        }, 400);
+
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [autoSubmit, practiceMode, userInput, variants, onCheck, characterPrompt, characterInput, submitCharacterResponse]);
 
   // Effect 1: countdown timer
   useEffect(() => {
-    if (!timedMode || !currentWord) return;
+    const activePrompt = practiceMode === 'word' ? currentWord : characterPrompt;
+    if (!timedMode || !activePrompt) return;
 
     setTimeLeft(timerDuration);
     if (timerRef.current) clearInterval(timerRef.current);
@@ -249,13 +664,17 @@ const App: React.FC = () => {
       clearInterval(timerRef.current!);
       setTimerStarted(false); // clear when effect is cleaned up
     };
-  }, [currentWord, timedMode, timerDuration]);
+  }, [currentWord, timedMode, timerDuration, practiceMode, characterPrompt]);
 
   useEffect(() => {
     if (timeLeft === 0 && timedMode && timerStarted) {
-      onCheck();
+      if (practiceMode === 'word') {
+        onCheck();
+      } else if (practiceMode === 'character') {
+        submitCharacterResponse('');
+      }
     }
-  }, [timeLeft, timedMode, onCheck, timerStarted]);
+  }, [timeLeft, timedMode, onCheck, timerStarted, practiceMode, submitCharacterResponse]);
 
   const resetHistory = () => {
     setHistory([]);  // or whatever state update clears history
@@ -319,7 +738,7 @@ const App: React.FC = () => {
   const accuracy = totalCount === 0 ? 0 : Math.round((correctCount / totalCount) * 100);
 
   return (
-    <div className='flex w-full h-full practice-container' style={{ display: 'flex', height: '100vh' }}>
+    <div className='flex w-full h-full practice-container' data-font-mode={fontMode} style={{ display: 'flex', height: '100vh' }}>
       {/* Left sidebar for options */}
       <section
         className="w-1/4 p-4 border-r practice-settings"
@@ -327,12 +746,105 @@ const App: React.FC = () => {
       >
         <h2>Practice Settings</h2>
 
+        <fieldset className="settings-group" aria-describedby="font-mode-help">
+          <legend><strong>Font readings</strong></legend>
+          {(['regular', 'hiragana', 'romaji'] as const).map(mode => (
+            <label key={mode}>
+              <input
+                type="radio"
+                name="fontMode"
+                value={mode}
+                checked={fontMode === mode}
+                onChange={() => setFontMode(mode)}
+              />
+              {mode === 'regular' ? 'Regular (no readings)' : mode === 'hiragana' ? 'Hiragana readings' : 'Romaji readings'}
+            </label>
+          ))}
+          <p className="font-preview" lang="ja" aria-label="Font preview: Japanese language">日本語</p>
+          <p className="font-help" id="font-mode-help">Readings appear above supported kanji. Kana stays unchanged.</p>
+        </fieldset>
+
+        <fieldset className="settings-group" style={{ marginBottom: '1rem' }}>
+          <legend><strong>Practice Mode</strong></legend>
+          <label>
+            <input
+              type="radio"
+              name="practiceMode"
+              checked={practiceMode === 'word'}
+              onChange={() => setPracticeMode('word')}
+            />
+            Word Practice
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="practiceMode"
+              checked={practiceMode === 'character'}
+              onChange={() => setPracticeMode('character')}
+            />
+            Character Practice
+          </label>
+        </fieldset>
+
+        <fieldset className="settings-group" style={{ marginBottom: '1rem' }}>
+          <legend><strong>Character Practice ― Kana</strong></legend>
+          <label>
+            <input
+              type="checkbox"
+              checked={characterHiraganaChecked}
+              disabled={practiceMode !== 'character' || characterAdvancedMode}
+              onChange={() => {
+                setCharacterHiraganaChecked(prev => !prev);
+              }}
+            />
+            Hiragana
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={characterKatakanaChecked}
+              disabled={practiceMode !== 'character' || characterAdvancedMode}
+              onChange={() => {
+                setCharacterKatakanaChecked(prev => !prev);
+              }}
+            />
+            Katakana
+          </label>
+          <div className="advanced-selection-control">
+            <button
+              type="button"
+              className="kana-selection-button"
+              disabled={practiceMode !== 'character'}
+              onClick={openAdvancedSelection}
+            >
+              {characterAdvancedMode ? 'Edit selection' : 'Advanced selection'}
+            </button>
+            {characterAdvancedMode && (
+              <div className="advanced-selection-status">
+                <span className="advanced-selection-summary">
+                  {selectedAdvancedRowIds.length > 0
+                    ? `${selectedAdvancedRowIds.length} selected`
+                    : 'No rows selected'}
+                </span>
+                <button
+                  type="button"
+                  className="secondary-action-button"
+                  onClick={disableAdvancedMode}
+                >
+                  Exit advanced
+                </button>
+              </div>
+            )}
+          </div>
+        </fieldset>
+
         <fieldset className="settings-group" style={{ marginBottom: '1rem' }}>
           <legend><strong>Word Practice ― Romaji</strong></legend>
           <label>
             <input
               type="checkbox"
               checked={hiraganaChecked}
+              disabled={practiceMode === 'character'}
               onChange={() => setHiraganaChecked(!hiraganaChecked)}
             />
             Hiragana
@@ -341,6 +853,7 @@ const App: React.FC = () => {
             <input
               type="checkbox"
               checked={katakanaChecked}
+              disabled={practiceMode === 'character'}
               onChange={() => setKatakanaChecked(!katakanaChecked)}
             />
             Katakana
@@ -349,6 +862,7 @@ const App: React.FC = () => {
             <input
               type="checkbox"
               checked={kanjiChecked}
+              disabled={practiceMode === 'character'}
               onChange={() => setKanjiChecked(prev => !prev)}
             />
             Kanji
@@ -403,6 +917,19 @@ const App: React.FC = () => {
               className="timer-slider"
             />
           </div>
+          <div className="timer-slider-wrapper">
+            <label htmlFor="pointsToAdvance">Stage Points To Advance: {pointsToAdvance}</label>
+            <input
+              id="pointsToAdvance"
+              type="range"
+              min={5}
+              max={30}
+              step={1}
+              value={pointsToAdvance}
+              onChange={(e) => setPointsToAdvance(parseInt(e.target.value))}
+              className="timer-slider"
+            />
+          </div>
         </fieldset>
 
         <div className="settings-sidebar-footer">
@@ -434,7 +961,88 @@ const App: React.FC = () => {
           className="practice-room-bg"
         />
         <div className="practice-room-content" style={{ position: 'relative', zIndex: 2 }}>
-          {currentWord ? (
+          {practiceMode === 'character' ? (
+            characterPrompt ? (
+              <>
+                <div className="character-practice-card">
+                  <div className="practice-stage-label">{getCharacterStageLabel(characterStage)}</div>
+                  <div className="practice-stage-score">
+                    <span>Score: {characterScore} / {pointsToAdvance}</span>
+                  </div>
+                  <div className="score-bar-wrapper">
+                    <div
+                      className="score-bar"
+                      style={{
+                        width: `${Math.max(0, Math.min(100, (characterScore / pointsToAdvance) * 100))}%`,
+                        backgroundColor: getBarColor(characterScore / pointsToAdvance)
+                      }}
+                    />
+                  </div>
+                </div>
+
+                <div className="word-display">
+                  <div className="character-prompt">
+                    {characterPrompt.promptType === 'romajiToKana'
+                      ? characterPrompt.romaji
+                      : characterPrompt.kana}
+                  </div>
+                </div>
+
+                {characterPrompt.choices ? (
+                  <div className="choice-grid">
+                    {characterPrompt.choices.map((choice, index) => (
+                      <button
+                        type="button"
+                        key={`${choice}-${index}`}
+                        className="choice-button"
+                        onClick={() => submitCharacterResponse(choice)}
+                      >
+                        {choice}
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="input-group">
+                    <input
+                      type="text"
+                      ref={inputRef}
+                      value={characterInput}
+                      onChange={(e) => setCharacterInput(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' && characterInput.trim()) {
+                          submitCharacterResponse(characterInput);
+                        }
+                      }}
+                      placeholder={characterPrompt.promptType === 'typing' ? 'Type romaji here...' : 'Enter answer...'}
+                      style={{ fontSize: '1.2rem', padding: '0.45rem', width: '420px', textAlign: 'center' }}
+                      autoFocus
+                    />
+                    <button
+                      onClick={() => submitCharacterResponse(characterInput)}
+                      disabled={!characterInput.trim()}
+                      title="Check answer"
+                      className={`check-button`}
+                    >
+                      <ArrowRightCircle size={28} />
+                    </button>
+                    {timedMode && (
+                      <div className="timer-bar-wrapper">
+                        <div
+                          className="timer-bar"
+                          style={{
+                            width: `${(timeLeft / timerDuration) * 100}%`,
+                            backgroundColor: getBarColor(timeLeft / timerDuration)
+                          }}
+                        ></div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </>
+            ) : (
+              <div>Please select Hiragana or Katakana to start character practice.</div>
+            )
+          ) : currentWord ? (
             <>
               <div className="word-display">
                 <RenderWord
@@ -543,6 +1151,13 @@ const App: React.FC = () => {
       <KanaReferenceModal
         isOpen={isKanaReferenceOpen}
         onClose={() => setIsKanaReferenceOpen(false)}
+      />
+
+      <AdvancedKanaSelectionModal
+        isOpen={characterAdvancedSelectionOpen}
+        selectedRowIds={selectedAdvancedRowIds}
+        onSave={setSelectedAdvancedRowIds}
+        onClose={() => setCharacterAdvancedSelectionOpen(false)}
       />
     </div>
   );

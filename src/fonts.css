@@ -1,0 +1,53 @@
+@font-face {
+    font-family: 'Furifont Sans';
+    src: url('/Furifont/FurifontSansVF.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 250 900;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Furifont Sans Romaji';
+    src: url('/Furifont/FurifontSansRomajiVF.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 250 900;
+    font-display: swap;
+}
+
+body,
+[data-font-mode='regular'] {
+    font-family: 'Furifont Sans', sans-serif;
+    font-feature-settings: 'rclt' 0, 'ss01' 1;
+    line-height: 1.7;
+}
+
+[data-font-mode='hiragana'] {
+    font-family: 'Furifont Sans', sans-serif;
+    font-feature-settings: 'rclt' 1, 'ss01' 0;
+}
+
+[data-font-mode='romaji'] {
+    font-family: 'Furifont Sans Romaji', sans-serif;
+    font-feature-settings: 'rclt' 1, 'ss01' 0;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+    font-feature-settings: inherit;
+    line-height: inherit;
+}
+
+.font-preview {
+    margin: 0.75rem 0 0;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.font-help {
+    margin: 0.5rem 0 0;
+    color: #aaa;
+    font-size: 0.75rem;
+}
